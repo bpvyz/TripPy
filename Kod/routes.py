@@ -1,39 +1,79 @@
 from flask import render_template, redirect, url_for, request, session
 from mappings.tables import User, db
+import secrets
+import string
+
+import string
+import secrets
+
+def generate_verification_code():
+    alphabet = string.ascii_letters + string.digits
+    verification_code = ''.join(secrets.choice(alphabet) for _ in range(6))
+    print(f"Verification code: {verification_code}")
+    return verification_code
 
 def register():
     if request.method == 'POST':
+
         username = request.form['username']
         password = request.form['password']
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
+        firstname = request.form['first_name']
+        lastname = request.form['last_name']
         email = request.form['email']
-        phone_number = request.form['phone_number']
-        user_type = request.form['user_type']
+        phonenumber = request.form['phone_number']
+        usertype = request.form['user_type']
 
         if User.query.filter_by(username=username).first():
             return render_template('register.html', error='Username already exists')
 
-        new_user = User(
-            username=username,
-            password=password,
-            usertype=user_type,
-            firstname=first_name,
-            lastname=last_name,
-            email=email,
-            phonenumber=phone_number
-        )
+        session['registration_data'] = {
+            'username': username,
+            'password': password,
+            'firstname': firstname,
+            'lastname': lastname,
+            'email': email,
+            'phonenumber': phonenumber,
+            'usertype': usertype
+        }
 
-        db.session.add(new_user)
+        verification_code = generate_verification_code()
+        session['expected_verification_code'] = verification_code
 
-        try:
+        return redirect(url_for('verify'))
+
+    else:
+        return render_template('register.html')
+
+def verify():
+    if request.method == 'POST':
+        verification_code = request.form['verification_code']
+
+        expected_verification_code = session.get('expected_verification_code')
+
+        if verification_code == expected_verification_code:
+            registration_data = session.get('registration_data', {})
+            new_user = User(username=registration_data['username'], password=registration_data['password'],
+                            firstname=registration_data['firstname'], lastname=registration_data['lastname'],
+                            email=registration_data['email'], phonenumber=registration_data['phonenumber'],
+                            usertype=registration_data['usertype'])
+            db.session.add(new_user)
             db.session.commit()
-            return redirect(url_for('login'))
-        except:
-            db.session.rollback()
-            return render_template('register.html', error='An error occurred while registering')
 
-    return render_template('register.html')
+            session.pop('expected_verification_code', None)
+            session.pop('registration_data', None)
+
+            return redirect(url_for('login'))
+        else:
+            error = "Verification code incorrect. Please try again."
+            return render_template('verification_code.html', error=error)
+
+    expected_verification_code = session.get('expected_verification_code')
+    registration_data = session.get('registration_data', {})
+
+    if expected_verification_code:
+        return render_template('verification_code.html', expected_verification_code=expected_verification_code, registration_data=registration_data)
+    else:
+        return redirect(url_for('register'))
 
 def login():
     if request.method == 'POST':
