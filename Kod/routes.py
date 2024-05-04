@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, request, session
-from mappings.user import User, db
+from Kod.mappings.user import User
+
 
 def login():
     if request.method == 'POST':
