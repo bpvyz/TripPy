@@ -30,12 +30,20 @@
         <a class="nav-link" href="#">Početna <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Korisnici
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
+          <a class="dropdown-item" href="#">Prikaži sve korisnike</a>
+          <a class="dropdown-item" href="#">Dodaj korisnika</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Marsrute
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
           <a class="dropdown-item" href="#">Sve Marsrute</a>
-          <a class="dropdown-item" href="#">Moje Marsrute</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -44,7 +52,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
           <a class="dropdown-item" href="#">Svi Oglasi</a>
-          <a class="dropdown-item" href="#">Pretraga Oglasa</a>
+          <a class="dropdown-item" href="#">Zahtevi za prihvatanje oglasa</a>
         </div>
       </li>
     </ul>
@@ -64,69 +72,55 @@
   </div>
 </nav>
 
+
 <div class="container mt-5">
-  <h1>Dobrodošli, Putniče!</h1>
+  <h1>Dobrodošli, administrator! </h1>
 
   <div class="margin-bottom-50"></div>
 
   <div class="row">
-    <div class="col-md-6">
-      <h2>Kreiraj Marsrutu</h2>
-      <div class="route-box">
-        <h3>Box za Kreiranje Marsruta</h3>
-        <button class="btn btn-primary">Kreiraj Maršrutu</button>
+    <div class="col-md-12">
+      <h2>Oglasi</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="route-box">
+              <h3>Svi oglasi</h3>
+              <button class="btn btn-primary">Prikazi sve oglase</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="route-box">
+              <h3>Zahtevi za prihvatanje oglasa</h3>
+              <button class="btn btn-primary">Prikazi sve zahteve za oglase</button>
+            </div>
+        </div>
       </div>
-      <div class="route-box">
-        <h3>Pregled maršruta</h3>
-        <button class="btn btn-primary">Prikazi sve maršrute </button>
-        <button class="btn btn-primary">Prikazi moje maršrute </button>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <h2>Moje maršrute</h2>
-      <div class="route-box">
-        <h3>Naslov Marsruta 1</h3>
-        <p>Ovde ide opis prvog kreiranog marsruta.</p>
-      </div>
-      <div class="route-box">
-        <h3>Naslov Marsruta 2</h3>
-        <p>Ovde ide opis drugog kreiranog marsruta.</p>
-      </div>
-      <!-- Add more boxes for other routes -->
     </div>
   </div>
 
-  <h2>Svi oglasi</h2>
-  <div class="column" style="overflow-y: auto; max-height: 400px;">
-      <div class="col-md-12">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Maršrute</h2>
       <div class="route-box">
-        <h3>Svi oglasi</h3>
-        <button class="btn btn-primary">Prikazi sve oglase </button>
+        <button class="btn btn-primary">Prikazi sve maršrute </button>
       </div>
     </div>
-    <div class="col-md-12">
-      <div class="route-box">
-        <h3>Naslov oglasa 1</h3>
-        <p>Ovde ide opis prvog oglasa.</p>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="route-box">
-        <h3>Naslov oglasa 2</h3>
-        <p>Ovde ide opis drugog oglasa.</p>
-      </div>
-    </div>
-    <!-- Add more boxes for other ads -->
   </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Korisnici</h2>
+      <div class="route-box">
+        <button class="btn btn-primary">Prikazi sve korisnike </button>
+        <button class="btn btn-primary">Dodaj korisnika </button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-    // Ovde možete dodati JavaScript za funkcionalnosti, ako je potrebno
-</script>
 
 </body>
 </html>
