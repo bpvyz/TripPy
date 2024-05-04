@@ -1,14 +1,14 @@
 from flask import render_template, redirect, url_for, request, session
-from Kod.mappings.user import User
+from mappings.user import User
 
 
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = User.query.filter_by(Username=username, Password=password).first()
+        user = User.query.filter_by(username=username, password=password).first()
         if user:
-            session['user_id'] = user.UserID
+            session['user_id'] = user.userid
             return redirect(url_for('dashboard'))
         else:
             return render_template('login.html', error='Invalid username or password')
