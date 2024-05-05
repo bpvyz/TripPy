@@ -3,23 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TripPy</title>
+    <title>Edit User</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .margin-bottom-50 {
-            margin-bottom: 50px;
-        }
-        .route-box {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-    </style>
     <<script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">TripPy</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -28,14 +17,14 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/admin_dashboard" onclick="dashboard()">Početna <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#" onclick="dashboard()">Početna <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Korisnici
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" href="/admin_users">Prikaži sve korisnike</a>
+          <a class="dropdown-item" href="#" onclick="admin_users()">Prikaži sve korisnike</a>
           <a class="dropdown-item" href="#">Dodaj korisnika</a>
         </div>
       </li>
@@ -72,56 +61,39 @@
     </ul>
   </div>
 </nav>
-
-
-<div class="container mt-5">
-  <h1>Dobrodošli, administrator! </h1>
-
-  <div class="margin-bottom-50"></div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Oglasi</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="route-box">
-              <h3>Svi oglasi</h3>
-              <button class="btn btn-primary">Prikazi sve oglase</button>
+    <div class="container mt-5">
+        <h1>Edit User</h1>
+        <form action="{{ url_for('update_user', user_id=user.userid) }}" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
             </div>
-        </div>
-        <div class="col-md-6">
-          <div class="route-box">
-              <h3>Zahtevi za prihvatanje oglasa</h3>
-              <button class="btn btn-primary">Prikazi sve zahteve za oglase</button>
+            <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" value="{{ user.firstname }}">
             </div>
-        </div>
-      </div>
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" value="{{ user.lastname }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+            </div>
+            <div class="form-group">
+                <label for="phonenumber">Phone Number:</label>
+                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="{{ user.phonenumber }}">
+            </div>
+            <div class="form-group">
+                <label for="usertype">User Type:</label>
+                <input type="text" class="form-control" id="usertype" name="usertype" value="{{ user.usertype }}" disabled>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <h2>Maršrute</h2>
-      <div class="route-box">
-        <button class="btn btn-primary">Prikazi sve maršrute </button>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <h2>Korisnici</h2>
-      <div class="route-box">
-        <button class="btn btn-primary" href="#" onclick="admin_users()">Prikazi sve korisnike </button>
-        <button class="btn btn-primary">Dodaj korisnika </button>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

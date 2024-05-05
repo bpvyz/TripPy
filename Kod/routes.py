@@ -106,6 +106,56 @@ def admin_dashboard():
             return render_template('admin.html', user=user)
     return redirect(url_for('login'))
 
+def admin_users():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            users = User.query.all()
+            return render_template('admin_users.html', users=users)
+    return redirect(url_for('login'))
+
+def delete_user(user_id):
+    if 'user_id' in session:
+        logged_in_user_id = session['user_id']
+        user = User.query.get(logged_in_user_id)
+        if user and user.usertype == "Administrator":
+            user_to_delete = User.query.get(user_id)
+            if user_to_delete:
+                db.session.delete(user_to_delete)
+                db.session.commit()
+                return redirect(url_for('admin_users'))
+            else:
+                return "User not found", 404
+    return redirect(url_for('login'))
+
+def edit_user(user_id):
+    if 'user_id' in session:
+        logged_in_user_id = session['user_id']
+        user = User.query.get(logged_in_user_id)
+        if user:
+            if user.usertype == "Administrator" or user.userid == user_id:
+                user_to_edit = User.query.get(user_id)
+                if user_to_edit:
+                    return render_template('edit_user.html', user=user_to_edit)
+                else:
+                    return "User not found", 404
+    return redirect(url_for('login'))
+
+def update_user(user_id):
+    if request.method == 'POST':
+        if 'user_id' in session:
+            logged_in_user_id = session['user_id']
+            user = User.query.get(logged_in_user_id)
+            if user:
+                if user.usertype == "Administrator" or user.userid == user_id:
+                    user_to_update = User.query.get(user_id)
+                    if user_to_update:
+                        return redirect(url_for('admin_users'))
+                    else:
+                        return "User not found", 404
+    return redirect(url_for('login'))
+
 def putnik_dashboard():
     if 'user_id' in session:
         user_id = session['user_id']
@@ -121,6 +171,3 @@ def vlasnik_dashboard():
         if user and user.usertype == "VlasnikBiznisa":
             return render_template('vlasnik.html', user=user)
     return redirect(url_for('login'))
-
-
-
