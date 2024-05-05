@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request, session
-from mappings.tables import User, db
+from mappings.tables import User, Route, db
 import secrets
 import string
 
@@ -97,6 +97,34 @@ from flask import redirect, url_for, session
 def logout():
     session.pop('user_id', None)
     return redirect(url_for('login'))
+
+def add_route():
+    if request.method == 'POST':
+        routename = request.form['routename']
+        description = request.form['description']
+        startdate = request.form['startdate']
+        enddate = request.form['enddate']
+        
+        # Get the user who is creating this route
+        user_id = session.get('user_id')
+        if user_id:
+            user = User.query.get(user_id)
+            if user:
+                # Create a new route
+                new_route = Route(
+                    routename=routename,
+                    description=description,
+                    startdate=startdate,
+                    enddate=enddate,
+                    createdby=user.userid
+                )
+                db.session.add(new_route)
+                db.session.commit()
+                return redirect(url_for('putnik_dashboard'))
+    
+        return render_template('add_route.html', error='Failed to add route. Please try again.')
+
+    return render_template('add_route.html')
 
 def admin_dashboard():
     if 'user_id' in session:
