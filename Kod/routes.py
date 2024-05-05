@@ -156,3 +156,8 @@ def show_all_routes():
     return render_template('show_all_routes.html', routes=routes)
 
 
+def show_my_routes():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        routes = Route.query.filter_by(createdby=user_id).all()
+        return render_template('show_my_routes.html', routes=routes, user_id=user_id)
