@@ -19,7 +19,7 @@ class Location(db.Model):
     city = db.Column(db.String(255), nullable=False)
     Country = db.Column(db.String(255), nullable=False)
 
-class Businesse(db.Model):
+class Business(db.Model):
     __tablename__ = 'businesses'
     businessid = db.Column(db.Integer, primary_key=True)
     businessname = db.Column(db.String(255), nullable=False)
