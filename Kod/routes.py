@@ -82,20 +82,45 @@ def login():
         user = User.query.filter_by(username=username, password=password).first()
         if user:
             session['user_id'] = user.userid
-            return redirect(url_for('dashboard'))
+            if user.usertype == "Putnik":
+                return redirect(url_for('putnik_dashboard'))
+            elif user.usertype == "VlasnikBiznisa":
+                return redirect(url_for('vlasnik_dashboard'))
+            else:
+                return redirect(url_for('admin_dashboard'))
         else:
             return render_template('login.html', error='Invalid username or password')
     return render_template('login.html')
 
-def dashboard():
-    if 'user_id' in session:
-        user_id = session['user_id']
-        user = User.query.get(user_id)
-        return render_template('dashboard.html', user=user)
-    else:
-        return redirect(url_for('login'))
+from flask import redirect, url_for, session
 
 def logout():
     session.pop('user_id', None)
     return redirect(url_for('login'))
+
+def admin_dashboard():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            return render_template('admin.html', user=user)
+    return redirect(url_for('login'))
+
+def putnik_dashboard():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Putnik":
+            return render_template('putnik.html', user=user)
+    return redirect(url_for('login'))
+
+def vlasnik_dashboard():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "VlasnikBiznisa":
+            return render_template('vlasnik.html', user=user)
+    return redirect(url_for('login'))
+
+
 

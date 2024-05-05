@@ -15,6 +15,7 @@
             margin-bottom: 20px;
         }
     </style>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 </head>
 <body>
 
@@ -57,7 +58,7 @@
           <a class="dropdown-item" href="#">Moj Profil</a>
           <a class="dropdown-item" href="#">Postavke</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Odjava</a>
+          <a class="dropdown-item" href="#" onclick="logout()">Odjava</a>
         </div>
       </li>
     </ul>
