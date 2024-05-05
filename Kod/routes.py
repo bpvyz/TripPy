@@ -62,7 +62,7 @@ def verify():
             session.pop('expected_verification_code', None)
             session.pop('registration_data', None)
 
-            return redirect(url_for('login'))
+            return render_template('redirect_login.html')
         else:
             error = "Verification code incorrect. Please try again."
             return render_template('verification_code.html', error=error)
