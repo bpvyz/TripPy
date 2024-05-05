@@ -1,5 +1,5 @@
 from init import create_app
-from routes import login, logout, register, verify, putnik_dashboard, vlasnik_dashboard, admin_dashboard, logout, add_route, show_all_routes, show_my_routes
+from routes import login, logout, register, verify, putnik_dashboard, vlasnik_dashboard, admin_dashboard, logout, add_route, show_all_routes, show_my_routes, show_businesses
 
 app = create_app()
 
@@ -15,6 +15,8 @@ app.add_url_rule('/admin_dashboard', 'admin_dashboard', admin_dashboard, methods
 app.add_url_rule('/add_route', 'add_route', add_route, methods=['GET', 'POST'])
 app.add_url_rule('/show_all_routes', 'show_all_routes', show_all_routes, methods=['GET'])
 app.add_url_rule('/show_my_routes', 'show_my_routes', show_my_routes, methods=['GET'])
+app.add_url_rule('/show_businesses', 'show_businesses', show_businesses, methods=['GET'])
+
 
 
 if __name__ == '__main__':

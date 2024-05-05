@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request, session
-from mappings.tables import User, Route, db
+from mappings.tables import User, Route, Business, db
 import secrets
 import string
 
@@ -155,9 +155,15 @@ def show_all_routes():
     routes = Route.query.all()
     return render_template('show_all_routes.html', routes=routes)
 
-
 def show_my_routes():
     if 'user_id' in session:
         user_id = session['user_id']
         routes = Route.query.filter_by(createdby=user_id).all()
         return render_template('show_my_routes.html', routes=routes, user_id=user_id)
+
+def show_businesses():
+    try:
+        businesses = Business.query.all()
+        return render_template('show_businesses.html', businesses=businesses)
+    except Exception as e:
+        return str(e)
