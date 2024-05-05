@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request, session
-from mappings.tables import User, db
+from mappings.tables import User, db, Route, Business
 import secrets
 import string
 
@@ -171,3 +171,49 @@ def vlasnik_dashboard():
         if user and user.usertype == "VlasnikBiznisa":
             return render_template('vlasnik.html', user=user)
     return redirect(url_for('login'))
+
+def show_all_routes():
+
+    routes = Route.query.all()
+    return render_template('show_all_routes.html', routes=routes)
+
+def show_my_routes():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        routes = Route.query.filter_by(createdby=user_id).all()
+        return render_template('show_my_routes.html', routes=routes, user_id=user_id)
+
+def show_businesses():
+    try:
+        businesses = Business.query.all()
+        return render_template('show_businesses.html', businesses=businesses)
+    except Exception as e:
+        return str(e)
+
+
+def add_route():
+    if request.method == 'POST':
+        routename = request.form['routename']
+        description = request.form['description']
+        startdate = request.form['startdate']
+        enddate = request.form['enddate']
+
+        user_id = session.get('user_id')
+        if user_id:
+            user = User.query.get(user_id)
+            if user:
+
+                new_route = Route(
+                    routename=routename,
+                    description=description,
+                    startdate=startdate,
+                    enddate=enddate,
+                    createdby=user.userid
+                )
+                db.session.add(new_route)
+                db.session.commit()
+                return redirect(url_for('putnik_dashboard'))
+
+        return render_template('add_route.html', error='Failed to add route. Please try again.')
+
+    return render_template('add_route.html')
