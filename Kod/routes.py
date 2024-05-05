@@ -150,5 +150,9 @@ def vlasnik_dashboard():
             return render_template('vlasnik.html', user=user)
     return redirect(url_for('login'))
 
+def show_all_routes():
+
+    routes = Route.query.all()
+    return render_template('show_all_routes.html', routes=routes)
 
 
