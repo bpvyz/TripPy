@@ -77,15 +77,18 @@
                 </thead>
                 <tbody>
                     {% for business in businesses %}
-                    <tr>
-                        <td>{{ business.businessid }}</td>
-                        <td>{{ business.businessname }}</td>
-                        <td>{{ business.description }}</td>
-                        <td>{{ business.locationid }}</td>
-                        <td>{{ business.ownerid }}</td>
-                        <td><button class="btn btn-danger">Delete Business</button></td>
-                    </tr>
-                    {% endfor %}
+                <tr>
+                    <td>{{ business.businessname }}</td>
+                    <td>{{ business.owner.username }}</td>
+                    <td>{{ business.description }}</td>
+                    <td>{{ business.location.city }}, {{ business.location.country }}</td>
+                    <td>
+                        <form action="/admin_delete_business/{{ business.businessid }}" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
