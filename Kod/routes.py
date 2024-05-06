@@ -195,7 +195,7 @@ def putnik_show_businesses():
             return str(e)
     return redirect(url_for('login'))
 
-"""def putnik_add_route():
+def putnik_add_route():
     if 'user_id' in session:
         if request.method == 'POST':
             routename = request.form['routename']
@@ -220,7 +220,7 @@ def putnik_show_businesses():
                     return redirect(url_for('putnik_dashboard'))
 
         return render_template('putnik_add_route.html')
-    return redirect(url_for('login'))"""
+    return redirect(url_for('login'))
 
 def vlasnik_add_business():
     if 'user_id' in session:
