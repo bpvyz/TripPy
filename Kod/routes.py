@@ -1,10 +1,7 @@
 from flask import render_template, redirect, url_for, request, session
-from mappings.tables import User, db, Route, Business, Location, Route
+from mappings.tables import User, db, Route, Business, Location
 import secrets
 import string
-
-import string
-import secrets
 
 def generate_verification_code():
     alphabet = string.ascii_letters + string.digits
