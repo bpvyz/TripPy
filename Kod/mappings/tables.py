@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -12,6 +13,9 @@ class User(db.Model):
     lastname = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), unique=True)
     phonenumber = db.Column(db.String(20))
+
+    businesses = relationship("Business", cascade="all, delete-orphan", backref="owner")
+    created_routes = relationship("Route", cascade="all, delete-orphan", backref="creator")
 
 class Location(db.Model):
     __tablename__ = 'locations'
@@ -35,6 +39,9 @@ class Route(db.Model):
     startdate = db.Column(db.Date)
     enddate = db.Column(db.Date)
     createdby = db.Column(db.Integer, db.ForeignKey('users.userid'))
+
+    route_locations = relationship("RouteLocation", cascade="all, delete-orphan")
+    route_participants = relationship("RouteParticipant", cascade="all, delete-orphan")
 
 class RouteLocation(db.Model):
     __tablename__ = 'routelocations'
