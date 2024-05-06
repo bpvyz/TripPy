@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request, session
-from mappings.tables import User, db, Route, Business
+from mappings.tables import User, db, Route, Business, Location, Route
 import secrets
 import string
 
@@ -186,7 +186,7 @@ def show_my_routes():
 def show_businesses():
     try:
         businesses = Business.query.all()
-        return render_template('show_businesses.html', businesses=businesses)
+        return render_template('admin_show_businesses.html', businesses=businesses)
     except Exception as e:
         return str(e)
 
@@ -217,3 +217,29 @@ def add_route():
         return render_template('add_route.html', error='Failed to add route. Please try again.')
 
     return render_template('add_route.html')
+def admin_show_businesses():
+    businesses = Business.query.join(Location).all()
+    return render_template('admin_show_businesses.html', businesses=businesses)
+
+def admin_delete_business(business_id):
+    business = Business.query.get(business_id)
+    db.session.delete(business)
+    db.session.commit()
+    return redirect('/admin_show_businesses')
+
+def admin_show_routes():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            routes = db.session.query(Route, User).join(User, Route.createdby == User.userid).all()
+            return render_template('admin_show_routes.html', routes=routes)
+    return redirect(url_for('login'))
+
+def admin_delete_route(route_id):
+    if request.method == 'POST':
+        route = Route.query.get(route_id)
+        if route:
+            db.session.delete(route)
+            db.session.commit()
+    return redirect(url_for('admin_show_routes'))

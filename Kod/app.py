@@ -1,6 +1,7 @@
 from init import create_app
 from routes import login, logout, register, verify, putnik_dashboard, vlasnik_dashboard, admin_dashboard, admin_users, \
-    delete_user, edit_user, update_user, add_route, show_all_routes, show_my_routes, show_businesses
+    delete_user, edit_user, update_user, add_route, show_all_routes, show_my_routes, show_businesses, admin_show_businesses, \
+    admin_delete_business, admin_show_routes, admin_delete_route
 
 app = create_app()
 
@@ -21,6 +22,10 @@ app.add_url_rule('/admin_users', 'admin_users', admin_users, methods=['GET', 'PO
 app.add_url_rule('/delete_user/<int:user_id>', 'delete_user', delete_user, methods=['POST'])
 app.add_url_rule('/edit_user/<int:user_id>', 'edit_user', edit_user, methods=['GET'])
 app.add_url_rule('/update_user/<int:user_id>', 'update_user', update_user, methods=['POST'])
+app.add_url_rule('/admin_show_businesses', 'admin_show_businesses', admin_show_businesses, methods=['POST', 'GET'])
+app.add_url_rule('/admin_delete_business/<int:business_id>', 'admin_delete_business', admin_delete_business, methods=['POST'])
+app.add_url_rule('/admin_show_routes', 'admin_show_routes', admin_show_routes, methods=['GET'])
+app.add_url_rule('/admin_delete_route/<int:route_id>', 'admin_delete_route', admin_delete_route, methods=['POST'])
 
 if __name__ == '__main__':
     app.run(debug=True)

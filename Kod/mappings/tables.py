@@ -21,7 +21,7 @@ class Location(db.Model):
     __tablename__ = 'locations'
     locationid = db.Column(db.Integer, primary_key=True)
     city = db.Column(db.String(255), nullable=False)
-    Country = db.Column(db.String(255), nullable=False)
+    country = db.Column(db.String(255), nullable=False)
 
 class Business(db.Model):
     __tablename__ = 'businesses'
@@ -30,6 +30,9 @@ class Business(db.Model):
     description = db.Column(db.Text)
     locationid = db.Column(db.Integer, db.ForeignKey('locations.locationid'))
     ownerid = db.Column(db.Integer, db.ForeignKey('users.userid'))
+
+    location = relationship("Location")
+    route_locations = relationship("RouteLocation", cascade="all, delete-orphan")
 
 class Route(db.Model):
     __tablename__ = 'routes'
@@ -47,6 +50,9 @@ class RouteLocation(db.Model):
     __tablename__ = 'routelocations'
     routeid = db.Column(db.Integer, db.ForeignKey('routes.routeid'), primary_key=True)
     locationid = db.Column(db.Integer, db.ForeignKey('locations.locationid'), primary_key=True)
+    business_id = db.Column(db.Integer, db.ForeignKey('businesses.businessid'))
+
+    business = relationship("Business", overlaps="route_locations")
 
 class RouteParticipant(db.Model):
     __tablename__ = 'routeparticipants'
