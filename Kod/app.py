@@ -33,7 +33,7 @@ app.add_url_rule('/admin_show_businesses', 'admin_show_businesses', admin_show_b
 app.add_url_rule('/admin_delete_business/<int:business_id>', 'admin_delete_business', admin_delete_business, methods=['POST'])
 app.add_url_rule('/admin_show_routes', 'admin_show_routes', admin_show_routes, methods=['GET'])
 app.add_url_rule('/admin_delete_route/<int:route_id>', 'admin_delete_route', admin_delete_route, methods=['POST'])
-app.add_url_rule('/vlasnik_add_business', 'vlasnik_add_business', vlasnik_add_business, methods=['GET', 'POST'])
+app.add_url_rule('/vlasnik_add_business', 'vlasnik_add_business', vlasnik_add_business, methods=['POST', 'GET'])
 app.add_url_rule('/vlasnik_show_all_businesses', 'vlasnik_show_all_businesses', vlasnik_show_all_businesses, methods=['GET'])
 app.add_url_rule('/vlasnik_show_my_businesses', 'vlasnik_show_my_businesses', vlasnik_show_my_businesses, methods=['GET'])
 app.add_url_rule('/vlasnik_show_routes', 'vlasnik_show_routes', vlasnik_show_routes, methods=['GET'])

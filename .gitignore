@@ -1,1 +1,3 @@
 /paunvenv/
+__pycache__/
+init.py
