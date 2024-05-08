@@ -26,6 +26,7 @@ app.add_url_rule('/putnik_show_all_routes', 'putnik_show_all_routes', putnik_sho
 app.add_url_rule('/putnik_show_my_routes', 'putnik_show_my_routes', putnik_show_my_routes, methods=['GET'])
 app.add_url_rule('/putnik_show_businesses', 'putnik_show_businesses', putnik_show_businesses, methods=['GET'])
 app.add_url_rule('/admin_users', 'admin_users', admin_users, methods=['GET', 'POST'])
+app.add_url_rule('/admin_add_user', 'admin_add_user', admin_add_user, methods = ['GET', 'POST'])
 app.add_url_rule('/delete_user/<int:user_id>', 'delete_user', delete_user, methods=['POST'])
 app.add_url_rule('/edit_user/<int:user_id>', 'edit_user', edit_user, methods=['GET'])
 app.add_url_rule('/update_user/<int:user_id>', 'update_user', update_user, methods=['POST'])
