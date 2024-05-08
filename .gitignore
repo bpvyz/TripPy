@@ -1,3 +1,6 @@
 /paunvenv/
 __pycache__/
-init.py
+Kod/init.py
+Kod\__pycache__
+Kod\mappings\__pycache__
+Kod\routes\__pycache__
