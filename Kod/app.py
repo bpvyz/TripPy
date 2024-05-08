@@ -1,10 +1,16 @@
 from init import create_app
-from routes import login, logout, register, verify, putnik_dashboard, vlasnik_dashboard, admin_dashboard, admin_users, \
-    delete_user, edit_user, update_user, putnik_add_route, putnik_show_all_routes, putnik_show_my_routes, putnik_show_businesses,\
-    vlasnik_add_business, vlasnik_show_all_businesses, vlasnik_show_my_businesses, vlasnik_show_routes, \
-    admin_show_businesses, admin_delete_business, admin_show_routes, admin_delete_route
+
+from routes.helper_routes import *
+from routes.admin_routes import *
+from routes.putnik_routes import *
+from routes.vlasnik_routes import *
 
 app = create_app()
+
+app.register_blueprint(helper_routes)
+app.register_blueprint(admin_routes)
+app.register_blueprint(putnik_routes)
+app.register_blueprint(vlasnik_routes)
 
 # Routes
 app.add_url_rule('/', 'login', login)
