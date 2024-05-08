@@ -17,3 +17,7 @@ function admin_show_businesses() {
 function admin_show_routes() {
     window.location.href = "/admin_show_routes"
 }
+
+function admin_add_user() {
+    window.location.href = "/admin_add_user"
+}
