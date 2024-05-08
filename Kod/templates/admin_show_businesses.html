@@ -9,92 +9,45 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">TripPy</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/admin_dashboard" onclick="dashboard()">Početna <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Korisnici
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" href="/admin_users">Prikaži sve korisnike</a>
-          <a class="dropdown-item" href="#">Dodaj korisnika</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" href="#">Sve Marsrute</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" href="#">Svi Oglasi</a>
-          <a class="dropdown-item" href="#">Zahtevi za prihvatanje oglasa</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profil
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-          <a class="dropdown-item" href="#">Moj Profil</a>
-          <a class="dropdown-item" href="#">Postavke</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" onclick="logout()">Odjava</a>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <!-- Navbar content -->
 </nav>
-    <div class="container mt-5">
-        <h1 class="mb-3">Admin All Businesses</h1>
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Business ID</th>
-                        <th>Business Name</th>
-                        <th>Description</th>
-                        <th>Location ID</th>
-                        <th>Owner ID</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for business in businesses %}
-                <tr>
-                    <td>{{ business.businessname }}</td>
-                    <td>{{ business.owner.username }}</td>
-                    <td>{{ business.description }}</td>
-                    <td>{{ business.location.city }}, {{ business.location.country }}</td>
-                    <td>
-                        <form action="/admin_delete_business/{{ business.businessid }}" method="post">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<div class="container mt-5">
+    <h1 class="mb-3">Admin All Businesses</h1>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Pretraga po imenu poslovanja" id="searchInput">
     </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover" id="businessTable">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Business name</th>
+                    <th scope="col">Owner Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for business in businesses %}
+                    <tr>
+                        <td>{{ business.businessname }}</td>
+                        <td>{{ business.owner.username }}</td>
+                        <td>{{ business.description }}</td>
+                        <td>{{ business.location.city }}, {{ business.location.country }}</td>
+                        <td>
+                            <form action="/admin_delete_business/{{ business.businessid }}" method="post">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <!-- Include Bootstrap JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Include Bootstrap JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='scripts/dynamicSearch.js') }}"></script>
 </body>
 </html>
