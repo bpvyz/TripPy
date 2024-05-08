@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, session, Blueprint
+from flask import render_template, redirect, url_for, session, Blueprint, request
 from mappings.tables import User, db, Route, Business, Location
 
 vlasnik_routes = Blueprint('vlasnik_routes', __name__)
@@ -28,7 +28,7 @@ def vlasnik_add_business():
         return render_template('vlasnik_add_business.html')
     return redirect(url_for('login'))
 
-    return render_template('add_route.html')
+   
 
 def vlasnik_dashboard():
     if 'user_id' in session:
