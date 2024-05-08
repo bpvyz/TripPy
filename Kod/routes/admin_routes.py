@@ -63,14 +63,24 @@ def update_user(user_id):
     return redirect(url_for('login'))
 
 def admin_show_businesses():
-    businesses = Business.query.join(Location).all()
-    return render_template('admin_show_businesses.html', businesses=businesses)
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            businesses = Business.query.join(Location).all()
+            return render_template('admin_show_businesses.html', businesses=businesses)
+    return redirect(url_for('login'))
 
 def admin_delete_business(business_id):
-    business = Business.query.get(business_id)
-    db.session.delete(business)
-    db.session.commit()
-    return redirect('/admin_show_businesses')
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            business = Business.query.get(business_id)
+            db.session.delete(business)
+            db.session.commit()
+            return redirect(url_for('admin_show_businesses'))
+    return redirect(url_for('login'))
 
 def admin_show_routes():
     if 'user_id' in session:
@@ -82,10 +92,15 @@ def admin_show_routes():
     return redirect(url_for('login'))
 
 def admin_delete_route(route_id):
-    if request.method == 'POST':
-        route = Route.query.get(route_id)
-        if route:
-            db.session.delete(route)
-            db.session.commit()
-    return redirect(url_for('admin_show_routes'))
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            if request.method == 'POST':
+                route = Route.query.get(route_id)
+                if route:
+                    db.session.delete(route)
+                    db.session.commit()
+            return redirect(url_for('admin_show_routes'))
+    return redirect(url_for('login'))
 #endregion Admin routes
