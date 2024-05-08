@@ -71,6 +71,17 @@ def admin_show_businesses():
             return render_template('admin_show_businesses.html', businesses=businesses)
     return redirect(url_for('login'))
 
+def admin_get_business(business_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    business = Business.query.filter_by(businessid=business_id).first()
+    if not business:
+        return render_template(message='Business not found')
+
+    return render_template('admin_get_business.html', business=business)
+
+
 def admin_delete_business(business_id):
     if 'user_id' in session:
         user_id = session['user_id']
@@ -103,4 +114,6 @@ def admin_delete_route(route_id):
                     db.session.commit()
             return redirect(url_for('admin_show_routes'))
     return redirect(url_for('login'))
+
+
 #endregion Admin routes

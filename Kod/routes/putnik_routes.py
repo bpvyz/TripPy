@@ -63,4 +63,15 @@ def putnik_add_route():
 
         return render_template('putnik_add_route.html')
     return redirect(url_for('login'))
+
+def putnik_get_business(business_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    business = Business.query.filter_by(businessid=business_id).first()
+    if not business:
+        return render_template(message='Business not found')
+
+    return render_template('putnik_get_business.html', business=business)
+
 #endregion Putnik routes

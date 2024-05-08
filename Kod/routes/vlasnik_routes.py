@@ -60,4 +60,28 @@ def vlasnik_show_routes():
         routes = Route.query.all()
         return render_template('vlasnik_show_routes.html', routes=routes)
     return redirect(url_for('login'))
+
+
+def vlasnik_delete_business(business_id):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "VlasnikBiznisa":
+            business = Business.query.get(business_id)
+            db.session.delete(business)
+            db.session.commit()
+            return redirect(url_for('vlasnik_show_my_businesses'))
+    return redirect(url_for('login'))
+
+def vlasnik_get_business(business_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    business = Business.query.filter_by(businessid=business_id).first()
+    if not business:
+        return render_template(message='Business not found')
+
+    return render_template('vlasnik_get_business.html', business=business)
+
+
 #endregion Vlasnik routes
