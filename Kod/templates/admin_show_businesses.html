@@ -46,12 +46,12 @@
                         <td>{{ business.businessname }}</td>
                         <td>{{ business.owner.username }}</td>
                         <td>{{ business.description }}</td>
-                        <td>{{ business.location.address }}, {{ business.location.city }}, {{ business.location.country }}</td>
+                        <td>{{ business.location.address }}</td>
                         <td>
                             <form action="/admin_delete_business/{{ business.businessid }}" method="post" style="display: inline;">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <button class="btn btn-primary" onclick="openMap('{{ business.location.address }}', '{{ business.location.city }}', '{{ business.businessid }}')">View Map</button>
+                            <button class="btn btn-primary" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">View Map</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -69,8 +69,7 @@
 <script src="{{ url_for('static', filename='scripts/dynamicSearch.js') }}"></script>
 
 <script>
-// Function to open map
-function openMap(address, city, businessId) {
+function openMap(address, businessId) {
     // Remove existing map if any
     document.querySelectorAll('.map-row').forEach(element => {
         element.remove();
@@ -90,12 +89,14 @@ function openMap(address, city, businessId) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
 
-    // Geocode address and city to get coordinates
-    var location = address + ', ' + city;
+    // Geocode address to get coordinates
+    var location = address;
     var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(location);
+    console.log('Geocoding URL:', url); // Log the geocoding URL to check if it's correct
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            console.log('Geocoding Response:', data); // Log the geocoding response to check if it contains valid data
             if (data.length > 0) {
                 var lat = data[0].lat;
                 var lon = data[0].lon;
@@ -111,6 +112,7 @@ function openMap(address, city, businessId) {
             alert('Error fetching location data');
         });
 }
+
 
 </script>
 </body>
