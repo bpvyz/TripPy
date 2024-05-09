@@ -28,7 +28,26 @@ def vlasnik_add_business():
         return render_template('vlasnik_add_business.html')
     return redirect(url_for('login'))
 
-   
+def vlasnik_update_business(business_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+    business = Business.query.get_or_404(business_id)
+
+    if business.ownerid != user_id:
+        return "You dont have permission to do that"
+
+    if request.method == 'POST':
+        business.businessname = request.form['businessname']
+        business.description = request.form['description']
+        business.locationid = int(request.form['locationid'])
+
+        db.session.commit()
+        return redirect(url_for('vlasnik_show_my_businesses'))
+
+    return render_template('vlasnik_update_business.html', business=business)
+
 
 def vlasnik_dashboard():
     if 'user_id' in session:
@@ -82,6 +101,19 @@ def vlasnik_get_business(business_id):
         return render_template(message='Business not found')
 
     return render_template('vlasnik_get_business.html', business=business)
+
+def vlasnik_get_route(route_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+        
+    route = Route.query.filter_by(routeid=route_id).first()
+    if route is None:
+        abort(404, description="Route not found")
+
+    if route.public == 'public':
+        return render_template('vlasnik_get_route.html', route=route)
+    else:
+        abort(403, description="You do not have permission to view this route")
 
 
 #endregion Vlasnik routes

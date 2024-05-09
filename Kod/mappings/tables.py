@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
+from sqlalchemy import CheckConstraint
 
 db = SQLAlchemy()
 
@@ -42,7 +43,11 @@ class Route(db.Model):
     startdate = db.Column(db.Date)
     enddate = db.Column(db.Date)
     createdby = db.Column(db.Integer, db.ForeignKey('users.userid'))
+    public = db.Column(db.String(255))
 
+    __table_args__ = (
+        CheckConstraint("public IN ('public', 'private')"),
+    )
     route_locations = relationship("RouteLocation", cascade="all, delete-orphan")
     route_participants = relationship("RouteParticipant", cascade="all, delete-orphan")
 

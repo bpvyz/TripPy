@@ -102,18 +102,26 @@ def admin_show_routes():
             return render_template('admin_show_routes.html', routes=routes)
     return redirect(url_for('login'))
 
+
 def admin_delete_route(route_id):
-    if 'user_id' in session:
-        user_id = session['user_id']
-        user = User.query.get(user_id)
-        if user and user.usertype == "Administrator":
-            if request.method == 'POST':
-                route = Route.query.get(route_id)
-                if route:
-                    db.session.delete(route)
-                    db.session.commit()
-            return redirect(url_for('admin_show_routes'))
-    return redirect(url_for('login'))
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    if not user:
+        return redirect(url_for('login'))
+    route = Route.query.get(route_id)
+    if route is None:
+        return "Route not found", 404
+        
+    if user.usertype == "Administrator":
+        db.session.delete(route)
+        db.session.commit()
+        return redirect(url_for('admin_show_routes'))
+    else:
+        return "Unauthorized", 403
+
 
 
 def admin_add_user():
@@ -151,4 +159,15 @@ def admin_add_user():
             return render_template('admin_add_user.html')
 
     return redirect(url_for('login'))
+
+def admin_get_route(route_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+        
+    route = Route.query.filter_by(routeid=route_id).first()
+    if route is None:
+        abort(404, description="Route not found")   
+    
+    return render_template('admin_get_route.html', route=route)
+  
 #endregion Admin routes
