@@ -20,8 +20,7 @@ class User(db.Model):
 class Location(db.Model):
     __tablename__ = 'locations'
     locationid = db.Column(db.Integer, primary_key=True)
-    city = db.Column(db.String(255), nullable=False)
-    country = db.Column(db.String(255), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
 
 class Business(db.Model):
     __tablename__ = 'businesses'
@@ -33,6 +32,16 @@ class Business(db.Model):
 
     location = relationship("Location")
     route_locations = relationship("RouteLocation", cascade="all, delete-orphan")
+
+class BusinessRequest(db.Model):
+    __tablename__ = 'businessesrequests'
+    businessrequestid = db.Column(db.Integer, primary_key=True)
+    businessname = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text)
+    locationid = db.Column(db.Integer, db.ForeignKey('locations.locationid'))
+    ownerid = db.Column(db.Integer, db.ForeignKey('users.userid'))
+
+    location = db.relationship("Location")
 
 class Route(db.Model):
     __tablename__ = 'routes'

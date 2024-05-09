@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, session, Blueprint, request
-from mappings.tables import User, db, Route, Business, Location
+from mappings.tables import User, db, Route, Business, Location, BusinessRequest
 
 admin_routes = Blueprint('admin_routes', __name__)
 
@@ -150,5 +150,50 @@ def admin_add_user():
 
             return render_template('admin_add_user.html')
 
+    return redirect(url_for('login'))
+
+def admin_business_requests():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            business_requests = BusinessRequest.query.all()
+            return render_template('admin_business_requests.html', business_requests=business_requests)
+    return redirect(url_for('login'))
+
+def admin_approve_business_request(business_request_id):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            business_request = BusinessRequest.query.get(business_request_id)
+            if business_request:
+
+                new_business = Business(
+                    businessname=business_request.businessname,
+                    description=business_request.description,
+                    locationid=business_request.locationid,
+                    ownerid=business_request.ownerid
+                )
+                db.session.add(new_business)
+                db.session.delete(business_request)
+                db.session.commit()
+                return redirect(url_for('admin_business_requests'))
+            else:
+                return "Business request not found", 404
+    return redirect(url_for('login'))
+
+def admin_delete_business_request(business_request_id):
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            business_request = BusinessRequest.query.get(business_request_id)
+            if business_request:
+                db.session.delete(business_request)
+                db.session.commit()
+                return redirect(url_for('admin_business_requests'))
+            else:
+                return "Business request not found", 404
     return redirect(url_for('login'))
 #endregion Admin routes

@@ -21,3 +21,7 @@ function admin_show_routes() {
 function admin_add_user() {
     window.location.href = "/admin_add_user"
 }
+
+function admin_business_requests() {
+    window.location.href ='/admin_business_requests'
+}

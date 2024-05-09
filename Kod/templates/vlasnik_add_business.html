@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Business</title>
+    <title>Add Business Request</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include jQuery UI Autocomplete -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
-    <h1>Add New Business</h1>
-    <form action="/vlasnik_add_business" method="post">
+    <h1>Add New Business Request</h1>
+    <form action="/vlasnik_add_business_request" method="post">
         <div class="mb-3">
             <label for="businessname" class="form-label">Business Name</label>
             <input type="text" class="form-control" id="businessname" name="businessname" required>
@@ -19,12 +32,41 @@
             <textarea class="form-control" id="description" name="description" required></textarea>
         </div>
         <div class="mb-3">
-            <label for="locationid" class="form-label">Location ID</label>
-            <input type="number" class="form-control" id="locationid" name="locationid" required>
+            <label for="locationid" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" name="location" required>
+            <input type="hidden" id="locationid" name="locationid">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<script>
+    $(document).ready(function () {
+        // Function to initialize autocomplete
+        function initAutocomplete() {
+            $("#location").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/autocomplete_locations",
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $("#locationid").val(ui.item.id);
+                }
+            });
+        }
+
+        initAutocomplete();
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

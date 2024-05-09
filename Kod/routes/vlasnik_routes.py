@@ -1,10 +1,21 @@
-from flask import render_template, redirect, url_for, session, Blueprint, request
-from mappings.tables import User, db, Route, Business, Location
+from flask import render_template, redirect, url_for, session, Blueprint, request, jsonify
+from mappings.tables import User, db, Route, Business, Location, BusinessRequest
 
 vlasnik_routes = Blueprint('vlasnik_routes', __name__)
 
 #region Vlasnik routes
-def vlasnik_add_business():
+def autocomplete_locations():
+    term = request.args.get('term', '')
+
+    locations = Location.query.filter(Location.address.ilike(f'%{term}%')).all()
+
+    suggestions = [{'id': location.locationid, 'label': location.address, 'value': f"{location.address}"}
+                   for location in locations]
+
+    return jsonify(suggestions)
+
+
+def vlasnik_add_business_request():
     if 'user_id' in session:
         if request.method == 'POST':
             businessname = request.form['businessname']
@@ -14,14 +25,13 @@ def vlasnik_add_business():
             if user_id:
                 user = User.query.get(user_id)
                 if user:
-
-                    new_business = Business(
+                    new_business_request = BusinessRequest(
                         businessname=businessname,
                         description=description,
                         locationid=int(locationid),
                         ownerid=user.userid
                     )
-                    db.session.add(new_business)
+                    db.session.add(new_business_request)
                     db.session.commit()
                     return redirect(url_for('vlasnik_dashboard'))
 

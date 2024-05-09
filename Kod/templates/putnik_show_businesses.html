@@ -20,7 +20,7 @@
                         <th>Business Name</th>
                         <th>Owner Name</th>
                         <th>Description</th>
-                        <th>Location ID</th>
+                        <th>Location</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,7 @@
                         <td>{{ business.businessname }}</td>
                         <td>{{ business.owner.username }}</td>
                         <td>{{ business.description }}</td>
-                        <td>{{ business.location.locationid }}</td>
+                        <td>{{ business.location.address }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
