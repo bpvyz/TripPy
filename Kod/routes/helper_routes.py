@@ -87,9 +87,32 @@ def login():
             return render_template('login.html', error='Invalid username or password')
     return render_template('login.html')
 
-from flask import redirect, url_for, session
 
 def logout():
     session.pop('user_id', None)
     return redirect(url_for('login'))
-#endregion Helper functions
+
+def settings():
+    if 'user_id' in session:
+        return render_template('settings.html', dark_mode=session.get('dark_mode', False))
+    else:
+        return redirect(url_for('login'))
+
+def toggle_theme():
+    if request.method == 'POST':
+        dark_mode = request.form.get('darkMode') == 'on'
+
+        session['dark_mode'] = dark_mode
+        if 'user_id' in session:
+            user_id = session['user_id']
+            user = User.query.get(user_id)
+            if user.usertype == "Putnik":
+                return redirect(url_for('putnik_dashboard'))
+            elif user.usertype == "VlasnikBiznisa":
+                return redirect(url_for('vlasnik_dashboard'))
+            else:
+                return redirect(url_for('admin_dashboard'))
+        else:
+            return render_template('login.html', error='Invalid username or password')
+        return render_template('login.html')
+    return render_template('login.html')

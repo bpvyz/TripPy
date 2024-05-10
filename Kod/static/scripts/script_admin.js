@@ -1,5 +1,9 @@
 function logout() {
-    window.location.href = "/logout";
+    window.location.href = "/logout"
+}
+
+function settings() {
+    window.location.href = "/settings"
 }
 
 function admin_users() {
