@@ -19,7 +19,8 @@ def register():
         usertype = request.form['user_type']
 
         if User.query.filter_by(username=username).first():
-            return render_template('register.html', error='Username already exists')
+            flash('Korisničko ime već postoji. Molimo izaberite drugo korisničko ime.', 'error')
+            return redirect(url_for('register'))
 
         session['registration_data'] = {
             'username': username,

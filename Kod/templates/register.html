@@ -29,6 +29,27 @@
         .btn-primary:hover {
             background-color: #fa9306;
         }
+        .alert-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 300px;
+        }
+        .alert {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #d0bbff; /* pastel purple */
+            color: #4b0082; /* indigo */
+            border: 1px solid #b09dff; /* lighter purple */
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -38,12 +59,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title text-center">Registruj se</h3>
-                        <!-- Prikazi poruku o grešci ako postoji -->
-                        {% if error %}
-                            <div class="alert alert-danger" role="alert">
-                                {{ error }}
-                            </div>
-                        {% endif %}
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert-container">
+                                        <div class="alert alert-{{ category }}" role="alert">
+                                            <span>{{ message }}</span>
+                                            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
                         <form action="/register" method="POST">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Korisničko ime</label>
@@ -51,7 +78,10 @@
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Lozinka</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">Prikaži</button>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="first_name" class="form-label">Ime</label>
@@ -87,5 +117,15 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Show/hide password functionality
+        const showPasswordBtn = document.getElementById('showPasswordBtn');
+        const passwordInput = document.getElementById('password');
+        showPasswordBtn.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            showPasswordBtn.textContent = type === 'password' ? 'Prikaži' : 'Sakrij';
+        });
+    </script>
 </body>
 </html>
