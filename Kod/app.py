@@ -44,7 +44,7 @@ app.add_url_rule('/admin_business_requests', 'admin_business_requests', admin_bu
 app.add_url_rule('/admin_approve_business_request/<int:business_request_id>', 'admin_approve_business_request', admin_approve_business_request, methods=['GET', 'POST'])
 app.add_url_rule('/admin_delete_business_request/<int:business_request_id>', 'admin_delete_business_request', admin_delete_business_request, methods=['GET', 'POST'])
 app.add_url_rule('/admin_add_location', 'admin_add_location', admin_add_location, methods=['GET', 'POST'])
-app.add_url_rule('/vlasnik_add_business_request', 'vlasnik_add_business_request', vlasnik_add_business_request, methods=['GET', 'POST'])
+app.add_url_rule('/vlasnik_add_business', 'vlasnik_add_business', vlasnik_add_business_request, methods=['GET', 'POST'])
 app.add_url_rule('/vlasnik_update_business/<int:business_id>', 'vlasnik_update_business', vlasnik_update_business, methods=['POST', 'GET'])
 app.add_url_rule('/vlasnik_show_all_businesses', 'vlasnik_show_all_businesses', vlasnik_show_all_businesses, methods=['GET'])
 app.add_url_rule('/vlasnik_show_my_businesses', 'vlasnik_show_my_businesses', vlasnik_show_my_businesses, methods=['GET'])

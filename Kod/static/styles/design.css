@@ -1,0 +1,19 @@
+
+
+
+.margin-bottom-50 {
+    margin-bottom: 50px;
+    }
+.route-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    }
+.logo {
+    width: 80px;
+    height: auto;
+    }
+.dropdown-menu.dropdown-menu-left {
+   left: auto;
+   right: 0;
+   }

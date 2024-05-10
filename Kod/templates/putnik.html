@@ -5,21 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TripPy</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
     <style>
-        .margin-bottom-50 {
-            margin-bottom: 50px;
-        }
-        .route-box {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .logo {
-          width: 80px;
-          height: auto;
-        }
+
     </style>
-    <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
 </head>
 <body>
 
@@ -39,8 +28,9 @@
           Marsrute
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" href="#">Sve Marsrute</a>
-          <a class="dropdown-item" href="#">Moje Marsrute</a>
+            <a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a>
+          <a class="dropdown-item" onclick="putnik_show_all_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="putnik_show_my_routes()">Moje Marsrute</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -48,17 +38,16 @@
           Oglasi
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" href="#">Svi Oglasi</a>
-          <a class="dropdown-item" href="#">Pretraga Oglasa</a>
+          <a class="dropdown-item" onclick="putnik_show_businesses()">Svi Oglasi</a>
         </div>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profil
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
           <a class="dropdown-item" href="#">Moj Profil</a>
           <a class="dropdown-item" href="#">Postavke</a>
           <div class="dropdown-divider"></div>
@@ -83,8 +72,8 @@
       </div>
       <div class="route-box">
         <h3>Pregled maršruta</h3>
-        <button class="btn btn-primary"onclick="location.href='putnik_show_all_routes'">Prikazi sve maršrute </button>
-        <button class="btn btn-primary"onclick="location.href='putnik_show_my_routes'">Prikazi moje maršrute </button>
+        <button class="btn btn-primary" onclick="location.href='putnik_show_all_routes'">Prikazi sve maršrute </button>
+        <button class="btn btn-primary" onclick="location.href='putnik_show_my_routes'">Prikazi moje maršrute </button>
       </div>
     </div>
     <div class="col-md-6">
@@ -97,7 +86,7 @@
         <h3>Naslov Marsruta 2</h3>
         <p>Ovde ide opis drugog kreiranog marsruta.</p>
       </div>
-      <!-- Add more boxes for other routes -->
+
     </div>
   </div>
 
@@ -106,7 +95,7 @@
       <div class="col-md-12">
       <div class="route-box">
         <h3>Svi oglasi</h3>
-        <button class="btn btn-primary"onclick="location.href='putnik_show_businesses'">Prikazi sve oglase </button>
+        <button class="btn btn-primary" onclick="location.href='putnik_show_businesses'">Prikazi sve oglase </button>
       </div>
     </div>
     <div class="col-md-12">
@@ -121,17 +110,19 @@
         <p>Ovde ide opis drugog oglasa.</p>
       </div>
     </div>
-    <!-- Add more boxes for other ads -->
+
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    // Ovde možete dodati JavaScript za funkcionalnosti, ako je potrebno
-</script>
+<script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
+
+
+
 
 </body>
 </html>

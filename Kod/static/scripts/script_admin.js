@@ -25,3 +25,8 @@ function admin_add_user() {
 function admin_business_requests() {
     window.location.href ='/admin_business_requests'
 }
+
+function admin_add_location()
+{
+    window.location.href='/admin_add_location'
+}

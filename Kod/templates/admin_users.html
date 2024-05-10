@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Users</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
     <style>
+        .margin-bottom-50 {
+            margin-bottom: 50px;
+        }
+        .route-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
         .logo
         {
             width: 80px;
@@ -14,9 +23,9 @@
     </style>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo"></a>
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -31,8 +40,8 @@
           Korisnici
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" href="/admin_users">Prikaži sve korisnike</a>
-          <a class="dropdown-item" href="#">Dodaj korisnika</a>
+          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
+          <a class="dropdown-item" href="/admin_add_user" onclick="admin_add_user()">Dodaj korisnika</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -40,7 +49,7 @@
           Marsrute
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" href="#">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -48,17 +57,26 @@
           Oglasi
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" href="#">Svi Oglasi</a>
-          <a class="dropdown-item" href="#">Zahtevi za prihvatanje oglasa</a>
+          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
+          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
         </div>
       </li>
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Lokacije
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
+          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
+        </div>
+      </li>
+
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profil
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
           <a class="dropdown-item" href="#">Moj Profil</a>
           <a class="dropdown-item" href="#">Postavke</a>
           <div class="dropdown-divider"></div>
@@ -68,6 +86,7 @@
     </ul>
   </div>
 </nav>
+
     <div class="container mt-5">
         <h1 class="mb-4">All Users</h1>
         <table class="table">
@@ -111,5 +130,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
 </body>
 </html>
