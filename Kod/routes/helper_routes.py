@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint
+from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect
 from mappings.tables import User, db, Route, Business, Location
 from util import generate_verification_code
 import secrets
