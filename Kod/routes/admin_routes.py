@@ -214,4 +214,20 @@ def admin_get_route(route_id):
 
     return render_template('admin_get_route.html', route=route)
 
+def admin_add_location():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "Administrator":
+            if request.method == 'POST':
+                address = request.form['address']
+                new_location = Location(
+                    address=address,
+                )
+                db.session.add(new_location)
+                db.session.commit()
+                return redirect(url_for('admin_dashboard'))
+            return render_template('admin_add_location.html')
+    return redirect(url_for('login'))
+
 #endregion Admin routes
