@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect
+from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect, flash
 from mappings.tables import User, db, Route, Business, Location
 from util import generate_verification_code
 import secrets
@@ -84,7 +84,9 @@ def login():
             else:
                 return redirect(url_for('admin_dashboard'))
         else:
-            return render_template('login.html', error='Invalid username or password')
+            flash('Neispravno korisničko ime ili lozinka!', 'error')  # Flash error message
+            return render_template('login.html')
+
     return render_template('login.html')
 
 
@@ -117,6 +119,6 @@ def toggle_theme():
             else:
                 return redirect(url_for('admin_dashboard'))
         else:
-            return render_template('login.html', error='Invalid username or password')
-        return render_template('login.html')
-    return render_template('login.html')
+            return redirect(url_for('login'))
+    else:
+        return redirect(url_for('login'))

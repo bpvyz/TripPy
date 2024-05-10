@@ -6,7 +6,7 @@
     <title>Login Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles/login.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
     <style>
         /* Custom styles */
         body {
@@ -31,6 +31,27 @@
         .btn-primary:hover {
             background-color: #fa9306;
         }
+        .alert-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 300px;
+        }
+        .alert {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #d0bbff; /* pastel purple */
+            color: #4b0082; /* indigo */
+            border: 1px solid #b09dff; /* lighter purple */
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -39,22 +60,34 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Login</h3>
+                        <h3 class="card-title text-center">Prijava</h3>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert-container">
+                                        <div class="alert alert-{{ category }}" role="alert">
+                                            <span>{{ message }}</span>
+                                            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
                         <form action="/login" method="POST">
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
+                                <label for="username" class="form-label">Korisničko ime</label>
                                 <input type="text" class="form-control" id="username" name="username" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">Lozinka</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password" name="password" required>
-                                    <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">Show</button>
+                                    <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">Prikaži</button>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                            <button type="submit" class="btn btn-primary w-100">Prijavi se</button>
                             <div class="text-center mt-3">
-                                <a href="register">Don't have an account? Register here</a>
+                                <a href="register">Nemate nalog? Registrujte se ovde.</a>
                             </div>
                         </form>
                     </div>
@@ -71,7 +104,7 @@
         showPasswordBtn.addEventListener('click', () => {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            showPasswordBtn.textContent = type === 'password' ? 'Show' : 'Hide';
+            showPasswordBtn.textContent = type === 'password' ? 'Prikaži' : 'Sakrij';
         });
     </script>
 </body>
