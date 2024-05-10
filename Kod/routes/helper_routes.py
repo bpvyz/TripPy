@@ -100,9 +100,13 @@ def settings():
 
 def toggle_theme():
     if request.method == 'POST':
+        # pribavlja se vrednost checkbox-a za dark mode i proverava se da li je stikliran:
         dark_mode = request.form.get('darkMode') == 'on'
 
+        # ubacuje se u sesiju u promenljivu 'dark_mode'
         session['dark_mode'] = dark_mode
+
+        #redirect nazad na dashboard odgovarajuceg korisnika
         if 'user_id' in session:
             user_id = session['user_id']
             user = User.query.get(user_id)
