@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect
+from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect, flash
 from mappings.tables import User, db, Route, Business, Location
 from util import generate_verification_code
 import secrets
@@ -19,7 +19,8 @@ def register():
         usertype = request.form['user_type']
 
         if User.query.filter_by(username=username).first():
-            return render_template('register.html', error='Username already exists')
+            flash('Korisničko ime već postoji. Molimo izaberite drugo korisničko ime.', 'error')
+            return redirect(url_for('register'))
 
         session['registration_data'] = {
             'username': username,
@@ -84,12 +85,41 @@ def login():
             else:
                 return redirect(url_for('admin_dashboard'))
         else:
-            return render_template('login.html', error='Invalid username or password')
+            flash('Neispravno korisničko ime ili lozinka!', 'error')  # Flash error message
+            return render_template('login.html')
+
     return render_template('login.html')
 
-from flask import redirect, url_for, session
 
 def logout():
     session.pop('user_id', None)
     return redirect(url_for('login'))
-#endregion Helper functions
+
+def settings():
+    if 'user_id' in session:
+        return render_template('settings.html', dark_mode=session.get('dark_mode', False))
+    else:
+        return redirect(url_for('login'))
+
+def toggle_theme():
+    if request.method == 'POST':
+        # pribavlja se vrednost checkbox-a za dark mode i proverava se da li je stikliran:
+        dark_mode = request.form.get('darkMode') == 'on'
+
+        # ubacuje se u sesiju u promenljivu 'dark_mode'
+        session['dark_mode'] = dark_mode
+
+        #redirect nazad na dashboard odgovarajuceg korisnika
+        if 'user_id' in session:
+            user_id = session['user_id']
+            user = User.query.get(user_id)
+            if user.usertype == "Putnik":
+                return redirect(url_for('putnik_dashboard'))
+            elif user.usertype == "VlasnikBiznisa":
+                return redirect(url_for('vlasnik_dashboard'))
+            else:
+                return redirect(url_for('admin_dashboard'))
+        else:
+            return redirect(url_for('login'))
+    else:
+        return redirect(url_for('login'))
