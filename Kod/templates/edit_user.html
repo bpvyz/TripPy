@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <<script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
+    <style>
+        .logo {
+            width: 80px;
+            height: auto;
+        }
+    </style>
+    <script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">TripPy</a>
+  <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
