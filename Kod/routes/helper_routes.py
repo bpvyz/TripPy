@@ -15,7 +15,7 @@ def register():
         firstname = request.form['first_name']
         lastname = request.form['last_name']
         email = request.form['email']
-        phonenumber = request.form['phone_number']
+        fullphonenumber = request.form['full_phone_number']
         usertype = request.form['user_type']
 
         if User.query.filter_by(username=username).first():
@@ -28,7 +28,7 @@ def register():
             'firstname': firstname,
             'lastname': lastname,
             'email': email,
-            'phonenumber': phonenumber,
+            'phonenumber': fullphonenumber,
             'usertype': usertype
         }
 

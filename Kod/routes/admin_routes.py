@@ -57,6 +57,12 @@ def update_user(user_id):
                 if user.usertype == "Administrator" or user.userid == user_id:
                     user_to_update = User.query.get(user_id)
                     if user_to_update:
+                        user_to_update.username = request.form.get('username')
+                        user_to_update.firstname = request.form.get('firstname')
+                        user_to_update.lastname = request.form.get('lastname')
+                        user_to_update.email = request.form.get('email')
+                        user_to_update.phonenumber = request.form.get('full_phone_number')
+                        db.session.commit()
                         return redirect(url_for('admin_users'))
                     else:
                         return "User not found", 404
@@ -135,8 +141,12 @@ def admin_add_user():
                 firstname = request.form['first_name']
                 lastname = request.form['last_name']
                 email = request.form['email']
-                phonenumber = request.form['phone_number']
+                phonenumber = request.form['full_phone_number']
                 usertype = request.form['user_type']
+
+                existing_user = User.query.filter_by(email=email).first()
+                if existing_user:
+                    return render_template('admin_add_user.html', error='Email already exists')
 
                 if User.query.filter_by(username=username).first():
                     return render_template('admin_add_user.html', error='Username already exists')

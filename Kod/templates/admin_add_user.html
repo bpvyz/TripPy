@@ -6,122 +6,87 @@
     <title>Add User</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <style>
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+        }
+        .iti {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/admin_dashboard" onclick="dashboard()">Početna <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Korisnici
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
-          <a class="dropdown-item" onclick="admin_add_user()">Dodaj korisnika</a>
+<div class="container mt-5">
+    <h1>Add User</h1>
+    <form id="add_user_form" action="{{ url_for('admin_add_user') }}" method="POST">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" class="form-control" required>
         </div>
-      </li>
-     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Lokacije
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" class="form-control" required>
         </div>
-      </li>
-
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profil
-        </a>
-        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
-          <a class="dropdown-item" href="#">Moj Profil</a>
-          <a class="dropdown-item" href="#">Postavke</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" onclick="logout()">Odjava</a>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control">
         </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <div class="form-group">
+            <label for="phone_number">Phone Number:</label>
+            <input type="tel" id="phone_number" name="phone_number" class="form-control">
+            <input type="hidden" id="full_phone_number" name="full_phone_number">
+        </div>
+        <div class="form-group">
+            <label for="user_type">User Type:</label>
+            <select id="user_type" name="user_type" class="form-control" required>
+                <option value="Administrator">Administrator</option>
+                <option value="Putnik">Putnik</option>
+                <option value="VlasnikBiznisa">Vlasnik Biznisa</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if error %}
+        <div class="alert alert-danger mt-3" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+</div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+<script>
+    const phoneInputField = document.querySelector("#phone_number");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
 
+    document.getElementById('add_user_form').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-    <div class="container mt-5">
-        <h1>Add User</h1>
-        <form action="{{ url_for('admin_add_user') }}" method="POST">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="first_name">First Name:</label>
-                <input type="text" id="first_name" name="first_name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="last_name">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="phone_number">Phone Number:</label>
-                <input type="text" id="phone_number" name="phone_number" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="user_type">User Type:</label>
-                <select id="user_type" name="user_type" class="form-control" required>
-                    <option value="Administrator">Administrator</option>
-                    <option value="Putnik">Putnik</option>
-                    <option value="VlasnikBiznisa">Vlasnik Biznisa</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        {% if error %}
-            <div class="alert alert-danger mt-3" role="alert">
-                {{ error }}
-            </div>
-        {% endif %}
-    </div>
+        const fullPhoneNumber = phoneInput.getNumber();
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
+        document.getElementById('full_phone_number').value = fullPhoneNumber;
+
+        this.submit();
+    });
+</script>
 
 </body>
 </html>
