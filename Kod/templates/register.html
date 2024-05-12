@@ -83,7 +83,6 @@
                                 <label for="password" class="form-label">Lozinka</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password" name="password" required>
-                                    <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">Prikaži</button>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -128,7 +127,7 @@
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
             initialCountry: "auto",
             geoIpLookup: getIp,
-            preferredCountries: ["rs", "de", "at", "ch"], // Replace with your preferred countries
+            preferredCountries: ["rs", "de", "at", "ch"],
         });
 
         function getIp(callback) {

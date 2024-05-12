@@ -40,3 +40,8 @@ function vlasnik_edit_business()
 {
     window.location.href = "/vlasnik_edit_business"
 }
+
+function profile()
+{
+    window.location.href = "/profile"
+}

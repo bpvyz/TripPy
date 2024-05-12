@@ -34,3 +34,8 @@ function admin_add_location()
 {
     window.location.href='/admin_add_location'
 }
+
+function profile()
+{
+    window.location.href = "/profile"
+}

@@ -20,6 +20,7 @@ app.add_url_rule('/register', 'register', register, methods=['GET', 'POST'])
 app.add_url_rule('/verify', 'verify', verify, methods=['GET', 'POST'])
 app.add_url_rule('/settings', 'settings', settings, methods=['GET', 'POST'])
 app.add_url_rule('/toggle_theme', 'toggle_theme', toggle_theme, methods=['GET', 'POST'])
+app.add_url_rule('/profile', 'profile', profile, methods=['GET', 'POST'])
 app.add_url_rule('/putnik_dashboard', 'putnik_dashboard', putnik_dashboard, methods=['GET', 'POST'])
 app.add_url_rule('/vlasnik_dashboard', 'vlasnik_dashboard', vlasnik_dashboard, methods=['GET', 'POST'])
 app.add_url_rule('/admin_dashboard', 'admin_dashboard', admin_dashboard, methods=['GET', 'POST'])
@@ -53,6 +54,7 @@ app.add_url_rule('/vlasnik_show_my_businesses', 'vlasnik_show_my_businesses', vl
 app.add_url_rule('/vlasnik_show_routes', 'vlasnik_show_routes', vlasnik_show_routes, methods=['GET'])
 app.add_url_rule('/vlasnik_delete_business/<int:business_id>', 'vlasnik_delete_business', vlasnik_delete_business, methods=['POST', 'GET'])
 app.add_url_rule('/vlasnik_get_business/<int:business_id>', 'vlasnik_get_business', vlasnik_get_business, methods=['GET'])
+app.add_url_rule('/vlasnik_edit_business/<int:business_id>', 'vlasnik_edit_business', vlasnik_edit_business, methods=['GET', 'POST'])
 app.add_url_rule('/autocomplete_locations', 'autocomplete_locations', autocomplete_locations, methods=['GET'])
 
 if __name__ == '__main__':
