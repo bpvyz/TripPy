@@ -63,7 +63,13 @@
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Business Name</th>
+                    <th style="padding: 0;">
+                            <button class="btn btn-link" onclick="sortTable(0)" style="border: none; background: none;">
+                                <span class="visually-hidden">Sort by Business Name</span>
+                                <span style="text-decoration: underline; color: white;">Business Name</span>
+                                <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
+                            </button>
+                        </th>
                     <th>Description</th>
                     <th>Location</th>
                     <th>Owner</th>
@@ -119,5 +125,29 @@
         });
     });
 </script>
+
+<script>
+let ascending = true; // Track current sorting order
+
+function sortTable(colIndex) {
+    let table = document.querySelector('table');
+    let rows = Array.from(table.querySelectorAll('tr'));
+    let sortedRows = rows.slice(1).sort((a, b) => {
+        let aValue = a.cells[colIndex].textContent.trim();
+        let bValue = b.cells[colIndex].textContent.trim();
+        return ascending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+    });
+
+    // Toggle sorting order for next click
+    ascending = !ascending;
+
+    table.querySelector('tbody').innerHTML = ''; // Clear table body
+    sortedRows.forEach(row => {
+        table.querySelector('tbody').appendChild(row); // Append sorted rows to table body
+    });
+}
+
+</script>
+
 </body>
 </html>
