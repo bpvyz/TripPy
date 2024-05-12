@@ -65,12 +65,19 @@
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>Business Name</th>
+                        <th style="padding: 0;">
+                            <button class="btn btn-link" onclick="sortTable(0)" style="border: none; background: none;">
+                                <span class="visually-hidden">Sort by Business Name</span>
+                                <span style="text-decoration: underline; color: white;">Business Name</span>
+                                <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
+                            </button>
+                        </th>
                         <th>Owner Name</th>
                         <th>Description</th>
                         <th>Location</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {% for business in businesses %}
                     <tr>
@@ -130,6 +137,28 @@
     logo.addEventListener('mouseout', function() {
         logo.src = originalSrc;
     });
+</script>
+<script>
+let ascending = true;
+
+function sortTable(colIndex) {
+    let table = document.querySelector('table');
+    let rows = Array.from(table.querySelectorAll('tr'));
+    let sortedRows = rows.slice(1).sort((a, b) => {
+        let aValue = a.cells[colIndex].textContent.trim();
+        let bValue = b.cells[colIndex].textContent.trim();
+        return ascending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+    });
+
+
+    ascending = !ascending;
+
+    table.querySelector('tbody').innerHTML = '';
+    sortedRows.forEach(row => {
+        table.querySelector('tbody').appendChild(row);
+    });
+}
+
 </script>
 
 </body>

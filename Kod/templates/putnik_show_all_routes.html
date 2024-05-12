@@ -63,7 +63,13 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Route ID</th>
-                        <th>Route Name</th>
+                        <th style="padding: 0;">
+                            <button class="btn btn-link" onclick="sortTable(1)" style="border: none; background: none;">
+                                <span class="visually-hidden">Sort by Route Name</span>
+                                <span style="text-decoration: underline; color: white;">Route Name</span>
+                                <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
+                            </button>
+                        </th>
                         <th>Description</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -110,6 +116,25 @@
         logo.src = originalSrc;
     });
 </script>
+<script>
+    let ascending = true;
 
+        function sortTable(colIndex) {
+            let table = document.querySelector('table');
+            let rows = Array.from(table.querySelectorAll('tr'));
+            let sortedRows = rows.slice(1).sort((a, b) => {
+                let aValue = a.cells[colIndex].textContent.trim();
+                let bValue = b.cells[colIndex].textContent.trim();
+                return ascending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+            });
+
+            ascending = !ascending;
+
+            table.querySelector('tbody').innerHTML = '';
+            sortedRows.forEach(row => {
+                table.querySelector('tbody').appendChild(row);
+            });
+        }
+</script>
 </body>
 </html>
