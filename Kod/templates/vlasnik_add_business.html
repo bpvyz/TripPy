@@ -70,7 +70,7 @@
 
 <div class="container mt-5">
     <h1>Add New Business Request</h1>
-    <form action="/vlasnik_add_business_request" method="post">
+    <form action="/vlasnik_add_business" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="businessname" class="form-label">Business Name</label>
             <input type="text" class="form-control" id="businessname" name="businessname" required>
@@ -81,12 +81,26 @@
         </div>
         <div class="mb-3">
             <label for="locationid" class="form-label">Location</label>
-            <input type="text" class="form-control" id="location" name="location" required>
-            <input type="hidden" id="locationid" name="locationid">
+            <input type="number" class="form-control" id="locationid" name="locationid" required>
+            <!-- <input type="text" class="form-control" id="location" name="location" required>-->
+            <!-- <input type="hidden" id="locationid" name="locationid"> -->
+        </div>
+        <div class="mb-3">
+            <label for="cena" class="form-label">Cena</label>
+            <input type="number" class="form-control" id="cena" name="cena" required>
+        </div>
+        <div class="mb-3">
+            <label for="images" class="form-label">Images (max 5)</label>
+            <div id="image-previews"></div>
+            <div id="image-inputs">
+                <input type="file" class="form-control" id="image1" name="images" accept="image/*" onchange="previewImage(event)">
+            </div>
+            <button type="button" id="add-image-input" class="btn btn-secondary mt-2">Add Image</button>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<!--
 <script>
     $(document).ready(function () {
         // Function to initialize autocomplete
@@ -115,6 +129,43 @@
         initAutocomplete();
     });
 </script>
+-->
+<script>
+    const maxImages = 5;
+    let imageCount = 1;
+
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function () {
+            const preview = document.createElement('img');
+            preview.src = reader.result;
+            preview.style.maxWidth = '200px';
+            preview.style.marginRight = '10px';
+            document.getElementById('image-previews').appendChild(preview);
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function addImageInput() {
+        if (imageCount < maxImages) {
+            imageCount++;
+            const newInput = document.createElement('input');
+            newInput.type = 'file';
+            newInput.className = 'form-control mt-2';
+            newInput.id = `image${imageCount}`;
+            newInput.name = 'images';
+            newInput.accept = 'image/*';
+            newInput.onchange = previewImage;
+            document.getElementById('image-inputs').appendChild(newInput);
+        }
+    }
+
+    document.getElementById('add-image-input').addEventListener('click', addImageInput);
+</script>
+
 <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

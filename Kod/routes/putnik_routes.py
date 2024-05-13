@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, session, Blueprint, request
+from flask import render_template, redirect, url_for, session, Blueprint, request, jsonify  
 from mappings.tables import User, db, Route, Business, Location
 
 putnik_routes = Blueprint('putnik_routes', __name__)
@@ -17,8 +17,9 @@ def putnik_show_all_routes():
         user_id = session['user_id']
         user = User.query.get(user_id)
         if user and user.usertype == "Putnik":
-            routes = Route.query.all()
-            return render_template('putnik_show_all_routes.html', routes=routes)
+            routes = Route.query.filter(
+            (Route.public == 'public') | (Route.createdby == user_id)).all()
+            return render_template('putnik_show_all_routes.html', routes=routes) 
     return redirect(url_for('login'))
 
 def putnik_show_my_routes():

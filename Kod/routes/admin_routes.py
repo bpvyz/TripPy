@@ -104,8 +104,8 @@ def admin_show_routes():
         user_id = session['user_id']
         user = User.query.get(user_id)
         if user and user.usertype == "Administrator":
-            routes = db.session.query(Route, User).join(User, Route.createdby == User.userid).all()
-            return render_template('admin_show_routes.html', routes=routes)
+            routes = Route.query.filter((Route.public == 'public')).all()
+            return render_template('admin_show_routes.html', routes=routes) 
     return redirect(url_for('login'))
 
 def admin_delete_route(route_id):
@@ -190,7 +190,9 @@ def admin_approve_business_request(business_request_id):
                     businessname=business_request.businessname,
                     description=business_request.description,
                     locationid=business_request.locationid,
-                    ownerid=business_request.ownerid
+                    ownerid=business_request.ownerid,
+                    cena=business_request.cena,
+                    image_path=business_request.image_path
                 )
                 db.session.add(new_business)
                 db.session.delete(business_request)

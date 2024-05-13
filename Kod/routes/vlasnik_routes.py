@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, session, Blueprint, request, jsonify
 from mappings.tables import User, db, Route, Business, Location, BusinessRequest
+import os
 
 vlasnik_routes = Blueprint('vlasnik_routes', __name__)
 
@@ -16,27 +17,52 @@ def autocomplete_locations():
 
 
 def vlasnik_add_business_request():
-    if 'user_id' in session:
-        if request.method == 'POST':
-            businessname = request.form['businessname']
-            description = request.form['description']
-            locationid = request.form['locationid']
-            user_id = session.get('user_id')
-            if user_id:
-                user = User.query.get(user_id)
-                if user:
-                    new_business_request = BusinessRequest(
-                        businessname=businessname,
-                        description=description,
-                        locationid=int(locationid),
-                        ownerid=user.userid
-                    )
-                    db.session.add(new_business_request)
-                    db.session.commit()
-                    return redirect(url_for('vlasnik_dashboard'))
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
 
-        return render_template('vlasnik_add_business.html')
-    return redirect(url_for('login'))
+    if request.method == 'POST':
+        businessname = request.form['businessname']
+        description = request.form['description']
+        locationid = request.form['locationid']
+        cena = request.form['cena']
+        user_id = session.get('user_id')
+
+        images = request.files.getlist('images')
+        image_paths = []
+
+        upload_dir = os.path.join(os.getcwd(), 'static', 'uploads')
+        if not os.path.exists(upload_dir):
+            os.makedirs(upload_dir)
+
+        for image in images:
+            if image and '.' in image.filename:
+                filename = image.filename
+                image_path = os.path.join(upload_dir, filename)
+                image.save(image_path)
+                rel_path = os.path.join('uploads', filename).replace('\\', '/')
+                image_paths.append(rel_path)
+                
+
+        image_paths_string = ','.join(image_paths)
+
+        if user_id:
+            user = User.query.get(user_id)
+            if user:
+                new_business_request = BusinessRequest(
+                    businessname=businessname,
+                    description=description,
+                    locationid=locationid,
+                    ownerid=user.userid,
+                    cena=cena,
+                    image_path=image_paths_string
+                )
+                db.session.add(new_business_request)
+                db.session.commit()
+                return redirect(url_for('vlasnik_dashboard'))
+
+    return render_template('vlasnik_add_business.html')
+
+
 
 def vlasnik_update_business(business_id):
     if 'user_id' not in session:
@@ -85,9 +111,11 @@ def vlasnik_show_my_businesses():
 
 def vlasnik_show_routes():
     if 'user_id' in session:
-
-        routes = Route.query.all()
-        return render_template('vlasnik_show_routes.html', routes=routes)
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype == "VlasnikBiznisa":
+            routes = Route.query.filter((Route.public == 'public')).all()
+            return render_template('vlasnik_show_routes.html', routes=routes) 
     return redirect(url_for('login'))
 
 
@@ -108,9 +136,10 @@ def vlasnik_get_business(business_id):
 
     business = Business.query.filter_by(businessid=business_id).first()
     if not business:
-        return render_template(message='Business not found')
+        return render_template('message_template.html', message='Business not found') 
 
-    return render_template('vlasnik_get_business.html', business=business)
+    image_paths = business.image_path.split(',') if business.image_path else []
+    return render_template('vlasnik_get_business.html', business=business, image_paths=image_paths)
 
 def vlasnik_get_route(route_id):
     if 'user_id' not in session:
