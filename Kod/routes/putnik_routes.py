@@ -108,9 +108,10 @@ def putnik_get_business(business_id):
 
     business = Business.query.filter_by(businessid=business_id).first()
     if not business:
-        return render_template(message='Business not found')
+        return render_template('message_template.html', message='Business not found') 
 
-    return render_template('putnik_get_business.html', business=business)
+    image_paths = business.image_path.split(',') if business.image_path else []
+    return render_template('putnik_get_business.html', business=business, image_paths=image_paths)
 
 def putnik_get_route(route_id):
     if 'user_id' not in session:

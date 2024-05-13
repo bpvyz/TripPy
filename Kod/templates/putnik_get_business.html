@@ -64,6 +64,16 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Location ID: {{ business.locationid }}</li>
+                <li class="list-group-item">Cena: {{ business.cena }}</li>
+                {% if image_paths %}
+                    {% for image_path in image_paths %}
+                        <li class="list-group-item">
+                            <img src="{{ url_for('static', filename=image_path) }}" alt="Business Image" class="img-fluid mb-2" style="max-width: 300px;">
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item">  </li>
+                {% endif %}
             </ul>
         </div>
     </div>
