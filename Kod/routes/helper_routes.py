@@ -1,3 +1,5 @@
+import time
+
 from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect, flash
 from mappings.tables import User, db, Route, Business, Location
 from util import generate_verification_code
@@ -7,6 +9,9 @@ import string
 helper_routes = Blueprint('helper_routes', __name__)
 
 #region Helper routes
+def loading():
+    return render_template('loading.html')
+
 def register():
     if request.method == 'POST':
 
