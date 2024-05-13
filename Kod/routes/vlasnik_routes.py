@@ -13,6 +13,9 @@ def autocomplete_locations():
     suggestions = [{'id': location.locationid, 'label': location.address, 'value': f"{location.address}"}
                    for location in locations]
 
+    if not suggestions and term:
+        suggestions.append({'id': -1, 'label': f"Add new location: '{term}'", 'value': term})
+
     return jsonify(suggestions)
 
 
@@ -23,9 +26,17 @@ def vlasnik_add_business_request():
     if request.method == 'POST':
         businessname = request.form['businessname']
         description = request.form['description']
-        locationid = request.form['locationid']
+        location_name = request.form['location']
         cena = request.form['cena']
         user_id = session.get('user_id')
+
+        location = Location.query.filter_by(address=location_name).first()
+        if not location:
+            location = Location(address=location_name)
+            db.session.add(location)
+            db.session.commit()
+
+        locationid = location.locationid
 
         images = request.files.getlist('images')
         image_paths = []
@@ -41,7 +52,6 @@ def vlasnik_add_business_request():
                 image.save(image_path)
                 rel_path = os.path.join('uploads', filename).replace('\\', '/')
                 image_paths.append(rel_path)
-                
 
         image_paths_string = ','.join(image_paths)
 
