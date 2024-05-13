@@ -86,6 +86,11 @@
                         <td>{{ route.startdate.strftime('%Y-%m-%d') if route.startdate else 'N/A' }}</td>
                         <td>{{ route.enddate.strftime('%Y-%m-%d') if route.enddate else 'N/A' }}</td>
                         <td>{{ route.createdby }}</td>
+                        <td>
+                            <form action="/vlasnik_get_route/{{ route.routeid }}" method="GET" style="display: inline-block;">
+                                <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">Prikaži</button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -52,6 +52,7 @@ app.add_url_rule('/vlasnik_update_business/<int:business_id>', 'vlasnik_update_b
 app.add_url_rule('/vlasnik_show_all_businesses', 'vlasnik_show_all_businesses', vlasnik_show_all_businesses, methods=['GET'])
 app.add_url_rule('/vlasnik_show_my_businesses', 'vlasnik_show_my_businesses', vlasnik_show_my_businesses, methods=['GET'])
 app.add_url_rule('/vlasnik_show_routes', 'vlasnik_show_routes', vlasnik_show_routes, methods=['GET'])
+app.add_url_rule('/vlasnik_get_route/<int:route_id>', 'vlasnik_get_route', vlasnik_get_route, methods=['GET'])
 app.add_url_rule('/vlasnik_delete_business/<int:business_id>', 'vlasnik_delete_business', vlasnik_delete_business, methods=['POST', 'GET'])
 app.add_url_rule('/vlasnik_get_business/<int:business_id>', 'vlasnik_get_business', vlasnik_get_business, methods=['GET'])
 app.add_url_rule('/vlasnik_edit_business/<int:business_id>', 'vlasnik_edit_business', vlasnik_edit_business, methods=['GET', 'POST'])
