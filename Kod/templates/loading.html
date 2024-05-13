@@ -4,44 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="2; URL='/login'" />
-  <style>
-      body {
-        background: #ffffff;
-      }
-      @keyframes shadow-animation {
-        0% {
-          filter: drop-shadow(0px 0px 15px #000000);
-        }
-        50% {
-          filter: drop-shadow(0px 0px 2px #000000);
-        }
-        100% {
-          filter: drop-shadow(0px 0px 15px #000000);
-        }
-      }
-      #my-svg {
-        animation: shadow-animation 2s ease-in-out infinite;
-      position: absolute;
-      top: 50%;
-      left: 49%;
-      transform: translate(-50%, -50%);
-      padding: 10px;
-      }
+    <style>
+            body {
+      background: linear-gradient(-45deg, rgba(250, 147, 6, 0.75), rgba(51, 22, 160, 0.75));
+      background-size: 400% 400%;
+      animation: gradient 2s ease infinite;
+      height: 100vh;
+    }
 
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+      #my-svg {
+        position: absolute;
+        top: 50%;
+        left: 49%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+      }
   </style>
 </head>
 <body>
   <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW 2021.5 -->
-<svg id="my-svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="215.289mm" height="92.81mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd; filter: drop-shadow(0px 0px 15px #000000);" viewBox="0 0 21528.9 9281" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+<svg id="my-svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="215.289mm" height="92.81mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd; " viewBox="0 0 21528.9 9281" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
 viewBox="0 0 21528.9 9281"
  xmlns:xlink="http://www.w3.org/1999/xlink"
  xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
  <defs>
   <style type="text/css">
    <![CDATA[
-    .fil0 {fill:#3316A0;fill-rule:nonzero}
+    .fil0 {fill:#ffffff;fill-rule:nonzero}
    ]]>
   </style>
  </defs>
