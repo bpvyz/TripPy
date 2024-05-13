@@ -10,7 +10,8 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo"></a>
+  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -18,7 +19,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/admin_dashboard" onclick="dashboard()">Početna <span class="sr-only">(current)</span></a>
+
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +63,7 @@
           Profil
         </a>
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
-          <a class="dropdown-item" href="#">Moj Profil</a>
+          <a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a>
           <a class="dropdown-item" href="#">Postavke</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" onclick="logout()">Odjava</a>
@@ -78,12 +79,18 @@
             <thead>
                 <tr>
                     <th>Route ID</th>
-                    <th>Route Name</th>
+                    <th style="padding: 0;">
+                            <button class="btn btn-link" onclick="sortTable(1)" style="border: none; background: none;">
+                                <span class="visually-hidden">Sort by Route Name</span>
+                                <span style="text-decoration: underline; color: white;">Route Name</span>
+                                <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
+                            </button>
+                        </th>
                     <th>Description</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Created By</th>
-                    <th>Actions</th> <!-- New column for actions -->
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,7 +103,7 @@
                     <td>{{ route.enddate }}</td>
                     <td>{{ route.username }}</td>
                     <td>
-                        <form action="{{ url_for('admin_delete_route', route_id=route.routeid) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this route?')">
+                        <form action="{{ url_for('admin_delete_route', route_id=route.Route.routeid) }}" method="DELETE" onsubmit="return confirm('Are you sure you want to delete this route?')">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
@@ -106,10 +113,46 @@
         </table>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
+<script>
+    const logo = document.getElementById('logo');
+    const originalSrc = "{{ url_for('static', filename='images/TripPyLogo.svg') }}";
+    const hoverSrc = "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}";
+
+    logo.addEventListener('mouseover', function() {
+        logo.src = hoverSrc;
+    });
+
+    logo.addEventListener('mouseout', function() {
+        logo.src = originalSrc;
+    });
+</script>
+<script>
+        let ascending = true; // Track current sorting order
+
+        function sortTable(colIndex) {
+            let table = document.querySelector('table');
+            let rows = Array.from(table.querySelectorAll('tr'));
+            let sortedRows = rows.slice(1).sort((a, b) => {
+                let aValue = a.cells[colIndex].textContent.trim();
+                let bValue = b.cells[colIndex].textContent.trim();
+                return ascending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+            });
+
+            // Toggle sorting order for next click
+            ascending = !ascending;
+
+            table.querySelector('tbody').innerHTML = ''; // Clear table body
+            sortedRows.forEach(row => {
+                table.querySelector('tbody').appendChild(row); // Append sorted rows to table body
+            });
+        }
+
+
+</script>
 
 </body>
 </html>

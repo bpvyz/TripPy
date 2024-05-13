@@ -11,16 +11,15 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 16px; margin-right: 16px;">
-  <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo"></a>
+  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/putnik_dashboard" onclick="dashboard()">Početna <span class="sr-only"></span></a>
-      </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Marsrute
@@ -46,7 +45,7 @@
       Profil
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-          <li><a class="dropdown-item" href="#">Moj Profil</a></li>
+          <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
           <li><a class="dropdown-item" href="#">Postavke</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
@@ -64,12 +63,19 @@
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>Business Name</th>
+                        <th style="padding: 0;">
+                            <button class="btn btn-link" onclick="sortTable(0)" style="border: none; background: none;">
+                                <span class="visually-hidden">Sort by Business Name</span>
+                                <span style="text-decoration: underline; color: white;">Business Name</span>
+                                <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
+                            </button>
+                        </th>
                         <th>Owner Name</th>
                         <th>Description</th>
                         <th>Location</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {% for business in businesses %}
                     <tr>
@@ -117,5 +123,41 @@
         });
     });
 </script>
+<script>
+    const logo = document.getElementById('logo');
+    const originalSrc = "{{ url_for('static', filename='images/TripPyLogo.svg') }}";
+    const hoverSrc = "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}";
+
+    logo.addEventListener('mouseover', function() {
+        logo.src = hoverSrc;
+    });
+
+    logo.addEventListener('mouseout', function() {
+        logo.src = originalSrc;
+    });
+</script>
+<script>
+let ascending = true;
+
+function sortTable(colIndex) {
+    let table = document.querySelector('table');
+    let rows = Array.from(table.querySelectorAll('tr'));
+    let sortedRows = rows.slice(1).sort((a, b) => {
+        let aValue = a.cells[colIndex].textContent.trim();
+        let bValue = b.cells[colIndex].textContent.trim();
+        return ascending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+    });
+
+
+    ascending = !ascending;
+
+    table.querySelector('tbody').innerHTML = '';
+    sortedRows.forEach(row => {
+        table.querySelector('tbody').appendChild(row);
+    });
+}
+
+</script>
+
 </body>
 </html>

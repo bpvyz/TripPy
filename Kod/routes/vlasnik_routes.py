@@ -154,5 +154,23 @@ def vlasnik_get_route(route_id):
     else:
         abort(403, description="You do not have permission to view this route")
 
+def vlasnik_edit_business(business_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
 
+    user_id = session['user_id']
+    business = Business.query.get_or_404(business_id)
+
+    if business.ownerid != user_id:
+        return "You dont have permission to do that"
+
+    if request.method == 'POST':
+        business.businessname = request.form['businessname']
+        business.description = request.form['description']
+        business.locationid = int(request.form['locationid'])
+
+        db.session.commit()
+        return redirect(url_for('vlasnik_show_my_businesses'))
+
+    return render_template('vlasnik_edit_business.html', business=business)
 #endregion Vlasnik routes

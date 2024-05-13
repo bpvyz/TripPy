@@ -33,10 +33,15 @@ function vlasnik_update_business()
 
 function vlasnik_get_route()
 {
-    window.location.href = "/vlasnik_get_route"
+     window.location.href = "/vlasnik_get_route/"
 }
 
 function vlasnik_edit_business()
 {
     window.location.href = "/vlasnik_edit_business"
+}
+
+function profile()
+{
+    window.location.href = "/profile"
 }

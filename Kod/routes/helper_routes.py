@@ -1,3 +1,5 @@
+import time
+
 from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect, flash
 from mappings.tables import User, db, Route, Business, Location
 from util import generate_verification_code
@@ -7,6 +9,9 @@ import string
 helper_routes = Blueprint('helper_routes', __name__)
 
 #region Helper routes
+def loading():
+    return render_template('loading.html')
+
 def register():
     if request.method == 'POST':
 
@@ -121,5 +126,33 @@ def toggle_theme():
                 return redirect(url_for('admin_dashboard'))
         else:
             return redirect(url_for('login'))
+    else:
+        return redirect(url_for('login'))
+
+def profile():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if request.method == 'POST':
+            user.username = request.form.get('username')
+            new_password = request.form.get('newPassword')
+            if new_password:
+                user.password = new_password
+            user.email = request.form.get('email')
+            user.phonenumber = request.form.get('full_phone_number')
+            user.firstname = request.form.get('firstname')
+            user.lastname = request.form.get('lastname')
+            db.session.commit()
+            flash('Profile updated successfully!', 'success')
+            if 'user_id' in session:
+                user_id = session['user_id']
+                user = User.query.get(user_id)
+                if user.usertype == "Putnik":
+                    return redirect(url_for('putnik_dashboard'))
+                elif user.usertype == "VlasnikBiznisa":
+                    return redirect(url_for('vlasnik_dashboard'))
+                else:
+                    return redirect(url_for('admin_dashboard'))
+        return render_template('profile.html', user=user)
     else:
         return redirect(url_for('login'))

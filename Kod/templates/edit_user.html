@@ -97,5 +97,19 @@
                 .then((resp) => callback(resp.country));
         }
     </script>
+<script>
+    const logo = document.getElementById('logo');
+    const originalSrc = "{{ url_for('static', filename='images/TripPyLogo.svg') }}";
+    const hoverSrc = "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}";
+
+    logo.addEventListener('mouseover', function() {
+        logo.src = hoverSrc;
+    });
+
+    logo.addEventListener('mouseout', function() {
+        logo.src = originalSrc;
+    });
+</script>
+
 </body>
 </html>

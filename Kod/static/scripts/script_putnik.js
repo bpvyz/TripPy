@@ -41,3 +41,8 @@ function putnik_update_route()
 {
     window.location.href = "/putnik_update_route"
 }
+
+function profile()
+{
+    window.location.href = "/profile"
+}
