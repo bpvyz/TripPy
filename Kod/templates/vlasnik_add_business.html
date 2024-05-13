@@ -83,9 +83,8 @@
         </div>
         <div class="mb-3">
             <label for="locationid" class="form-label">Location</label>
-            <input type="number" class="form-control" id="locationid" name="locationid" required>
-            <!-- <input type="text" class="form-control" id="location" name="location" required>-->
-            <!-- <input type="hidden" id="locationid" name="locationid"> -->
+            <input type="text" class="form-control" id="location" name="location" required>
+            <input type="hidden" id="locationid" name="locationid">
         </div>
         <div class="mb-3">
             <label for="cena" class="form-label">Cena</label>
@@ -118,11 +117,11 @@
 </script>
 <script>
     $(document).ready(function () {
-       
+        // Function to initialize autocomplete
         function initAutocomplete() {
             $("#location").autocomplete({
                 source: function (request, response) {
-                   
+                    // Send AJAX request to fetch location suggestions
                     $.ajax({
                         url: "/autocomplete_locations",
                         type: "GET",
@@ -146,8 +145,6 @@
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
--->
 <script>
     const maxImages = 5;
     let imageCount = 1;
@@ -184,9 +181,4 @@
     document.getElementById('add-image-input').addEventListener('click', addImageInput);
 </script>
 
-<script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script></body>
 </html>
