@@ -10,23 +10,19 @@
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 16px; margin-right: 16px;">
   <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Marsrute
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-            <a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a>
+          <a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a>
           <a class="dropdown-item" onclick="putnik_show_all_routes()">Sve Marsrute</a>
           <a class="dropdown-item" onclick="putnik_show_my_routes()">Moje Marsrute</a>
         </div>
@@ -81,6 +77,12 @@
                     <option value="private" {% if route.public == 'private' %}selected{% endif %}>Private</option>
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="route_duration" class="form-label">Route Duration:</label>
+                <input type="text" class="form-control" id="route_duration" value="{{ route_duration }}" disabled>
+            </div>
+            <div id="button_container" class="mb-3"></div>
+
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
@@ -101,6 +103,45 @@
     logo.addEventListener('mouseout', function() {
         logo.src = originalSrc;
     });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Calculate route duration in days
+        var startDate = new Date("{{ route.startdate.isoformat() }}");
+        var endDate = new Date("{{ route.enddate.isoformat() }}");
+        var routeDuration = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+        // Display route duration
+        document.getElementById("route_duration").value = routeDuration + " days";
+
+        // Dynamically create buttons for each day of the route duration
+        var buttonContainer = document.getElementById("button_container");
+        for (var i = 0; i < routeDuration; i++) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.classList.add("btn", "btn-secondary");
+        button.textContent = "Day " + (i + 1);
+        // Add event listener to redirect to the appropriate route and day
+        button.addEventListener('click', function() {
+            // Calculate the appropriate route and day based on the button index
+            var routeId = "{{ route.routeid }}";
+            var dayNumber = this.textContent.split(" ")[1];
+            // Redirect to the appropriate URL
+            window.location.href = "/itinerary/" + routeId + "/" + dayNumber;
+        });
+        buttonContainer.appendChild(button);
+    }
+    });
+</script>
+
+<script>
+    function calculateDuration() {
+        var startDate = new Date(document.getElementById("startdate").value);
+        var endDate = new Date(document.getElementById("enddate").value);
+        var routeDuration = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
+        document.getElementById("route_duration").value = routeDuration + " days";
+    }
 </script>
 
 </body>

@@ -73,6 +73,7 @@
                         <th>Owner Name</th>
                         <th>Description</th>
                         <th>Location</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
@@ -83,6 +84,7 @@
                         <td>{{ business.owner.username }}</td>
                         <td>{{ business.description }}</td>
                         <td>{{ business.location.address }}</td>
+                        <td><a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=business.businessid) }}">View Business</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

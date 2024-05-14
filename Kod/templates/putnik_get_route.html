@@ -66,6 +66,9 @@
                     <li class="list-group-item"><strong>Status:</strong> {{ route.public }}</li>
                 </ul>
                 <a onclick="history.back()" class="btn btn-primary mt-3">Go Back</a>
+                {% if route.createdby == user_id %}
+                <a href="{{ url_for('putnik_update_route', route_id=route.routeid) }}" class="btn btn-secondary mt-3">Edit</a>
+                {% endif %}
             </div>
         </div>
     </div>

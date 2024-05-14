@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vlasnik All Businesses</title>
+    <title>All Businesses</title>
+    <!-- Include Bootstrap CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
-    <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 16px; margin-right: 16px;">
   <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,15 +19,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
 
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Marsrute
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="vlasnik_show_routes()">Sve Marsrute</a>
+            <a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a>
+          <a class="dropdown-item" onclick="putnik_show_all_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="putnik_show_my_routes()">Moje Marsrute</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -34,18 +35,16 @@
           Oglasi
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="vlasnik_add_business()">Kreiraj oglas</a>
-          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">Moji oglasi</a>
+          <a class="dropdown-item" onclick="putnik_show_businesses()">Svi Oglasi</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       Profil
         </a>
-        <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
           <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
           <li><a class="dropdown-item" href="#">Postavke</a></li>
           <li><hr class="dropdown-divider"></li>
@@ -55,49 +54,57 @@
   </div>
 </nav>
 
-<div class="container mt-5">
-    <h1 class="mb-3">Prikaz svih oglasa</h1>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Pretraga po imenu poslovanja" id="searchInput">
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th style="padding: 0;">
+    <div class="container mt-5">
+        <h1 class="mb-3">All Businesses</h1>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Pretraga po imenu poslovanja" id="searchInput">
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="padding: 0;">
                             <button class="btn btn-link" onclick="sortTable(0)" style="border: none; background: none;">
                                 <span class="visually-hidden">Sort by Business Name</span>
                                 <span style="text-decoration: underline; color: white;">Business Name</span>
                                 <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
                             </button>
                         </th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Owner</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for business in businesses %}
-                <tr>
-                    <td>{{ business.businessname }}</td>
-                    <td>{{ business.description }}</td>
-                    <td>{{ business.location.address }}</td>
-                    <td>{{ business.owner.username }}</td>
-                    <td><a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=business.businessid) }}">View Business</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                        <th>Owner Name</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for business in businesses %}
+                    <tr>
+                        <td>{{ business.businessname }}</td>
+                        <td>{{ business.owner.username }}</td>
+                        <td>{{ business.description }}</td>
+                        <td>{{ business.location.address }}</td>
+                        <td><a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=business.businessid) }}">View Business</a></td>
+                        <td>
+                            <form action="{{ url_for('putnik_add_business_to_itinerary', day_number=day, route_id=route_id, business_id=business.businessid) }}" method="post">
+                                <button type="submit" class="btn btn-success">Add Business</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
+<script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="{{ url_for('static', filename='scripts/dynamicSearch.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('searchInput').addEventListener('input', function () {
@@ -107,7 +114,7 @@
             for (let i = 1; i < rows.length; i++) {
                 let cells = rows[i].getElementsByTagName('td');
                 let found = false;
-                for (let j = 1; j < cells.length; j++) {
+                for (let j = 0; j < cells.length; j++) {
                     let cellText = cells[j].textContent.toLowerCase();
                     if (cellText.includes(input)) {
                         found = true;
@@ -137,7 +144,7 @@
     });
 </script>
 <script>
-let ascending = true; // Track current sorting order
+let ascending = true;
 
 function sortTable(colIndex) {
     let table = document.querySelector('table');
@@ -148,12 +155,12 @@ function sortTable(colIndex) {
         return ascending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
     });
 
-    // Toggle sorting order for next click
+
     ascending = !ascending;
 
-    table.querySelector('tbody').innerHTML = ''; // Clear table body
+    table.querySelector('tbody').innerHTML = '';
     sortedRows.forEach(row => {
-        table.querySelector('tbody').appendChild(row); // Append sorted rows to table body
+        table.querySelector('tbody').appendChild(row);
     });
 }
 

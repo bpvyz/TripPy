@@ -68,8 +68,10 @@ class RouteLocation(db.Model):
     __tablename__ = 'routelocations'
     routeid = db.Column(db.Integer, db.ForeignKey('routes.routeid'), primary_key=True)
     locationid = db.Column(db.Integer, db.ForeignKey('locations.locationid'), primary_key=True)
-    business_id = db.Column(db.Integer, db.ForeignKey('businesses.businessid'))
+    business_id = db.Column(db.Integer, db.ForeignKey('businesses.businessid'), primary_key=True)
+    day = db.Column(db.Integer)
 
+    location = relationship("Location")
     business = relationship("Business", overlaps="route_locations")
 
 class RouteParticipant(db.Model):
