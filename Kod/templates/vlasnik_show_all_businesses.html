@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vlasnik All Businesses</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
     <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
+    <style>
+    #map {
+    height: 300px;
+    width: 100%;
+    }
+    .map-container {
+    height: 400px;
+    width: 100%;
+    }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -79,12 +90,13 @@
             </thead>
             <tbody>
                 {% for business in businesses %}
-                <tr>
+                <tr id="row{{ business.businessid }}">
                     <td>{{ business.businessname }}</td>
                     <td>{{ business.description }}</td>
                     <td>{{ business.location.address }}</td>
                     <td>{{ business.owner.username }}</td>
-                    <td><a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=business.businessid) }}">View Business</a></td>
+                    <td><button class="btn btn-primary" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">View Map</button>
+                        <a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=business.businessid) }}">View Business</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -98,6 +110,49 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script>
+function openMap(address, businessId) {
+
+    document.querySelectorAll('.map-row').forEach(element => {
+        element.remove();
+    });
+
+    var newRow = document.createElement('tr');
+    newRow.classList.add('map-row');
+    newRow.innerHTML = `<td colspan="5"><div id="map${businessId}" class="map-container"></div></td>`;
+    document.getElementById(`row${businessId}`).insertAdjacentElement('afterend', newRow);
+
+    var mymap = L.map(`map${businessId}`).setView([0, 0], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+
+    var location = address;
+    var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(location);
+    console.log('Geocoding URL:', url); // Log the geocoding URL to check if it's correct
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Geocoding Response:', data);
+            if (data.length > 0) {
+                var lat = data[0].lat;
+                var lon = data[0].lon;
+                mymap.setView([lat, lon], 13);
+                L.marker([lat, lon]).addTo(mymap);
+            } else {
+                console.error('No location data received');
+                alert('Location not found');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching location data:', error);
+            alert('Error fetching location data');
+        });
+}
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('searchInput').addEventListener('input', function () {

@@ -116,10 +116,11 @@
                         <td>{{ business.description }}</td>
                         <td>{{ business.location.address }}</td>
                         <td>
+
+                            <button class="btn btn-primary" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">View Map</button>
                             <form action="/admin_delete_business/{{ business.businessid }}" method="post" style="display: inline;">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <button class="btn btn-primary" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">View Map</button>
                         </td>
                     </tr>
                 {% endfor %}
