@@ -72,7 +72,7 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Created By</th>
-                        <th></th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,7 +86,7 @@
                         <td>{{ route.createdby }}</td>
                         <td>
                             <form action="/putnik_get_route/{{ route.routeid }}" method="GET">
-                                <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">Prikazi</button>
+                                <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">View</button>
                             </form>
                         </td>
                     </tr>

@@ -87,6 +87,15 @@
                     <li class="list-group-item"><strong>Status:</strong> {{ route.public }}</li>
                 </ul>
                 <a onclick="history.back()" class="btn btn-primary mt-3">Go Back</a>
+                {% if route.createdby == user_id %}
+                    <a href="{{ url_for('putnik_update_route', route_id=route.routeid) }}" class="btn btn-secondary mt-3">Edit</a>
+                {% else %}
+                <div class="mt-3">
+                    {% for day in range(1, route_duration + 1) %}
+                        <a href="{{ url_for('putnik_show_itinerary', route_id=route.routeid, day_number=day) }}" class="btn btn-info">View Day {{ day }} Itinerary</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

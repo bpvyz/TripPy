@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, session, Blueprint, request
 from mappings.tables import User, db, Route, Business, Location, BusinessRequest
+from datetime import datetime, timedelta
 
 admin_routes = Blueprint('admin_routes', __name__)
 
@@ -225,7 +226,9 @@ def admin_get_route(route_id):
     if route is None:
         abort(404, description="Route not found")
 
-    return render_template('admin_get_route.html', route=route)
+    route_duration = (route.enddate - route.startdate).days
+
+    return render_template('admin_get_route.html', route=route, route_duration=route_duration)
 
 def admin_add_location():
     if 'user_id' in session:

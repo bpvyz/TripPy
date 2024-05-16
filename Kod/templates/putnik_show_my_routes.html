@@ -85,7 +85,7 @@
                         <td>{{ route.createdby }}</td>
                         <td>
                             <form action="/putnik_get_route/{{ route.routeid }}" method="GET" style="display: inline-block;">
-                                <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">Prikaži</button>
+                                <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">View</button>
                             </form>
                             <form action="/putnik_delete_route/{{ route.routeid }}" method="POST" style="display: inline-block;">
                                 <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this route?')">Delete</button>

@@ -7,6 +7,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/design.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 300px;
+            width: 100%;
+        }
+        .map-container {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 16px; margin-right: 16px;">
@@ -57,7 +69,7 @@
         <h2>Day {{ day_number }} Itinerary</h2>
         <ul class="list-group">
             {% for itinerary_detail in itinerary_details %}
-                <li class="list-group-item">
+                <li class="list-group-item" id="row{{ itinerary_detail.business.businessid }}">
                     <strong>Location:</strong> {{ itinerary_detail.location.address }}
                     {% if itinerary_detail.business %}
                         <br>
@@ -66,34 +78,89 @@
                         <strong>Description:</strong> {{ itinerary_detail.business.description }}
                         <br>
                         <a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=itinerary_detail.business.businessid) }}">View Business</a>
+                        <button class="btn btn-primary" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
+                        {% if route.createdby == user_id %}
                         <form action="{{ url_for('putnik_delete_itinerary_business', route_id=route.routeid, day_number=day_number, business_id=itinerary_detail.business.businessid) }}" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        {% endif %}
                     {% endif %}
                 </li>
             {% endfor %}
             <li class="list-group-item">
                 <div class="row mt-3">
+                    {% if route.createdby == user_id %}
                     <div class="col">
                         <a class="btn btn-warning" href="{{ url_for('putnik_add_business', route_id=route.routeid, day_number=day_number) }}">Add Business for Day {{ day_number }}</a>
                     </div>
+                    {% endif %}
                 </div>
             </li>
         </ul>
     </div>
+    <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        function openMap(address, businessId) {
+            console.log('Opening map for address:', address, 'with businessId:', businessId);
+
+            document.querySelectorAll('.map-row').forEach(element => {
+                element.remove();
+            });
+
+            var parentRow = document.getElementById(`row${businessId}`);
+            if (!parentRow) {
+                console.error(`Element with ID row${businessId} not found`);
+                return;
+            }
+
+            var newRow = document.createElement('div');
+            newRow.classList.add('map-row');
+            newRow.innerHTML = `<div id="map${businessId}" class="map-container"></div>`;
+            parentRow.insertAdjacentElement('afterend', newRow);
+
+            var mymap = L.map(`map${businessId}`).setView([0, 0], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
+
+            var location = address;
+            var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(location);
+            console.log('Geocoding URL:', url);
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Geocoding Response:', data);
+                    if (data.length > 0) {
+                        var lat = data[0].lat;
+                        var lon = data[0].lon;
+                        mymap.setView([lat, lon], 13);
+                        L.marker([lat, lon]).addTo(mymap);
+                    } else {
+                        console.error('No location data received');
+                        alert('Location not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching location data:', error);
+                    alert('Error fetching location data');
+                });
+        }
+    </script>
+
+    <script>
+        const logo = document.getElementById('logo');
+        const originalSrc = "{{ url_for('static', filename='images/TripPyLogo.svg') }}";
+        const hoverSrc = "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}";
+
+        logo.addEventListener('mouseover', function() {
+            logo.src = hoverSrc;
+        });
+
+        logo.addEventListener('mouseout', function() {
+            logo.src = originalSrc;
+        });
+    </script>
 </body>
-<script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
-<script>
-    const logo = document.getElementById('logo');
-    const originalSrc = "{{ url_for('static', filename='images/TripPyLogo.svg') }}";
-    const hoverSrc = "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}";
-
-    logo.addEventListener('mouseover', function() {
-        logo.src = hoverSrc;
-    });
-
-    logo.addEventListener('mouseout', function() {
-        logo.src = originalSrc;
-    });
-</script>
 </html>
