@@ -72,29 +72,6 @@ def vlasnik_add_business_request():
 
     return render_template('vlasnik_add_business.html')
 
-
-
-def vlasnik_update_business(business_id):
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-
-    user_id = session['user_id']
-    business = Business.query.get_or_404(business_id)
-
-    if business.ownerid != user_id:
-        return "You dont have permission to do that"
-
-    if request.method == 'POST':
-        business.businessname = request.form['businessname']
-        business.description = request.form['description']
-        business.locationid = int(request.form['locationid'])
-
-        db.session.commit()
-        return redirect(url_for('vlasnik_show_my_businesses'))
-
-    return render_template('vlasnik_update_business.html', business=business)
-
-
 def vlasnik_dashboard():
     if 'user_id' in session:
         user_id = session['user_id']
@@ -172,15 +149,57 @@ def vlasnik_edit_business(business_id):
     business = Business.query.get_or_404(business_id)
 
     if business.ownerid != user_id:
-        return "You dont have permission to do that"
+        return "You don't have permission to do that"
 
     if request.method == 'POST':
         business.businessname = request.form['businessname']
         business.description = request.form['description']
-        business.locationid = int(request.form['locationid'])
+
+        location_id = request.form['locationid']
+
+        if location_id == '-1':
+            location_address = request.form['location']
+            new_location = Location(address=location_address)
+            db.session.add(new_location)
+            db.session.flush()
+            location_id = new_location.locationid
+        else:
+            location = Location.query.get(location_id)
+            if not location:
+                location_address = request.form['location']
+                new_location = Location(locationid=location_id, address=location_address)
+                db.session.add(new_location)
+                db.session.flush()
+
+        business.locationid = location_id
+
+        removed_images = request.form.getlist('removed_images')
+        if removed_images:
+            current_images = business.image_path.split(',')
+            updated_images = [img for img in current_images if img not in removed_images]
+            business.image_path = ','.join(updated_images)
+            for img in removed_images:
+                image_path = os.path.join(os.getcwd(), 'static', img.strip('/'))
+                if os.path.exists(image_path):
+                    os.remove(image_path)
+
+        images = request.files.getlist('images[]')
+        print(request.files)
+        if images:
+            upload_dir = os.path.join(os.getcwd(), 'static', 'uploads')
+            if not os.path.exists(upload_dir):
+                os.makedirs(upload_dir)
+            for image in images:
+                if image and '.' in image.filename:
+                    filename = image.filename
+                    image_path = os.path.join(upload_dir, filename)
+                    image.save(image_path)
+                    rel_path = os.path.join('uploads', filename).replace('\\', '/')
+                    business.image_path = f"{business.image_path},{rel_path}" if business.image_path else rel_path
 
         db.session.commit()
         return redirect(url_for('vlasnik_show_my_businesses'))
 
-    return render_template('vlasnik_edit_business.html', business=business)
+    image_paths = business.image_path.split(',') if business.image_path else []
+    return render_template('vlasnik_edit_business.html', business=business, image_paths=image_paths)
 #endregion Vlasnik routes
