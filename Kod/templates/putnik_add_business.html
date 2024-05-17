@@ -23,7 +23,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 16px; margin-right: 16px;">
   <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -31,22 +31,22 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Marsrute
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-            <a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a>
-          <a class="dropdown-item" onclick="putnik_show_all_routes()">Sve Marsrute</a>
-          <a class="dropdown-item" onclick="putnik_show_my_routes()">Moje Marsrute</a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
+          <li><a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a></li>
+          <li><a class="dropdown-item" onclick="putnik_show_all_routes()">Sve Marsrute</a></li>
+          <li><a class="dropdown-item" onclick="putnik_show_my_routes()">Moje Marsrute</a></li>
+        </ul>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Oglasi
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="putnik_show_businesses()">Svi Oglasi</a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownAds">
+          <li><a class="dropdown-item" onclick="putnik_show_businesses()">Svi Oglasi</a></li>
+        </ul>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
@@ -117,13 +117,13 @@
         </div>
     </div>
 
-<script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="{{ url_for('static', filename='scripts/dynamicSearch.js') }}"></script>
 <script>
 function openMap(address, businessId) {
