@@ -194,7 +194,7 @@
                         {% else %}
                             <a class="btn btn-primary" href="{{ url_for('admin_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
                         {% endif %}
-                        <button class="btn btn-primary" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
+                        <button class="btn btn-success" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
                         {% if route.createdby == user_id %}
                         <form action="{{ url_for('putnik_delete_itinerary_business', route_id=route.routeid, day_number=day_number, business_id=itinerary_detail.business.businessid) }}" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Delete</button>

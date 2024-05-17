@@ -17,3 +17,13 @@
    left: auto;
    right: 0;
    }
+
+.btn-primary {
+    background-color: #3316a0;
+    border: none;
+    border-radius: 8px;
+   }
+
+.btn-primary:hover {
+    background-color: #fa9306;
+    }
