@@ -110,6 +110,67 @@
      </ul>
   </div>
 </nav>
+{% else %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Korisnici
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
+          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
+          <a class="dropdown-item" onclick="admin_add_user()">Dodaj korisnika</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Marsrute
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
+          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Oglasi
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
+          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
+          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
+        </div>
+      </li>
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Lokacije
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
+          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
+        </div>
+      </li>
+
+    </ul>
+     <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-expanded="false">
+      Profil
+        </a>
+        <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
+          <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
+          <li><a class="dropdown-item" href="#">Postavke</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+        </ul>
+     </ul>
+  </div>
+</nav>
 {% endif %}
 
     <div class="container mt-5">
@@ -130,6 +191,8 @@
                             <a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
                         {% elif user == "VlasnikBiznisa" %}
                             <a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
+                        {% else %}
+                            <a class="btn btn-primary" href="{{ url_for('admin_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
                         {% endif %}
                         <button class="btn btn-primary" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
                         {% if route.createdby == user_id %}
@@ -154,9 +217,13 @@
     {% if user == "Putnik" %}
         <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
     {% elif user == "VlasnikBiznisa" %}
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
+    {% else %}
+        <script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
     {% endif %}
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
+
         function openMap(address, businessId) {
             console.log('Opening map for address:', address, 'with businessId:', businessId);
 

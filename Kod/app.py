@@ -43,6 +43,8 @@ app.add_url_rule('/admin_get_business/<int:business_id>', 'admin_get_business', 
 app.add_url_rule('/admin_delete_business/<int:business_id>', 'admin_delete_business', admin_delete_business, methods=['POST', 'GET'])
 app.add_url_rule('/admin_show_routes', 'admin_show_routes', admin_show_routes, methods=['GET'])
 app.add_url_rule('/admin_get_route/<int:route_id>', 'admin_get_route', admin_get_route, methods=['GET'])
+app.add_url_rule('/admin_show_itinerary/<int:route_id>/<int:day_number>', 'admin_show_itinerary', admin_show_itinerary, methods=['GET', 'POST'])
+
 app.add_url_rule('/admin_delete_route/<int:route_id>', 'admin_delete_route', admin_delete_route, methods=['GET', 'DELETE'])
 app.add_url_rule('/admin_business_requests', 'admin_business_requests', admin_business_requests, methods=['GET', 'POST'])
 app.add_url_rule('/admin_approve_business_request/<int:business_request_id>', 'admin_approve_business_request', admin_approve_business_request, methods=['GET', 'POST'])
