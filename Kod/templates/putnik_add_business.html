@@ -102,12 +102,12 @@
                         <td>{{ business.owner.username }}</td>
                         <td>{{ business.description }}</td>
                         <td>{{ business.location.address }}</td>
-                        <td><a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=business.businessid) }}">View Business</a></td>
+                        <td><a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=business.businessid) }}">View</a></td>
 
                         <td> <button class="btn btn-primary" style="display:inline;" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">Map</button></td>
                         <td>
                             <form action="{{ url_for('putnik_add_business_to_itinerary', day_number=day, route_id=route_id, business_id=business.businessid) }}" method="post">
-                                <button type="submit" class="btn btn-success" style="display:inline;" >Add Business</button>
+                                <button type="submit" class="btn btn-success" style="display:inline;" >Add</button>
                             </form>
                         </td>
                     </tr>

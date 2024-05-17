@@ -82,6 +82,7 @@ def login():
         user = User.query.filter_by(username=username, password=password).first()
         if user:
             session['user_id'] = user.userid
+            session['user_type'] = user.usertype
             if user.usertype == "Putnik":
                 return redirect(url_for('putnik_dashboard'))
             elif user.usertype == "VlasnikBiznisa":

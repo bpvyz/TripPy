@@ -1,10 +1,28 @@
 from flask import render_template, redirect, url_for, session, Blueprint, request, jsonify
-from mappings.tables import User, db, Route, Business, Location, BusinessRequest
+from functools import wraps
+from mappings.tables import User, db, Route, Business, Location, BusinessRequest, RouteLocation
 import os
+import time
 
 vlasnik_routes = Blueprint('vlasnik_routes', __name__)
 
+def vlasnik_required(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if 'user_id' not in session:
+            return redirect(url_for('login'))
+
+        user_id = session['user_id']
+        user = User.query.get(user_id)
+        if user and user.usertype != "VlasnikBiznisa":
+            return redirect(url_for('login'))
+
+        return func(*args, **kwargs)
+    return wrapper
+
 #region Vlasnik routes
+
+@vlasnik_required
 def autocomplete_locations():
     term = request.args.get('term', '')
 
@@ -18,11 +36,8 @@ def autocomplete_locations():
 
     return jsonify(suggestions)
 
-
+@vlasnik_required
 def vlasnik_add_business_request():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-
     if request.method == 'POST':
         businessname = request.form['businessname']
         description = request.form['description']
@@ -72,83 +87,75 @@ def vlasnik_add_business_request():
 
     return render_template('vlasnik_add_business.html')
 
+@vlasnik_required
 def vlasnik_dashboard():
-    if 'user_id' in session:
-        user_id = session['user_id']
-        user = User.query.get(user_id)
-        if user and user.usertype == "VlasnikBiznisa":
-            return render_template('vlasnik.html', user=user)
-    return redirect(url_for('login'))
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    return render_template('vlasnik.html', user=user)
 
+@vlasnik_required
 def vlasnik_show_all_businesses():
-    if 'user_id' in session:
-        try:
-            businesses = Business.query.all()
-            return render_template('vlasnik_show_all_businesses.html', businesses=businesses)
-        except Exception as e:
-            return str(e)
-    return redirect(url_for('login'))
+    try:
+        businesses = Business.query.all()
+        return render_template('vlasnik_show_all_businesses.html', businesses=businesses)
+    except Exception as e:
+        return str(e)
 
+@vlasnik_required
 def vlasnik_show_my_businesses():
-    if 'user_id' in session:
-        user_id = session['user_id']
-        businesses = Business.query.filter_by(ownerid=user_id).all()
-        return render_template('vlasnik_show_my_businesses.html', businesses=businesses, user_id=user_id)
-    return redirect(url_for('login'))
+    user_id = session['user_id']
+    businesses = Business.query.filter_by(ownerid=user_id).all()
+    return render_template('vlasnik_show_my_businesses.html', businesses=businesses, user_id=user_id)
 
+@vlasnik_required
 def vlasnik_show_routes():
-    if 'user_id' in session:
-        user_id = session['user_id']
-        user = User.query.get(user_id)
-        if user and user.usertype == "VlasnikBiznisa":
-            routes = Route.query.filter((Route.public == 'public')).all()
-            return render_template('vlasnik_show_routes.html', routes=routes) 
-    return redirect(url_for('login'))
+    routes = Route.query.filter((Route.public == 'public')).all()
+    return render_template('vlasnik_show_routes.html', routes=routes)
 
-
+@vlasnik_required
 def vlasnik_delete_business(business_id):
-    if 'user_id' in session:
-        user_id = session['user_id']
-        user = User.query.get(user_id)
-        if user and user.usertype == "VlasnikBiznisa":
-            business = Business.query.get(business_id)
-            db.session.delete(business)
-            db.session.commit()
-            return redirect(url_for('vlasnik_show_my_businesses'))
-    return redirect(url_for('login'))
+    business = Business.query.get(business_id)
+    db.session.delete(business)
+    db.session.commit()
+    return redirect(url_for('vlasnik_show_my_businesses'))
 
+@vlasnik_required
 def vlasnik_get_business(business_id):
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-
     business = Business.query.filter_by(businessid=business_id).first()
+    user_id = session['user_id']
     if not business:
-        return render_template('message_template.html', message='Business not found') 
-
+        return render_template('message_template.html', message='Business not found')
     image_paths = business.image_path.split(',') if business.image_path else []
-    return render_template('vlasnik_get_business.html', business=business, image_paths=image_paths)
+    return render_template('vlasnik_get_business.html', business=business, image_paths=image_paths, user_id=user_id)
 
+@vlasnik_required
 def vlasnik_get_route(route_id):
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-        
     route = Route.query.filter_by(routeid=route_id).first()
     if route is None:
         abort(404, description="Route not found")
 
+    route_duration = (route.enddate - route.startdate).days
+
     if route.public == 'public':
-        return render_template('vlasnik_get_route.html', route=route)
+        return render_template('vlasnik_get_route.html', route=route, route_duration=route_duration)
     else:
         abort(403, description="You do not have permission to view this route")
 
+@vlasnik_required
+def vlasnik_show_itinerary(route_id, day_number):
+    route = Route.query.get(route_id)
+    if not route:
+        return "Route not found", 404
+
+    route_duration = (route.enddate - route.startdate).days
+    itinerary_details = RouteLocation.query.filter_by(routeid=route_id, day=day_number).all()
+    return render_template('itinerary.html', route=route, route_duration=route_duration, day_number=day_number,
+                           itinerary_details=itinerary_details, user_id=session['user_id'], user=session['user_type'])
+
+@vlasnik_required
 def vlasnik_edit_business(business_id):
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-
-    user_id = session['user_id']
     business = Business.query.get_or_404(business_id)
-
-    if business.ownerid != user_id:
+    if business.ownerid != session['user_id']:
         return "You don't have permission to do that"
 
     if request.method == 'POST':
@@ -184,7 +191,6 @@ def vlasnik_edit_business(business_id):
                     os.remove(image_path)
 
         images = request.files.getlist('images[]')
-        print(request.files)
         if images:
             upload_dir = os.path.join(os.getcwd(), 'static', 'uploads')
             if not os.path.exists(upload_dir):

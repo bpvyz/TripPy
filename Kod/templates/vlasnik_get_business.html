@@ -72,7 +72,9 @@
             <div class="card-body">
                 <h5 class="card-title">Business Details</h5>
                 <p class="card-text">{{ business.description }}</p>
-                <a href="{{ url_for('vlasnik_edit_business', business_id=business.businessid) }}" class="btn btn-primary">Edit Business</a>
+                {% if business.ownerid == user_id %}
+                    <a href="{{ url_for('vlasnik_edit_business', business_id=business.businessid) }}" class="btn btn-primary">Edit Business</a>
+                {% endif %}
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Location ID: {{ business.locationid }}</li>
