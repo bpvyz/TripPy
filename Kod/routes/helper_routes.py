@@ -1,8 +1,7 @@
 import time
-
 from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect, flash
 from mappings.tables import User, db, Route, Business, Location
-from util import generate_verification_code
+from util import generate_verification_code, send_reset_email
 import secrets
 import string
 
@@ -156,3 +155,43 @@ def profile():
         return render_template('profile.html', user=user)
     else:
         return redirect(url_for('login'))
+
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        if user:
+            token = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(16))
+            reset_tokens[email] = token
+            send_reset_email(email, token)
+            flash('Reset link sent to your email.', 'success')
+            return redirect(url_for('login'))
+        else:
+            flash('Email not found.', 'error')
+    return render_template('forgot_password.html')
+
+reset_tokens = {}
+def reset_password(token):
+    if request.method == 'POST':
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        if password != confirm_password:
+            flash('Passwords do not match.', 'error')
+            return render_template('reset_password.html', token=token)
+
+        if token in reset_tokens.values():
+            email = [email for email, t in reset_tokens.items() if t == token][0]
+            user = User.query.filter_by(email=email).first()
+            user.password = password
+            db.session.commit()
+            flash('Password reset successfully.', 'success')
+            return redirect(url_for('login'))
+        else:
+            flash('Invalid or expired token.', 'error')
+            return redirect(url_for('forgot_password'))
+    if token in reset_tokens.values():
+        return render_template('reset_password.html', token=token)
+    else:
+        flash('Invalid or expired token.', 'error')
+        return redirect(url_for('forgot_password'))

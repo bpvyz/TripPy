@@ -52,6 +52,18 @@
             right: 10px;
             cursor: pointer;
         }
+        .links-container {
+            margin-top: 10px;
+        }
+        .links-container a {
+            display: block;
+            margin-bottom: 5px;
+            color: #6c757d;
+            text-decoration: none;
+        }
+        .links-container a:hover {
+            color: #343a40;
+        }
     </style>
 </head>
 <body>
@@ -60,7 +72,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Prijava</h3>
+                        <h3 class="card-title text-center">Login</h3>
                         {% with messages = get_flashed_messages(with_categories=true) %}
                             {% if messages %}
                                 {% for category, message in messages %}
@@ -75,19 +87,20 @@
                         {% endwith %}
                         <form action="/login" method="POST">
                             <div class="mb-3">
-                                <label for="username" class="form-label">Korisničko ime</label>
+                                <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Lozinka</label>
+                                <label for="password" class="form-label">Password</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password" name="password" required>
-                                    <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">Prikaži</button>
+                                    <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">Show</button>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Prijavi se</button>
-                            <div class="text-center mt-3">
-                                <a href="register">Nemate nalog? Registrujte se ovde.</a>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                            <div class="links-container text-center mt-3">
+                                <a href="register">Don't have an account? Register here.</a>
+                                <a href="forgot_password">Forgot your password?</a>
                             </div>
                         </form>
                     </div>
@@ -104,7 +117,7 @@
         showPasswordBtn.addEventListener('click', () => {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            showPasswordBtn.textContent = type === 'password' ? 'Prikaži' : 'Sakrij';
+            showPasswordBtn.textContent = type === 'password' ? 'Show' : 'Hide';
         });
     </script>
 </body>

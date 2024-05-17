@@ -1,5 +1,4 @@
 from init import create_app
-
 from routes.helper_routes import *
 from routes.admin_routes import *
 from routes.putnik_routes import *
@@ -21,6 +20,8 @@ app.add_url_rule('/verify', 'verify', verify, methods=['GET', 'POST'])
 app.add_url_rule('/settings', 'settings', settings, methods=['GET', 'POST'])
 app.add_url_rule('/toggle_theme', 'toggle_theme', toggle_theme, methods=['GET', 'POST'])
 app.add_url_rule('/profile', 'profile', profile, methods=['GET', 'POST'])
+app.add_url_rule('/forgot_password', 'forgot_password', forgot_password, methods=['GET', 'POST'])
+app.add_url_rule('/reset_password/<string:token>', 'reset_password', reset_password, methods=['GET', 'POST'])
 app.add_url_rule('/putnik_dashboard', 'putnik_dashboard', putnik_dashboard, methods=['GET', 'POST'])
 app.add_url_rule('/vlasnik_dashboard', 'vlasnik_dashboard', vlasnik_dashboard, methods=['GET', 'POST'])
 app.add_url_rule('/admin_dashboard', 'admin_dashboard', admin_dashboard, methods=['GET', 'POST'])
