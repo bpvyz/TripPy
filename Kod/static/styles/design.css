@@ -1,6 +1,4 @@
 
-
-
 .margin-bottom-50 {
     margin-bottom: 50px;
     }
@@ -17,3 +15,11 @@
    left: auto;
    right: 0;
    }
+
+hr:not([size]) {
+    height: 0px;
+}
+
+body {
+    background-color: rgba(51, 22, 160, 0.25);
+}

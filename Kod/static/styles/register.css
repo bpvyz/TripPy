@@ -1,65 +1,58 @@
-/* General body styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e9ecef;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    background-color: rgba(51, 22, 160, 0.25);
 }
-
-/* Form container styles */
-.form-container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-/* Form styling */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 15px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Helps include padding in width */
-}
-
-input[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    padding: 12px;
-    margin-top: 20px;
+.card {
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+.card-title {
+    color: #343a40;
+}
+.form-control {
+    border-radius: 8px;
+}
+.btn-primary {
+    background-color: #3316a0;
+    border: none;
+    border-radius: 8px;
+}
+.btn-primary:hover {
+    background-color: #fa9306;
+}
+.alert-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 300px;
+}
+.alert {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #d0bbff; /* pastel purple */
+    color: #4b0082; /* indigo */
+    border: 1px solid #b09dff; /* lighter purple */
+    position: relative;
+}
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
 }
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
+.iti {
+    width: 100%;
 }
-
-/* Link styling */
-.login-link, .register-link {
-    margin-top: 15px;
-    text-align: center;
+.links-container {
+    margin-top: 10px;
 }
-
-.login-link a, .register-link a {
-    color: #007bff;
+.links-container a {
+    display: block;
+    margin-bottom: 5px;
+    color: #6c757d;
     text-decoration: none;
 }
-
-.login-link a:hover, .register-link a:hover {
-    text-decoration: underline;
+.links-container a:hover {
+    color: #343a40;
 }
