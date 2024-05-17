@@ -22,7 +22,7 @@
 </head>
 <body>
 {% if user == "Putnik" %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 16px; margin-right: 16px;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()">
         <img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo">
     </a>
@@ -194,7 +194,7 @@
                         {% else %}
                             <a class="btn btn-primary" href="{{ url_for('admin_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
                         {% endif %}
-                        <button class="btn btn-primary" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
+                        <button class="btn btn-success" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
                         {% if route.createdby == user_id %}
                         <form action="{{ url_for('putnik_delete_itinerary_business', route_id=route.routeid, day_number=day_number, business_id=itinerary_detail.business.businessid) }}" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -285,5 +285,10 @@
             logo.src = originalSrc;
         });
     </script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
