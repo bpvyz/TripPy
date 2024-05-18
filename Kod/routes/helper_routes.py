@@ -103,7 +103,8 @@ def logout():
 
 def settings():
     if 'user_id' in session:
-        return render_template('settings.html', dark_mode=session.get('dark_mode', False))
+        user = session['user_type']
+        return render_template('settings.html', dark_mode=session.get('dark_mode', False), user=user)
     else:
         return redirect(url_for('login'))
 
