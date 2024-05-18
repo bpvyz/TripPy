@@ -4,6 +4,7 @@ from mappings.tables import User, db, Route, Business, Location
 from util import generate_verification_code, send_reset_email
 import secrets
 import string
+import os
 
 helper_routes = Blueprint('helper_routes', __name__)
 
@@ -139,20 +140,31 @@ def profile():
             if new_password:
                 user.password = new_password
             user.email = request.form.get('email')
-            user.phonenumber = request.form.get('full_phone_number')
+            user.phonenumber = request.form.get('phonenumber')
             user.firstname = request.form.get('firstname')
             user.lastname = request.form.get('lastname')
+
+            upload_dir = os.path.join(os.getcwd(), 'static', 'uploads')
+            if 'profile_picture' in request.files:
+                
+                file = request.files['profile_picture']
+                if file.filename != '':
+                    filename = file.filename
+                    file_path = os.path.join(upload_dir, filename)
+                    rel_path = os.path.join('/static/uploads', filename).replace('\\', '/')
+                    file.save(file_path)
+                    user.profilna = rel_path 
+
             db.session.commit()
             flash('Profile updated successfully!', 'success')
-            if 'user_id' in session:
-                user_id = session['user_id']
-                user = User.query.get(user_id)
-                if user.usertype == "Putnik":
-                    return redirect(url_for('putnik_dashboard'))
-                elif user.usertype == "VlasnikBiznisa":
-                    return redirect(url_for('vlasnik_dashboard'))
-                else:
-                    return redirect(url_for('admin_dashboard'))
+
+            if user.usertype == "Putnik":
+                return redirect(url_for('putnik_dashboard'))
+            elif user.usertype == "VlasnikBiznisa":
+                return redirect(url_for('vlasnik_dashboard'))
+            else:
+                return redirect(url_for('admin_dashboard'))
+
         return render_template('profile.html', user=user)
     else:
         return redirect(url_for('login'))

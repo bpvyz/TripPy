@@ -193,7 +193,17 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title text-center">Profile</h3>
-                        <form id="profile-form" method="POST">
+                        <form id="profile-form" method="POST" enctype="multipart/form-data">
+                            {% if user.profilna %}
+                            <div class="mb-3">
+                                <label for="profile_picture" class="form-label">Profile Picture</label>
+                                <img src="{{ user.profilna }}" class="img-fluid" id="ProfilePicture" alt="Profile Picture">
+                            </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="profile_picture">Change Profile Picture</label>
+                                <input type="file" class="form-control" id="profile_picture" name="profile_picture">
+                            </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">

@@ -14,6 +14,7 @@ class User(db.Model):
     lastname = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), unique=True)
     phonenumber = db.Column(db.String(20))
+    profilna = db.Column(db.String(255))
 
     businesses = relationship("Business", cascade="all, delete-orphan", backref="owner")
     created_routes = relationship("Route", cascade="all, delete-orphan", backref="creator")

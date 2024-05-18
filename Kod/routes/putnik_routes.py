@@ -131,6 +131,7 @@ def putnik_get_business(business_id):
 
     return render_template('putnik_get_business.html', business=business, image_paths=image_paths)
 
+
 @putnik_required
 def putnik_get_route(route_id):
     route = Route.query.filter_by(routeid=route_id).first()
