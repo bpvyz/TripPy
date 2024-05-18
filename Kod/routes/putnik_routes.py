@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, session, Blueprint, request, jsonify
-from mappings.tables import User, db, Route, Business, Location, RouteLocation
+from mappings.tables import User, db, Route, Business, Location, RouteLocation, RouteParticipant
 from datetime import datetime, timedelta
 from functools import wraps
 
@@ -47,19 +47,40 @@ def putnik_show_businesses():
 @putnik_required
 def putnik_add_route():
     if request.method == 'POST':
+        user_id = session['user_id']
         routename = request.form.get('routename')
         description = request.form.get('description')
         startdate = request.form.get('startdate')
         enddate = request.form.get('enddate')
         public = request.form.get('public', 'private')
+        participants = request.form.getlist('participants')
 
-        user_id = session['user_id']
-        new_route = Route(routename=routename, description=description, startdate=startdate, enddate=enddate,
-                          createdby=user_id, public=public)
+        new_route = Route(
+            routename=routename,
+            description=description,
+            startdate=startdate,
+            enddate=enddate,
+            createdby=user_id,
+            public=public
+        )
         db.session.add(new_route)
+        db.session.flush()  
+
+     
+        for participant_id in participants:
+            route_participant = RouteParticipant(
+                routeid=new_route.routeid,
+                userid=participant_id
+            )
+            db.session.add(route_participant)
+
         db.session.commit()
         return redirect(url_for('putnik_dashboard'))
-    return render_template('putnik_add_route.html')
+
+   
+    users = User.query.all()
+    return render_template('putnik_add_route.html', users=users)
+    
 
 @putnik_required
 def putnik_update_route(route_id):
@@ -73,6 +94,7 @@ def putnik_update_route(route_id):
         startdate = request.form.get('startdate')
         enddate = request.form.get('enddate')
         public = request.form.get('public', 'private')
+        participant_ids = request.form.getlist('participants')
 
         route.routename = routename
         route.description = description
@@ -80,10 +102,24 @@ def putnik_update_route(route_id):
         route.enddate = enddate
         route.public = public
 
+        existing_participants = [participant.userid for participant in route.route_participants]
+
+        for participant_id in existing_participants:
+            if str(participant_id) not in participant_ids:
+                RouteParticipant.query.filter_by(routeid=route.routeid, userid=participant_id).delete()
+
+        for participant_id in participant_ids:
+            if int(participant_id) not in existing_participants:
+                new_participant = RouteParticipant(routeid=route.routeid, userid=participant_id)
+                db.session.add(new_participant)
+
         db.session.commit()
         return redirect(url_for('putnik_dashboard'))
 
-    return render_template('putnik_update_route.html', route=route)
+    users = User.query.all()  # Get all users to display in the form
+    existing_participants = [participant.userid for participant in route.route_participants]
+
+    return render_template('putnik_update_route.html', route=route, users=users, existing_participants=existing_participants)
 
 @putnik_required
 def putnik_get_business(business_id):

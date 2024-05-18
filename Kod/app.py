@@ -1,4 +1,5 @@
 from init import create_app
+
 from routes.helper_routes import *
 from routes.admin_routes import *
 from routes.putnik_routes import *
@@ -20,8 +21,6 @@ app.add_url_rule('/verify', 'verify', verify, methods=['GET', 'POST'])
 app.add_url_rule('/settings', 'settings', settings, methods=['GET', 'POST'])
 app.add_url_rule('/toggle_theme', 'toggle_theme', toggle_theme, methods=['GET', 'POST'])
 app.add_url_rule('/profile', 'profile', profile, methods=['GET', 'POST'])
-app.add_url_rule('/forgot_password', 'forgot_password', forgot_password, methods=['GET', 'POST'])
-app.add_url_rule('/reset_password/<string:token>', 'reset_password', reset_password, methods=['GET', 'POST'])
 app.add_url_rule('/putnik_dashboard', 'putnik_dashboard', putnik_dashboard, methods=['GET', 'POST'])
 app.add_url_rule('/vlasnik_dashboard', 'vlasnik_dashboard', vlasnik_dashboard, methods=['GET', 'POST'])
 app.add_url_rule('/admin_dashboard', 'admin_dashboard', admin_dashboard, methods=['GET', 'POST'])
@@ -38,24 +37,22 @@ app.add_url_rule('/admin_add_user', 'admin_add_user', admin_add_user, methods = 
 app.add_url_rule('/delete_user/<int:user_id>', 'delete_user', delete_user, methods=['POST'])
 app.add_url_rule('/edit_user/<int:user_id>', 'edit_user', edit_user, methods=['GET'])
 app.add_url_rule('/update_user/<int:user_id>', 'update_user', update_user, methods=['POST'])
-app.add_url_rule('/admin_show_businesses', 'admin_show_businesses', admin_show_businesses, methods=['POST', 'GET'])
+app.add_url_rule('/admin_show_busines ses', 'admin_show_businesses', admin_show_businesses, methods=['POST', 'GET'])
 app.add_url_rule('/admin_get_business/<int:business_id>', 'admin_get_business', admin_get_business, methods=['GET'])
 app.add_url_rule('/admin_delete_business/<int:business_id>', 'admin_delete_business', admin_delete_business, methods=['POST', 'GET'])
 app.add_url_rule('/admin_show_routes', 'admin_show_routes', admin_show_routes, methods=['GET'])
 app.add_url_rule('/admin_get_route/<int:route_id>', 'admin_get_route', admin_get_route, methods=['GET'])
-app.add_url_rule('/admin_show_itinerary/<int:route_id>/<int:day_number>', 'admin_show_itinerary', admin_show_itinerary, methods=['GET', 'POST'])
-
 app.add_url_rule('/admin_delete_route/<int:route_id>', 'admin_delete_route', admin_delete_route, methods=['GET', 'DELETE'])
 app.add_url_rule('/admin_business_requests', 'admin_business_requests', admin_business_requests, methods=['GET', 'POST'])
 app.add_url_rule('/admin_approve_business_request/<int:business_request_id>', 'admin_approve_business_request', admin_approve_business_request, methods=['GET', 'POST'])
 app.add_url_rule('/admin_delete_business_request/<int:business_request_id>', 'admin_delete_business_request', admin_delete_business_request, methods=['GET', 'POST'])
 app.add_url_rule('/admin_add_location', 'admin_add_location', admin_add_location, methods=['GET', 'POST'])
 app.add_url_rule('/vlasnik_add_business', 'vlasnik_add_business', vlasnik_add_business_request, methods=['GET', 'POST'])
+#app.add_url_rule('/vlasnik_update_business/<int:business_id>', 'vlasnik_update_business', vlasnik_update_business, methods=['POST', 'GET'])
 app.add_url_rule('/vlasnik_show_all_businesses', 'vlasnik_show_all_businesses', vlasnik_show_all_businesses, methods=['GET'])
 app.add_url_rule('/vlasnik_show_my_businesses', 'vlasnik_show_my_businesses', vlasnik_show_my_businesses, methods=['GET'])
 app.add_url_rule('/vlasnik_show_routes', 'vlasnik_show_routes', vlasnik_show_routes, methods=['GET'])
 app.add_url_rule('/vlasnik_get_route/<int:route_id>', 'vlasnik_get_route', vlasnik_get_route, methods=['GET'])
-app.add_url_rule('/vlasnik_show_itinerary/<int:route_id>/<int:day_number>', 'vlasnik_show_itinerary', vlasnik_show_itinerary, methods=['GET', 'POST'])
 app.add_url_rule('/vlasnik_delete_business/<int:business_id>', 'vlasnik_delete_business', vlasnik_delete_business, methods=['POST', 'GET'])
 app.add_url_rule('/vlasnik_get_business/<int:business_id>', 'vlasnik_get_business', vlasnik_get_business, methods=['GET'])
 app.add_url_rule('/vlasnik_edit_business/<int:business_id>', 'vlasnik_edit_business', vlasnik_edit_business, methods=['GET', 'POST'])
