@@ -11,72 +11,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light"  style="margin-left: 16px; margin-right: 16px;"  >
-  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-
-      </li>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Korisnici
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
-          <a class="dropdown-item" onclick="admin_add_user()">Dodaj korisnika</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
-        </div>
-      </li>
-     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Lokacije
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
-        </div>
-      </li>
-
-    </ul>
-    <ul class="navbar-nav ms-auto">
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Profil
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-      <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-      <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
-    </ul>
-  </li>
-</ul>
-
-  </div>
-</nav>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container mt-5">
     <h1 class="mb-3">Admin All Businesses</h1>
      <div class="input-group mb-3">

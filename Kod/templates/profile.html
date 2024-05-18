@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
+    <link rel="stylesheet" type="text/css" href="../static/styles/design.css"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
@@ -124,7 +125,7 @@
   </div>
 </nav>
 {% else %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light"  style="margin-left: 16px; margin-right: 16px;"  >
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
