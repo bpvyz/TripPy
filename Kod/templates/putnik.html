@@ -6,29 +6,6 @@
     <title>TripPy</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
-    <style>
-      .alert-container {
-              position: fixed;
-              bottom: 20px;
-              right: 20px;
-              z-index: 9999;
-              width: 300px;
-          }
-      .alert {
-          padding: 10px;
-          border-radius: 8px;
-          background-color: #d0bbff; /* pastel purple */
-          color: #4b0082; /* indigo */
-          border: 1px solid #b09dff; /* lighter purple */
-          position: relative;
-      }
-      .close-btn {
-          position: absolute;
-          top: 5px;
-          right: 10px;
-          cursor: pointer;
-      }
-    </style>
 </head>
 <body>
 
@@ -77,59 +54,41 @@
 </nav>
 
 <div class="container mt-5">
-  <h1>Dobrodošli, Putniče!</h1>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h1 class="card-title">Dobrodošli, Putniče!</h1>
+            <div class="margin-bottom-50"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h2 class="card-title">Maršrute</h2>
+                                <button class="btn btn-primary" onclick="location.href='putnik_add_route'">Kreiraj Maršrutu</button>
 
-  <div class="margin-bottom-50"></div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Kreiraj Marsrutu</h2>
-      <div class="route-box">
-        <h3>Box za Kreiranje Marsruta</h3>
-        <button class="btn btn-primary" onclick="location.href='putnik_add_route'">Kreiraj Maršrutu</button>
-      </div>
-      <div class="route-box">
-        <h3>Pregled maršruta</h3>
-        <button class="btn btn-primary" onclick="location.href='putnik_show_all_routes'">Prikazi sve maršrute </button>
-        <button class="btn btn-primary" onclick="location.href='putnik_show_my_routes'">Prikazi moje maršrute </button>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <h2>Moje maršrute</h2>
-      <div class="route-box">
-        <h3>Naslov Marsruta 1</h3>
-        <p>Ovde ide opis prvog kreiranog marsruta.</p>
-      </div>
-      <div class="route-box">
-        <h3>Naslov Marsruta 2</h3>
-        <p>Ovde ide opis drugog kreiranog marsruta.</p>
-      </div>
-
-    </div>
-  </div>
-
-  <h2>Svi oglasi</h2>
-  <div class="column" style="overflow-y: auto; max-height: 400px;">
-      <div class="col-md-12">
-      <div class="route-box">
-        <h3>Svi oglasi</h3>
-        <button class="btn btn-primary" onclick="location.href='putnik_show_businesses'">Prikazi sve oglase </button>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="route-box">
-        <h3>Naslov oglasa 1</h3>
-        <p>Ovde ide opis prvog oglasa.</p>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="route-box">
-        <h3>Naslov oglasa 2</h3>
-        <p>Ovde ide opis drugog oglasa.</p>
-      </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h2>Pregled maršruta</h2>
+                                <button class="btn btn-primary" onclick="location.href='putnik_show_all_routes'">Prikazi sve maršrute </button>
+                                <button class="btn btn-primary" onclick="location.href='putnik_show_my_routes'">Prikazi moje maršrute </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-auto">
+                    <div class="card-body">
+                        <h2 class="card-title">Svi oglasi</h2>
+                        <div class="column" style="overflow-y: auto; max-height: 400px;">
+                            <div class="col-md-12">
+                                    <button class="btn btn-primary" onclick="location.href='putnik_show_businesses'">Prikazi sve oglase </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-  </div>
 </div>
 
 <div class="alert-container">

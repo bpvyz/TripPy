@@ -121,16 +121,20 @@
       <h2>Oglasi</h2>
       <div class="row">
         <div class="col-md-4">
-          <div class="route-box">
-              <h3>Svi oglasi</h3>
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Svi oglasi</h3>
               <button class="btn btn-primary" onclick="admin_show_businesses()">Prikazi sve oglase</button>
             </div>
+          </div>
         </div>
         <div class="col-md-6">
-          <div class="route-box">
-              <h3>Zahtevi za prihvatanje oglasa</h3>
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Zahtevi za prihvatanje oglasa</h3>
               <button class="btn btn-primary" onclick="admin_business_requests()">Prikazi sve zahteve za oglase</button>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -139,17 +143,21 @@
   <div class="row">
     <div class="col-md-4">
       <h2>Maršrute</h2>
-      <div class="route-box">
-        <button class="btn btn-primary" onclick="admin_show_routes()">Prikazi sve maršrute </button>
+      <div class="card">
+        <div class="card-body">
+          <button class="btn btn-primary" onclick="admin_show_routes()">Prikazi sve maršrute </button>
+        </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4">
       <h2>Korisnici</h2>
-      <div class="route-box">
-        <button class="btn btn-primary" href="#" onclick="admin_users()">Prikazi sve korisnike </button>
-        <button class="btn btn-primary" href="#" onclick="admin_add_user()">Dodaj korisnika </button>
+      <div class="card">
+        <div class="card-body">
+          <button class="btn btn-primary" href="#" onclick="admin_users()">Prikazi sve korisnike </button>
+          <button class="btn btn-primary" href="#" onclick="admin_add_user()">Dodaj korisnika </button>
+        </div>
       </div>
     </div>
   </div>
@@ -157,8 +165,10 @@
   <div class="row">
     <div class="col-md-4">
       <h2>Lokacije</h2>
-      <div class="route-box">
-        <a href="/admin_add_location" class="btn btn-primary">Dodaj lokaciju</a>
+      <div class="card">
+        <div class="card-body">
+          <a href="/admin_add_location" class="btn btn-primary">Dodaj lokaciju</a>
+        </div>
       </div>
     </div>
   </div>
@@ -195,7 +205,6 @@
         logo.src = originalSrc;
     });
 </script>
-
 
 </body>
 </html>

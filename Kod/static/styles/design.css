@@ -1,6 +1,36 @@
-
-
-
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1000;
+}
+.image-preview {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+.image-preview img {
+    max-width: 200px;
+    max-height: 200px;
+}
+.remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#map {
+    height: 300px;
+    width: 100%;
+}
+.map-container {
+    height: 400px;
+    width: 100%;
+}
 .margin-bottom-50 {
     margin-bottom: 50px;
     }

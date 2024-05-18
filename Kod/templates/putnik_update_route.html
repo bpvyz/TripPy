@@ -51,66 +51,71 @@
 </nav>
 
     <div class="container mt-5">
-        <h1 class="mb-3">Update Route</h1>
-        <form method="POST">
-            <div class="mb-3">
-                <label for="routename" class="form-label">Route Name:</label>
-                <input type="text" class="form-control" id="routename" name="routename" required value="{{ route.routename }}">
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description:</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{{ route.description }}</textarea>
-            </div>
-            <div class="mb-3">
-                <label for="startdate" class="form-label">Start Date:</label>
-                <input type="date" class="form-control" id="startdate" name="startdate" required value="{{ route.startdate.isoformat() }}">
-            </div>
-            <div class="mb-3">
-                <label for="enddate" class="form-label">End Date:</label>
-                <input type="date" class="form-control" id="enddate" name="enddate" required value="{{ route.enddate.isoformat() }}">
-            </div>
-            <div class="mb-3">
-                <label for="public" class="form-label">Visibility:</label>
-                <select class="form-control" id="public" name="public" required>
-                    <option value="public" {% if route.public == 'public' %}selected{% endif %}>Public</option>
-                    <option value="private" {% if route.public == 'private' %}selected{% endif %}>Private</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="route_duration" class="form-label">Route Duration:</label>
-                <input type="text" class="form-control" id="route_duration" value="{{ route_duration }}" disabled>
-            </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="mb-3">Update Route</h1>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="routename" class="form-label">Route Name:</label>
+                        <input type="text" class="form-control" id="routename" name="routename" required value="{{ route.routename }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3">{{ route.description }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startdate" class="form-label">Start Date:</label>
+                        <input type="date" class="form-control" id="startdate" name="startdate" required value="{{ route.startdate.isoformat() }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="enddate" class="form-label">End Date:</label>
+                        <input type="date" class="form-control" id="enddate" name="enddate" required value="{{ route.enddate.isoformat() }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="public" class="form-label">Visibility:</label>
+                        <select class="form-control" id="public" name="public" required>
+                            <option value="public" {% if route.public == 'public' %}selected{% endif %}>Public</option>
+                            <option value="private" {% if route.public == 'private' %}selected{% endif %}>Private</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="route_duration" class="form-label">Route Duration:</label>
+                        <input type="text" class="form-control" id="route_duration" value="{{ route_duration }}" disabled>
+                    </div>
 
-            <div id="button_container" class="mb-3"></div> <!-- Itinerary div (don't remove) -->
-             
-             <div class="mb-3">
-              <label class="form-label">Participants:</label>
-              <div class="list-group">
-                {% for user in users %}
-                <div class="list-group-item d-flex align-items-center">
-                  <input class="form-check-input me-1" type="checkbox" name="participants" id="participant_{{ user.userid }}" value="{{ user.userid }}" {% if user.userid in existing_participants %}checked{% endif %}>
-                  <label class="form-check-label flex-grow-1" for="participant_{{ user.userid }}">
-                    {{ user.username }} ({{ user.firstname }} {{ user.lastname }} - {{ user.email }})
-                  </label>
-                </div>
-                {% endfor %}
-              </div>
-              <div class="d-flex justify-content-end mt-3">
-                <button type="button" class="btn btn-primary me-2" id="addParticipantButton">Add Selected</button>
-                <button type="button" class="btn btn-danger" id="removeParticipantButton">Remove Selected</button>
-              </div>
+                    <div id="button_container" class="mb-3"></div> <!-- Itinerary div (don't remove) -->
+
+                    <div class="mb-3">
+                        <label class="form-label">Participants:</label>
+                    <div class="list-group">
+                        {% for user in users %}
+                            <div class="list-group-item d-flex align-items-center">
+                                <input class="form-check-input me-1" type="checkbox" name="participants" id="participant_{{ user.userid }}" value="{{ user.userid }}" {% if user.userid in existing_participants %}checked{% endif %}>
+                                <label class="form-check-label flex-grow-1" for="participant_{{ user.userid }}">
+                                {{ user.username }} ({{ user.firstname }} {{ user.lastname }} - {{ user.email }})
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3 d-flex justify-content-between align-items-center" style="margin-top: 20px;">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <div>
+                            <button type="button" class="btn btn-primary me-2" id="addParticipantButton">Add Selected</button>
+                            <button type="button" class="btn btn-danger" id="removeParticipantButton">Remove Selected</button>
+                        </div>
+                    </div>
+
+                    </div>
+                </form>
             </div>
-
-
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
+        </div>
     </div>
-    <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
     const logo = document.getElementById('logo');
@@ -136,19 +141,20 @@
 
         var buttonContainer = document.getElementById("button_container");
         for (var i = 0; i < routeDuration; i++) {
-        var button = document.createElement("button");
-        button.type = "button";
-        button.classList.add("btn", "btn-secondary");
-        button.textContent = "Day " + (i + 1);
-        button.addEventListener('click', function() {
-            var routeId = "{{ route.routeid }}";
-            var dayNumber = this.textContent.split(" ")[1];
-            window.location.href = "/itinerary/" + routeId + "/" + dayNumber;
-        });
-        buttonContainer.appendChild(button);
-    }
+            var button = document.createElement("button");
+            button.type = "button";
+            button.classList.add("btn", "btn-secondary");
+            button.textContent = "Day " + (i + 1);
+            button.addEventListener('click', function() {
+                var routeId = "{{ route.routeid }}";
+                var dayNumber = this.textContent.split(" ")[1];
+                window.location.href = "/itinerary/" + routeId + "/" + dayNumber;
+            });
+            buttonContainer.appendChild(button);
+        }
     });
 </script>
-<script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
+
 </body>
 </html>
+

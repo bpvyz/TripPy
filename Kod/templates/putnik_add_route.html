@@ -60,14 +60,16 @@
   </div>
 </nav>
 
-    <div class="container mt-5">
-        <h1 class="mb-3">Add New Route</h1>
-        {% for message in get_flashed_messages(category_filter=['error', 'success']) %}
-            <div class="alert alert-{{ 'success' if 'success' in message else 'danger' }}" role="alert">
-                {{ message }}
-            </div>
-        {% endfor %}
-        <form method="POST" action="{{ url_for('putnik_add_route') }}">
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="mb-3">Add New Route</h1>
+            {% for message in get_flashed_messages(category_filter=['error', 'success']) %}
+                <div class="alert alert-{{ 'success' if 'success' in message else 'danger' }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <form method="POST" action="{{ url_for('putnik_add_route') }}">
             <div class="mb-3">
                 <label for="routename" class="form-label">Route Name:</label>
                 <input type="text" class="form-control" id="routename" name="routename" required>
@@ -101,7 +103,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        </div>
     </div>
+</div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

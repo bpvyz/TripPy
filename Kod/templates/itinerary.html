@@ -9,16 +9,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/design.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <style>
-        #map {
-            height: 300px;
-            width: 100%;
-        }
-        .map-container {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
 {% if user == "Putnik" %}
@@ -174,45 +164,54 @@
 {% endif %}
 
     <div class="container mt-5">
-        <h1>Route: {{ route.routename }}</h1>
-        <p>Duration: {{ route_duration }} days</p>
-        <h2>Day {{ day_number }} Itinerary</h2>
-        <ul class="list-group">
-            {% for itinerary_detail in itinerary_details %}
-                <li class="list-group-item" id="row{{ itinerary_detail.business.businessid }}">
-                    <strong>Location:</strong> {{ itinerary_detail.location.address }}
-                    {% if itinerary_detail.business %}
-                        <br>
-                        <strong>Business:</strong> {{ itinerary_detail.business.businessname }}
-                        <br>
-                        <strong>Description:</strong> {{ itinerary_detail.business.description }}
-                        <br>
-                        {% if user == "Putnik" %}
-                            <a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
-                        {% elif user == "VlasnikBiznisa" %}
-                            <a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
-                        {% else %}
-                            <a class="btn btn-primary" href="{{ url_for('admin_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
-                        {% endif %}
-                        <button class="btn btn-success" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
-                        {% if route.createdby == user_id %}
-                        <form action="{{ url_for('putnik_delete_itinerary_business', route_id=route.routeid, day_number=day_number, business_id=itinerary_detail.business.businessid) }}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                        {% endif %}
-                    {% endif %}
-                </li>
-            {% endfor %}
-            <li class="list-group-item">
-                <div class="row mt-3">
-                    {% if route.createdby == user_id %}
-                    <div class="col">
-                        <a class="btn btn-warning" href="{{ url_for('putnik_add_business', route_id=route.routeid, day_number=day_number) }}">Add for Day {{ day_number }}</a>
+        <div class="card">
+            <div class="card-header">
+                <h1>Route: {{ route.routename }}</h1>
+            </div>
+        <div class="card-body">
+            <p>Duration: {{ route_duration }} days</p>
+            <h2>Day {{ day_number }} Itinerary</h2>
+            <ul class="list-group">
+                {% for itinerary_detail in itinerary_details %}
+                    <div class="card">
+                        <li class="list-group-item" id="row{{ itinerary_detail.business.businessid }}">
+                            <strong>Location:</strong> {{ itinerary_detail.location.address }}
+                            {% if itinerary_detail.business %}
+                                <br>
+                                <strong>Business:</strong> {{ itinerary_detail.business.businessname }}
+                                <br>
+                                <strong>Description:</strong> {{ itinerary_detail.business.description }}
+                                <br>
+                                {% if user == "Putnik" %}
+                                    <a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
+                                {% elif user == "VlasnikBiznisa" %}
+                                    <a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
+                                {% else %}
+                                    <a class="btn btn-primary" href="{{ url_for('admin_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
+                                {% endif %}
+                                <button class="btn btn-success" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
+                                {% if route.createdby == user_id %}
+                                <form action="{{ url_for('putnik_delete_itinerary_business', route_id=route.routeid, day_number=day_number, business_id=itinerary_detail.business.businessid) }}" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                {% endif %}
+                            {% endif %}
+                        </li>
                     </div>
-                    {% endif %}
+                {% endfor %}
+                {% if route.createdby == user_id %}
+                <div class="card">
+                    <li class="list-group-item">
+                        <div class="row mt-3">
+                            <div class="col">
+                                <a class="btn btn-warning" href="{{ url_for('putnik_add_business', route_id=route.routeid, day_number=day_number) }}">Add for Day {{ day_number }}</a>
+                            </div>
+                        </div>
+                    </li>
                 </div>
-            </li>
-        </ul>
+                {% endif %}
+            </ul>
+        </div>
     </div>
     {% if user == "Putnik" %}
         <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>

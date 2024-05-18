@@ -8,17 +8,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
-    <style>
-    #map {
-        height: 300px;
-        width: 100%;
-    }
-    .map-container {
-        height: 400px;
-        width: 100%;
-    }
-
-    </style>
 </head>
 <body>
 
@@ -90,8 +79,8 @@
 
 <div class="container mt-5">
     <h1 class="mb-3">Admin All Businesses</h1>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Pretraga po imenu poslovanja" id="searchInput">
+     <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search by business name" id="searchInput">
     </div>
     <div class="table-responsive">
         <table class="table table-striped custom-table" id="businessTable">
@@ -99,7 +88,7 @@
                 <tr class="active">
                     <th>Images</th>
                     <th style="padding: 0;">
-                        <button class="btn btn-link" onclick="sortTable(0)" style="border: none; background: none;">
+                        <button class="btn btn-link" onclick="sortTable(1)" style="border: none; background: none;">
                             <span class="visually-hidden">Sort by Business Name</span>
                             <span class="no-underline">Business Name</span>
                             <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
@@ -225,8 +214,8 @@ function sortTable(colIndex) {
         table.querySelector('tbody').appendChild(row); // Append sorted rows to table body
     });
 }
-
 </script>
+
 
 </body>
 </html>

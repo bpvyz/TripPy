@@ -26,7 +26,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,48 +78,52 @@
   </div>
 </nav>
 <div class="container mt-5">
-    <h1>Add User</h1>
-    <form id="add_user_form" action="{{ url_for('admin_add_user') }}" method="POST">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" class="form-control" required>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Add User</h1>
+            <form id="add_user_form" action="{{ url_for('admin_add_user') }}" method="POST">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number:</label>
+                    <input type="tel" id="phone_number" name="phone_number" class="form-control">
+                    <input type="hidden" id="full_phone_number" name="full_phone_number">
+                </div>
+                <div class="form-group">
+                    <label for="user_type">User Type:</label>
+                    <select id="user_type" name="user_type" class="form-control" required>
+                        <option value="Administrator">Administrator</option>
+                        <option value="Putnik">Putnik</option>
+                        <option value="VlasnikBiznisa">Vlasnik Biznisa</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {% if error %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
         </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="phone_number">Phone Number:</label>
-            <input type="tel" id="phone_number" name="phone_number" class="form-control">
-            <input type="hidden" id="full_phone_number" name="full_phone_number">
-        </div>
-        <div class="form-group">
-            <label for="user_type">User Type:</label>
-            <select id="user_type" name="user_type" class="form-control" required>
-                <option value="Administrator">Administrator</option>
-                <option value="Putnik">Putnik</option>
-                <option value="VlasnikBiznisa">Vlasnik Biznisa</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    {% if error %}
-        <div class="alert alert-danger mt-3" role="alert">
-            {{ error }}
-        </div>
-    {% endif %}
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
