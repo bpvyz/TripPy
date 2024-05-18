@@ -6,6 +6,7 @@
     <title>Admin All Businesses</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
 </head>
 <body>
 
@@ -81,14 +82,14 @@
         <input type="text" class="form-control" placeholder="Search by business name" id="searchInput">
     </div>
     <div class="table-responsive">
-        <table class="table table-striped table-hover" id="businessTable">
-            <thead class="table-dark">
+        <table class="table table-striped custom-table" id="businessRequestsTable">
+            <thead>
                 <tr>
                     <th scope="col">Business name</th>
                     <th scope="col">Owner Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Location</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col" style="text-align:left; padding-left:60px;">Actions</th>
                 </tr>
             </thead>
             <tbody>

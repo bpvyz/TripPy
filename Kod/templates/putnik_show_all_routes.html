@@ -7,6 +7,7 @@
     <!-- Include Bootstrap CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
 </head>
 <body>
 
@@ -57,14 +58,14 @@
     <div class="container mt-5">
         <h1 class="mb-3">All Routes</h1>
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead class="table-dark">
-                    <tr>
+            <table class="table table-striped custom-table">
+                <thead>
+                    <tr class="active">
                         <th>Route ID</th>
                         <th style="padding: 0;">
                             <button class="btn btn-link" onclick="sortTable(1)" style="border: none; background: none;">
                                 <span class="visually-hidden">Sort by Route Name</span>
-                                <span style="text-decoration: underline; color: white;">Route Name</span>
+                                <span style="text-decoration: underline; color: white; font-weight:bold;">Route Name</span>
                                 <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
                             </button>
                         </th>
@@ -72,18 +73,18 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Created By</th>
-                        <th>Actions</th>
+                        <th style="text-align:left;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for route in routes %}
                     <tr>
-                        <td>{{ route.routeid }}</td>
+                        <td style="text-align:center;">{{ route.routeid }}</td>
                         <td>{{ route.routename }}</td>
                         <td>{{ route.description }}</td>
-                        <td>{{ route.startdate.strftime('%Y-%m-%d') if route.startdate else 'N/A' }}</td>
-                        <td>{{ route.enddate.strftime('%Y-%m-%d') if route.enddate else 'N/A' }}</td>
-                        <td>{{ route.createdby }}</td>
+                        <td style="text-align:center;">{{ route.startdate.strftime('%Y-%m-%d') if route.startdate else 'N/A' }}</td>
+                        <td style="text-align:center;">{{ route.enddate.strftime('%Y-%m-%d') if route.enddate else 'N/A' }}</td>
+                        <td style="text-align:center;">{{ route.createdby }}</td>
                         <td>
                             <form action="/putnik_get_route/{{ route.routeid }}" method="GET">
                                 <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">View</button>

@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
     <style>
     #map {
     height: 300px;
@@ -71,23 +72,23 @@
             <input type="text" class="form-control" placeholder="Pretraga po imenu poslovanja" id="searchInput">
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead class="table-dark">
-    <tr>
-        <th>Images</th>
-        <th style="padding: 0;">
-            <button class="btn btn-link" onclick="sortTable(0)" style="border: none; background: none;">
-                <span class="visually-hidden">Sort by Business Name</span>
-                <span style="text-decoration: underline; color: white;">Business Name</span>
-                <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
-            </button>
-        </th>
-        <th>Owner Name</th>
-        <th>Description</th>
-        <th>Location</th>
-        <th>Actions</th>
-    </tr>
-</thead>
+            <table class="table table-striped custom-table">
+                <thead>
+                <tr>
+                    <th>Images</th>
+                    <th style="padding: 0;">
+                        <button class="btn btn-link" onclick="sortTable(0)" style="border: none; background: none;">
+                            <span class="visually-hidden">Sort by Business Name</span>
+                            <span style="text-decoration: underline; color: white; font-weight:bold;">Business Name</span>
+                            <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
+                        </button>
+                    </th>
+                    <th class="nowrap">Owner Name</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
 
 <tbody>
     {% for business in businesses %}
@@ -100,8 +101,8 @@
             {% endif %}
         </td>
         <td>{{ business.businessname }}</td>
-        <td>{{ business.owner.username }}</td>
-        <td>{{ business.description }}</td>
+        <td style="text-align:center;">{{ business.owner.username }}</td>
+        <td style="padding-left: 50px;">{{ business.description }}</td>
         <td>{{ business.location.address }}</td>
         <td>
             <div class="d-flex justify-content-start">

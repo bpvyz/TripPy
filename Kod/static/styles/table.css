@@ -1,0 +1,44 @@
+.table-striped {
+        tbody tr:nth-of-type(#{$table-striped-order}) {
+            background-color: $table-accent-bg;
+        }
+    }
+    .no-underline {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .custom-table {
+        border-radius: 8px;
+        overflow: hidden; /* To apply rounded corners */
+    }
+    .custom-table thead th {
+        text-align: center;
+        background-color: #3316a0;
+        color: white;
+    }
+    .custom-table tbody tr:nth-of-type(odd) {
+    background-color: #ffffff; /* White */
+    }
+
+    .custom-table tbody tr:nth-of-type(even) {
+    background-color: #f0f0f0; /* Light gray */
+    }
+
+    .btn-link {
+        color: inherit; /* Inherit color from parent */
+    }
+    .nowrap {
+        white-space: nowrap; /* Prevent text wrapping */
+
+    }
+    th button.btn-link {
+        position: relative;
+        top: -2px; /* Move button up by 5px */
+    }
+    .table img {
+        border-radius: 8px;
+    }
+    .text-center {
+    text-align: center;
+}

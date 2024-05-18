@@ -6,6 +6,7 @@
     <title>All Users</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
     <style>
         .margin-bottom-50 {
             margin-bottom: 50px;
@@ -89,19 +90,20 @@
   </div>
 </nav>
 
-    <div class="container mt-5">
-        <h1 class="mb-4">All Users</h1>
-        <table class="table">
+    <div class="container mt-5" style="max-width: 1200px;">
+        <h1 class="mb-3">All Users</h1>
+        <div class="table-responsive">
+            <table class="table table-striped custom-table">
             <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Username</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>User Type</th>
-                    <th>Actions</th>
+                <tr class="active">
+                    <th scope="col" class="nowrap">User ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col" class="nowrap">First Name</th>
+                    <th scope="col" class="nowrap">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">User Type</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -126,6 +128,10 @@
                 {% endfor %}
             </tbody>
         </table>
+
+
+
+        </div>
     </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

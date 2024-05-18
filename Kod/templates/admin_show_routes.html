@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show Routes</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
 </head>
 <body>
 
@@ -75,22 +76,23 @@
 
 <div class="container mt-5">
     <h1 class="mb-4">All Routes</h1>
-    <table class="table">
+    <div class = "table-responsive">
+        <table class="table table-striped custom-table" id="RoutesTable">
             <thead>
-                <tr>
+                <tr class="active">
                     <th>Route ID</th>
                     <th style="padding: 0;">
                             <button class="btn btn-link" onclick="sortTable(1)" style="border: none; background: none;">
                                 <span class="visually-hidden">Sort by Route Name</span>
-                                <span style="text-decoration: underline; color: white;">Route Name</span>
+                                <span style="no-underline">Route Name</span>
                                 <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
                             </button>
                         </th>
-                    <th>Description</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Created By</th>
-                    <th>Actions</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,11 +101,11 @@
                     <td>{{ route.routeid }}</td>
                     <td>{{ route.routename }}</td>
                     <td>{{ route.description }}</td>
-                    <td>{{ route.startdate }}</td>
-                    <td>{{ route.enddate }}</td>
-                    <td>{{ route.createdby }}</td>
+                    <td style="text-align: center;">{{ route.startdate }}</td>
+                    <td style="text-align: center;">{{ route.enddate }}</td>
+                    <td style="text-align:center;">{{ route.createdby }}</td>
                     <td>
-                        <div class="btn-group" role="group" aria-label="Route Actions">
+                        <div class="btn-group" role="group" aria-label="Route Actions" style="padding-left:100px;">
                             <form action="/admin_get_route/{{ route.routeid }}" method="GET" style="display: inline-block;">
                                 <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">Show</button>
                             </form>
@@ -117,10 +119,12 @@
             </tbody>
         </table>
     </div>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
 <script>
     const logo = document.getElementById('logo');
