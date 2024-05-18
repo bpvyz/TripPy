@@ -140,9 +140,13 @@ def putnik_get_route(route_id):
     route_duration = (route.enddate - route.startdate).days
 
     if route.public == 'public' or route.createdby == session['user_id']:
-        return render_template('putnik_get_route.html', route=route, route_duration=route_duration, user_id=session['user_id'])
+        route_participants = User.query.join(RouteParticipant, User.userid == RouteParticipant.userid).filter(RouteParticipant.routeid == route_id).all()
+
+        return render_template('putnik_get_route.html', route=route, route_duration=route_duration, route_participants=route_participants, user_id=session['user_id'])
     else:
         return "Unauthorized", 403
+
+
 
 @putnik_required
 def putnik_delete_route(route_id):

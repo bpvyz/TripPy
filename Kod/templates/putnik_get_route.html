@@ -75,7 +75,16 @@
                     {% endfor %}
                 </div>
                 {% endif %}
-
+                <div class="mt-3">
+                <h5>Participants</h5>
+                <ul class="list-group">
+                    {% for participant in route_participants %}
+                        <li class="list-group-item">
+                            {{ participant.username }} ({{ participant.firstname }} {{ participant.lastname }})
+                        </li>
+                    {% endfor %}
+                </ul>
+                </div>
 
                 
             </div>
