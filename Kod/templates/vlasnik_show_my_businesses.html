@@ -11,7 +11,11 @@
     {% else %}
       <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
     {% endif %}
-    <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-table.css')}}">
+    {% if session['dark_mode'] %}
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-table.css')}}">
+    {% else %}
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
+    {% endif %}
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

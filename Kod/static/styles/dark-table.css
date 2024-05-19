@@ -1,27 +1,18 @@
-:root {
-    --table-accent-bg: #f0f0f0 !important;
-    --table-bg-odd: #ffffff !important;
-    --table-bg-even: #f0f0f0 !important;
-    --table-text-color: #000000 !important;
+.table {
     --table-header-bg: #3316a0 !important;
     --table-header-text-color: #ffffff !important;
 }
 
-.dark-mode {
-    --table-accent-bg: #555555 !important;
-    --table-bg-odd: #333333 !important;
-    --table-bg-even: #444444 !important;
-    --table-text-color: #dddddd !important;
-    --table-header-bg: #3316a0 !important;
-    --table-header-text-color: #ffffff !important;
+.table > :not(caption) > * > * {
+    color: #fff;
+    background-color: #555;
+    border-bottom-width: 0;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: var(--table-bg-odd) !important;
-}
 
 .table-striped tbody tr:nth-of-type(even) {
     background-color: var(--table-bg-even) !important;
+    --bs-table-bg-type: #444;
 }
 
 .no-underline {
@@ -39,18 +30,6 @@
     text-align: center;
     background-color: var(--table-header-bg);
     color: var(--table-header-text-color);
-}
-
-.custom-table tbody tr:nth-of-type(odd) {
-    background-color: var(--table-bg-odd) !important; /* White or Dark Mode Odd Color */
-}
-
-.custom-table tbody tr:nth-of-type(even) {
-    background-color: var(--table-bg-even) !important; /* Light gray or Dark Mode Even Color */
-}
-
-.custom-table tbody tr {
-    color: var(--table-text-color) !important;
 }
 
 .btn-link {
