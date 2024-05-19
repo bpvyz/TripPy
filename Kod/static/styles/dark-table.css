@@ -18,11 +18,11 @@
     color: white;
 }
 .custom-table tbody tr:nth-of-type(odd) {
-background-color: #ffffff; /* White */
+background-color: #313031; /* White */
 }
 
 .custom-table tbody tr:nth-of-type(even) {
-background-color: #f0f0f0; /* Light gray */
+background-color: #3a363a; /* Light gray */
 }
 
 .btn-link {
