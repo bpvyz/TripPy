@@ -120,6 +120,10 @@ body {
     border: var(--bs-list-group-border-width) #4b4a4b;
 }
 
+.iti__country-list {
+    background-color: #333;
+}
+
 .btn-secondary {
     background-color: #6c757d;
     border: none;
