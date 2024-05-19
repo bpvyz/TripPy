@@ -120,8 +120,39 @@ body {
     border: var(--bs-list-group-border-width) #4b4a4b;
 }
 
+label {
+    color: white;
+}
+
 .iti__country-list {
     background-color: #333;
+}
+
+.select2-results{
+    background-color: #333;
+    color: #fff;
+}
+.select2-search{
+    background-color: #333;
+    color: #fff;
+}
+.select2-search input{
+    background-color: #333;
+    color: #fff;
+}
+
+.select2-container--default, .select2-selection--multiple {
+    background-color: #333 !important;
+    border-color: black !important;
+
+}
+
+.select2-container--default, .select2-search--inline, .select2-search__field {
+    color: white;
+}
+
+.select2-container--default, .select2-selection--multiple, .select2-selection__choice__display{
+    color: black;
 }
 
 .btn-secondary {

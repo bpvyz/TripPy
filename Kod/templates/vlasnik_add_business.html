@@ -11,7 +11,11 @@
 
     <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
+    {% if session['dark_mode'] %}
+      <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-mode.css')}}">
+    {% else %}
+      <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
+    {% endif %}
 </head>
 <body>
 
