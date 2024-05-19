@@ -129,7 +129,8 @@ label {
 }
 
 .iti__country-list {
-    background-color: #333;
+    background-color: #333 !important;
+    color: #fff;
 }
 
 .select2-results{

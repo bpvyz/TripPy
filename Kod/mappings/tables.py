@@ -17,6 +17,7 @@ class User(db.Model):
     profilna = db.Column(db.String(255))
 
     businesses = relationship("Business", cascade="all, delete-orphan", backref="owner")
+    businessrequests = relationship("BusinessRequest", cascade="all, delete-orphan", backref="owner")
     created_routes = relationship("Route", cascade="all, delete-orphan", backref="creator")
 
 class Location(db.Model):
@@ -62,6 +63,7 @@ class Route(db.Model):
     __table_args__ = (
         CheckConstraint("public IN ('public', 'private')"),
     )
+
     route_locations = relationship("RouteLocation", cascade="all, delete-orphan")
     route_participants = relationship("RouteParticipant", cascade="all, delete-orphan")
 

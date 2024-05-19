@@ -109,7 +109,7 @@
                     <td>{{ route.description }}</td>
                     <td style="text-align: center;">{{ route.startdate }}</td>
                     <td style="text-align: center;">{{ route.enddate }}</td>
-                    <td style="text-align:center;">{{ route.createdby }}</td>
+                    <td style="text-align:center;">{{ route.creator.username }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Route Actions" style="padding-left:100px;">
                             <form action="/admin_get_route/{{ route.routeid }}" method="GET" style="display: inline-block;">

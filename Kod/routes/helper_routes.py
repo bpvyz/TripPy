@@ -141,7 +141,7 @@ def profile():
             if new_password:
                 user.password = new_password
             user.email = request.form.get('email')
-            user.phonenumber = request.form.get('phonenumber')
+            user.phonenumber = request.form.get('full_phone_number')
             user.firstname = request.form.get('firstname')
             user.lastname = request.form.get('lastname')
 

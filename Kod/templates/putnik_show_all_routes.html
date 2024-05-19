@@ -87,7 +87,7 @@
                         <td>{{ route.description }}</td>
                         <td style="text-align:center;">{{ route.startdate.strftime('%Y-%m-%d') if route.startdate else 'N/A' }}</td>
                         <td style="text-align:center;">{{ route.enddate.strftime('%Y-%m-%d') if route.enddate else 'N/A' }}</td>
-                        <td style="text-align:center;">{{ route.createdby }}</td>
+                        <td style="text-align:center;">{{ route.creator.username }}</td>
                         <td>
                             <form action="/putnik_get_route/{{ route.routeid }}" method="GET">
                                 <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">View</button>
