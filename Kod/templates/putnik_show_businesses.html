@@ -12,12 +12,15 @@
     {% else %}
       <link rel="stylesheet" href="{{url_for('static', filename='styles/design.css')}}">
     {% endif %}
-    <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
-</head>
+    {% if session['dark_mode'] %}
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-table.css')}}">
+    {% else %}
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
+    {% endif %}</head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
+  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}" alt="Logo" class="logo" id="logo"></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

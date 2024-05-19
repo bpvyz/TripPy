@@ -1,44 +1,75 @@
-.table-striped {
-        tbody tr:nth-of-type(#{$table-striped-order}) {
-            background-color: $table-accent-bg;
-        }
-    }
+:root {
+    --table-accent-bg: #f0f0f0 !important;
+    --table-bg-odd: #ffffff !important;
+    --table-bg-even: #f0f0f0 !important;
+    --table-text-color: #000000 !important;
+    --table-header-bg: #3316a0 !important;
+    --table-header-text-color: #ffffff !important;
+}
+
+.dark-mode {
+    --table-accent-bg: #555555 !important;
+    --table-bg-odd: #333333 !important;
+    --table-bg-even: #444444 !important;
+    --table-text-color: #dddddd !important;
+    --table-header-bg: #3316a0 !important;
+    --table-header-text-color: #ffffff !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--table-bg-odd) !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: var(--table-bg-even) !important;
+}
+
 .no-underline {
-    color: white;
+    color: var(--table-text-color);
     text-decoration: none;
     font-weight: bold;
 }
+
 .custom-table {
     border-radius: 8px;
     overflow: hidden; /* To apply rounded corners */
 }
+
 .custom-table thead th {
     text-align: center;
-    background-color: #3316a0;
-    color: white;
+    background-color: var(--table-header-bg);
+    color: var(--table-header-text-color);
 }
+
 .custom-table tbody tr:nth-of-type(odd) {
-background-color: #313031; /* White */
+    background-color: var(--table-bg-odd) !important; /* White or Dark Mode Odd Color */
 }
 
 .custom-table tbody tr:nth-of-type(even) {
-background-color: #3a363a; /* Light gray */
+    background-color: var(--table-bg-even) !important; /* Light gray or Dark Mode Even Color */
+}
+
+.custom-table tbody tr {
+    color: var(--table-text-color) !important;
 }
 
 .btn-link {
     color: inherit; /* Inherit color from parent */
 }
+
 .nowrap {
     white-space: nowrap; /* Prevent text wrapping */
-
 }
+
 th button.btn-link {
     position: relative;
-    top: -2px; /* Move button up by 5px */
+    top: -2px; /* Move button up by 2px */
 }
+
 .table img {
     border-radius: 8px;
 }
+
 .text-center {
-text-align: center;
+    text-align: center;
 }
