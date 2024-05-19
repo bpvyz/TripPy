@@ -103,6 +103,17 @@ body {
     color: white;
 }
 
+.form-select {
+    border-radius: 8px;
+    background-color: #333; /* Dark input background */
+    border: var(--bs-border-width) solid black;
+    color: #fff; /* Light text color */
+}
+
+.form-select::placeholder{
+    color: white;
+}
+
 .list-group-item {
     color: white;
     background-color: #4b4a4b;
@@ -237,4 +248,19 @@ body {
 
 .form-group label {
     display: block;
+}
+
+.links-container {
+    margin-top: 10px;
+}
+
+.links-container a {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.links-container a:hover {
+    color: #fa9306;
 }

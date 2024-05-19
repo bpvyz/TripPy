@@ -166,6 +166,22 @@ body {
 .form-group {
     margin-bottom: 1rem;
 }
+
 .form-group label {
     display: block;
+}
+
+.links-container {
+    margin-top: 10px;
+}
+
+.links-container a {
+    display: block;
+    margin-bottom: 5px;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.links-container a:hover {
+    color: #fa9306;
 }
