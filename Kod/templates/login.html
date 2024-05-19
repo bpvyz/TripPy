@@ -53,17 +53,15 @@
             </div>
         </div>
     </div>
-    <!-- Bootstrap JS and its dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show/hide password functionality
-        const showPasswordBtn = document.getElementById('showPasswordBtn');
-        const passwordInput = document.getElementById('password');
-        showPasswordBtn.addEventListener('click', () => {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            showPasswordBtn.textContent = type === 'password' ? 'Show' : 'Hide';
-        });
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const showPasswordBtn = document.getElementById('showPasswordBtn');
+    const passwordInput = document.getElementById('password');
+    showPasswordBtn.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        showPasswordBtn.textContent = type === 'password' ? 'Show' : 'Hide';
+    });
+</script>
 </body>
 </html>

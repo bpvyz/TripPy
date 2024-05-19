@@ -76,43 +76,43 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-    <script>
-        const phoneInputField = document.querySelector("#phone_number");
-        const phoneInput = window.intlTelInput(phoneInputField, {
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
-            initialCountry: "auto",
-            geoIpLookup: getIp,
-            preferredCountries: ["rs", "de", "at", "ch"],
-        });
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<script>
+    const phoneInputField = document.querySelector("#phone_number");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+        initialCountry: "auto",
+        geoIpLookup: getIp,
+        preferredCountries: ["rs", "de", "at", "ch"],
+    });
 
-        function getIp(callback) {
-            fetch('https://ipinfo.io/json?token=YOUR_TOKEN', { headers: { 'Accept': 'application/json' }})
-                .then((resp) => resp.json())
-                .catch(() => {
-                    return {
-                        country: 'rs',
-                    };
-                })
-                .then((resp) => callback(resp.country));
-        }
+    function getIp(callback) {
+        fetch('https://ipinfo.io/json?token=YOUR_TOKEN', { headers: { 'Accept': 'application/json' }})
+            .then((resp) => resp.json())
+            .catch(() => {
+                return {
+                    country: 'rs',
+                };
+            })
+            .then((resp) => callback(resp.country));
+    }
 
-        const registerForm = document.getElementById('register-form');
-        registerForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const fullPhoneNumber = phoneInput.getNumber();
-            document.getElementById('full_phone_number').value = fullPhoneNumber;
-            this.submit();
-        });
+    const registerForm = document.getElementById('register-form');
+    registerForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const fullPhoneNumber = phoneInput.getNumber();
+        document.getElementById('full_phone_number').value = fullPhoneNumber;
+        this.submit();
+    });
 
-        const showPasswordBtn = document.getElementById('showPasswordBtn');
-        const passwordInput = document.getElementById('password');
-        showPasswordBtn.addEventListener('click', () => {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            showPasswordBtn.textContent = type === 'password' ? 'Prikaži' : 'Sakrij';
-       });
-   </script>
+    const showPasswordBtn = document.getElementById('showPasswordBtn');
+    const passwordInput = document.getElementById('password');
+    showPasswordBtn.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        showPasswordBtn.textContent = type === 'password' ? 'Prikaži' : 'Sakrij';
+   });
+</script>
 </body>
 </html>

@@ -101,8 +101,17 @@
 
 <script>
     const logo = document.getElementById('logo');
-    const originalSrc = "{{ url_for('static', filename='images/TripPyLogo.svg') }}";
-    const hoverSrc = "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}";
+    const darkMode = {{ session['dark_mode']|lower }};
+
+    const originalSrc = darkMode
+        ? "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}"
+        : "{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}";
+
+    const hoverSrc = darkMode
+        ? "{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}"
+        : "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}"
+
+    logo.src = originalSrc;
 
     logo.addEventListener('mouseover', function() {
         logo.src = hoverSrc;

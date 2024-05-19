@@ -231,56 +231,65 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-    <script>
-const logo = document.getElementById('logo');
-const originalSrc = "{{ url_for('static', filename='images/TripPyLogo.svg') }}";
-const hoverSrc = "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}";
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<script>
+    const logo = document.getElementById('logo');
+    const darkMode = {{ session['dark_mode']|lower }};
 
-logo.addEventListener('mouseover', function() {
-    logo.src = hoverSrc;
-});
+    const originalSrc = darkMode
+        ? "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}"
+        : "{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}";
 
-logo.addEventListener('mouseout', function() {
+    const hoverSrc = darkMode
+        ? "{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}"
+        : "{{ url_for('static', filename='images/TripPyLogoOrange.svg') }}"
+
     logo.src = originalSrc;
-});
+
+    logo.addEventListener('mouseover', function() {
+        logo.src = hoverSrc;
+    });
+
+    logo.addEventListener('mouseout', function() {
+        logo.src = originalSrc;
+    });
 </script>
-    <script>
-        const phoneInputField = document.querySelector("#phonenumber");
-        const phoneInput = window.intlTelInput(phoneInputField, {
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
-            initialCountry: "auto",
-            geoIpLookup: getIp,
-            preferredCountries: ["rs", "de", "at", "ch"], // Replace with your preferred countries
-        });
+<script>
+    const phoneInputField = document.querySelector("#phonenumber");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+        initialCountry: "auto",
+        geoIpLookup: getIp,
+        preferredCountries: ["rs", "de", "at", "ch"], // Replace with your preferred countries
+    });
 
-        function getIp(callback) {
-            fetch('https://ipinfo.io/json?token=YOUR_TOKEN', { headers: { 'Accept': 'application/json' }})
-                .then((resp) => resp.json())
-                .catch(() => {
-                    return {
-                        country: 'rs',
-                    };
-                })
-                .then((resp) => callback(resp.country));
-        }
+    function getIp(callback) {
+        fetch('https://ipinfo.io/json?token=YOUR_TOKEN', { headers: { 'Accept': 'application/json' }})
+            .then((resp) => resp.json())
+            .catch(() => {
+                return {
+                    country: 'rs',
+                };
+            })
+            .then((resp) => callback(resp.country));
+    }
 
-        const profileForm = document.getElementById('profile-form');
-        profileForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const fullPhoneNumber = phoneInput.getNumber();
-            document.getElementById('full_phone_number').value = fullPhoneNumber;
-            this.submit();
-        });
+    const profileForm = document.getElementById('profile-form');
+    profileForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const fullPhoneNumber = phoneInput.getNumber();
+        document.getElementById('full_phone_number').value = fullPhoneNumber;
+        this.submit();
+    });
 
-        const showNewPasswordBtn = document.getElementById('showNewPasswordBtn');
-        const newPasswordInput = document.getElementById('newPassword');
-        showNewPasswordBtn.addEventListener('click', () => {
-            const type = newPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            newPasswordInput.setAttribute('type', type);
-            showNewPasswordBtn.textContent = type === 'password' ? 'Prikaži' : 'Sakrij';
-       });
-   </script>
+    const showNewPasswordBtn = document.getElementById('showNewPasswordBtn');
+    const newPasswordInput = document.getElementById('newPassword');
+    showNewPasswordBtn.addEventListener('click', () => {
+        const type = newPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        newPasswordInput.setAttribute('type', type);
+        showNewPasswordBtn.textContent = type === 'password' ? 'Prikaži' : 'Sakrij';
+   });
+</script>
 {% if user.usertype == "Putnik" %}
     <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
 {% elif user.usertype == "VlasnikBiznisa" %}
