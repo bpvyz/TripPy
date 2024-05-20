@@ -28,68 +28,68 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="vlasnik_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="vlasnik_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="vlasnik_add_business()">Kreiraj oglas</a>
-          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">Moji oglasi</a>
+          <a class="dropdown-item" onclick="vlasnik_add_business()">{{ _('Create Business') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">{{ _('My Businesses') }}</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-expanded="false">
-      Profil
+      {{ _('Profile') }}
         </a>
         <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
-          <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-          <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+          <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+          <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+          <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
         </ul>
      </ul>
   </div>
 </nav>
 
 <div class="container mt-5">
-    <h1>Dobrodošli, vlasnik!</h1>
+    <h1>{{ _('Welcome, owner!') }}</h1>
 
     <div class="card mb-4">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="card-title">Oglasi</h2>
+                    <h2 class="card-title">{{ _('Businesses') }}</h2>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title">Kreiranje oglasa</h3>
-                                    <button class="btn btn-primary" onclick="vlasnik_add_business()">Kreiraj oglas</button>
+                                    <h3 class="card-title">{{ _('Create Business') }}</h3>
+                                    <button class="btn btn-primary" onclick="vlasnik_add_business()">{{ _('Create Business') }}</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title">Moji oglasi</h3>
-                                    <button class="btn btn-primary" onclick="vlasnik_show_my_businesses()">Prikaži moje oglase</button>
+                                    <h3 class="card-title">{{ _('My Businesses') }}</h3>
+                                    <button class="btn btn-primary" onclick="vlasnik_show_my_businesses()">{{ _('Show My Businesses') }}</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h3 class="card-title">Svi oglasi</h3>
-                                    <button class="btn btn-primary" onclick="vlasnik_show_all_businesses()">Prikazi sve oglase</button>
+                                    <h3 class="card-title">{{ _('All Businesses') }}</h3>
+                                    <button class="btn btn-primary" onclick="vlasnik_show_all_businesses()">{{ _('Show All Businesses') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -99,10 +99,10 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <h2 class="card-title">Maršrute</h2>
+                    <h2 class="card-title">{{ _('Routes') }}</h2>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <button class="btn btn-primary" onclick="vlasnik_show_routes()">Prikazi sve maršrute </button>
+                            <button class="btn btn-primary" onclick="vlasnik_show_routes()">{{ _('All Routes') }} </button>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,6 @@
         </div>
     </div>
 </div>
-
 <div class="alert-container">
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}

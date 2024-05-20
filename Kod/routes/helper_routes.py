@@ -2,6 +2,7 @@ import time
 from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect, flash
 from mappings.tables import User, db, Route, Business, Location
 from util import generate_verification_code, send_reset_email
+from flask_babel import Babel, _
 import secrets
 import string
 import os
@@ -14,7 +15,6 @@ def loading():
 
 def register():
     if request.method == 'POST':
-
         username = request.form['username']
         password = request.form['password']
         firstname = request.form['first_name']
@@ -24,7 +24,7 @@ def register():
         usertype = request.form['user_type']
 
         if User.query.filter_by(username=username).first():
-            flash('Korisničko ime već postoji. Molimo izaberite drugo korisničko ime.', 'error')
+            flash(_('Username already exists. Please choose another username.'), 'error')
             return redirect(url_for('register'))
 
         session['registration_data'] = {
@@ -44,6 +44,7 @@ def register():
 
     else:
         return render_template('register.html')
+
 
 def verify():
     if request.method == 'POST':

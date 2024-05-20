@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vlasnik All Businesses</title>
+    <title>{{ _('Owner All Businesses') }}</title> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     {% if session['dark_mode'] %}
@@ -32,59 +32,59 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }} 
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="vlasnik_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="vlasnik_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="vlasnik_add_business()">Kreiraj oglas</a>
-          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">Moji oglasi</a>
+          <a class="dropdown-item" onclick="vlasnik_add_business()">{{ _('Create Business') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">{{ _('My Businesses') }}</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-expanded="false">
-      Profil
+      {{ _('Profile') }} 
         </a>
         <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
-          <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-          <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+          <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+          <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+          <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
         </ul>
      </ul>
   </div>
 </nav>
 
 <div class="container mt-5">
-    <h1 class="mb-3">Prikaz mojih oglasa</h1>
+    <h1 class="mb-3">{{ _('Display My Businesses') }}</h1>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Pretraga po imenu poslovanja" id="searchInput">
+        <input type="text" class="form-control" placeholder="{{ _('Search by Business Name') }}" id="searchInput">
     </div>
     <div class="table-responsive">
         <table class="table table-striped custom-table">
             <thead class="table-dark">
                 <tr>
-                    <th>Images</th>
+                    <th>{{ _('Images') }}</th>
                     <th style="padding: 0;">
                             <button class="btn btn-link" onclick="sortTable(1)" style="border: none; background: none;">
-                                <span class="visually-hidden">Sort by Business Name</span>
-                                <span style="text-decoration: underline; color: white; font-weight: bold;">Business Name</span>
+                                <span class="visually-hidden">{{ _('Sort by Business Name') }}</span>
+                                <span style="text-decoration: underline; color: white; font-weight: bold;">{{ _('Business Name') }}</span>
                                 <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
                             </button>
                         </th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Owner</th>
-                    <th colspan="3">Actions</th>
+                    <th>{{ _('Description') }}</th>
+                    <th>{{ _('Location') }}</th>
+                    <th>{{ _('Owner') }}</th>
+                    <th colspan="3">{{ _('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,13 +103,11 @@
                     <td>{{ business.owner.username }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Business Actions">
-                            <button class="btn btn-success" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">Map</button>
-                            <a href="{{ url_for('vlasnik_get_business', business_id=business.businessid) }}" class="btn btn-primary">Edit</a>
-                            <a href="{{ url_for('vlasnik_delete_business', business_id=business.businessid) }}" class="btn btn-danger">Delete</a>
+                            <button class="btn btn-success" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
+                            <a href="{{ url_for('vlasnik_get_business', business_id=business.businessid) }}" class="btn btn-primary">{{ _('Edit') }}</a>
+                            <a href="{{ url_for('vlasnik_delete_business', business_id=business.businessid) }}" class="btn btn-danger">{{ _('Delete') }}</a>
                         </div>
                     </td>
-
-
                 </tr>
                 {% endfor %}
             </tbody>
@@ -117,15 +115,12 @@
     </div>
 </div>
 
-
     <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
 <script>
 function openMap(address, businessId) {
 

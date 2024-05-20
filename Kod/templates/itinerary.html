@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerary</title>
+    <title>{{ _('Itinerary') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     {% if session['dark_mode'] %}
       <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-mode.css')}}">
@@ -26,33 +26,33 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Marsrute
+                    {{ _('Routes') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-                    <a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a>
-                    <a class="dropdown-item" onclick="putnik_show_all_routes()">Sve Marsrute</a>
-                    <a class="dropdown-item" onclick="putnik_show_my_routes()">Moje Marsrute</a>
+                    <a class="dropdown-item" onclick="putnik_add_route()">{{ _('New Route') }}</a>
+                    <a class="dropdown-item" onclick="putnik_show_all_routes()">{{ _('All Routes') }}</a>
+                    <a class="dropdown-item" onclick="putnik_show_my_routes()">{{ _('My Routes') }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Oglasi
+                    {{ _('Businesses') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-                    <a class="dropdown-item" onclick="putnik_show_businesses()">Svi Oglasi</a>
+                    <a class="dropdown-item" onclick="putnik_show_businesses()">{{ _('All Businesses') }}</a>
                 </div>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Profil
+                    {{ _('Profile') }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-                    <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
                 </ul>
             </ul>
         </div>
@@ -72,33 +72,33 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="vlasnik_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="vlasnik_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="vlasnik_add_business()">Kreiraj oglas</a>
-          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">Moji oglasi</a>
+          <a class="dropdown-item" onclick="vlasnik_add_business()">{{ _('Create Business') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">{{ _('My Businesses') }}</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-expanded="false">
-      Profil
+      {{ _('Profile') }}
         </a>
         <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
-          <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-          <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+          <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+          <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+          <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
         </ul>
      </ul>
   </div>
@@ -106,6 +106,7 @@
 {% else %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}" alt="Logo" class="logo" id="logo"></a>
+    </a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -119,36 +120,36 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Korisnici
+          {{ _('Users') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
-          <a class="dropdown-item" onclick="admin_add_user()">Dodaj korisnika</a>
+          <a class="dropdown-item" onclick="admin_users()">{{ _('All Users') }}</a>
+          <a class="dropdown-item" onclick="admin_add_user()">{{ _('Add User') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="admin_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
+          <a class="dropdown-item" onclick="admin_show_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="admin_business_requests()">{{ _('Business Approval Requests') }}</a>
         </div>
       </li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Lokacije
+          {{ _('Locations') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
+          <a class="dropdown-item"  onclick="admin_add_location()">{{ _('Add Location') }}</a>
         </div>
       </li>
 
@@ -156,13 +157,13 @@
     <ul class="navbar-nav ms-auto">
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Profil
+      {{ _('Profile') }}
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-      <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-      <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+      <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+      <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+      <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
     </ul>
   </li>
 </ul>
@@ -174,33 +175,33 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h1>Route: {{ route.routename }}</h1>
+                <h1>{{ _('Route') }}: {{ route.routename }}</h1>
             </div>
             <div class="card-body">
-                <p class="card-text">Duration: {{ route_duration }} days</p>
-                <h2 class="card-title">Day {{ day_number }} Itinerary</h2>
+                <p class="card-text">{{ _('Duration') }}: {{ route_duration }} {{ _('days') }}</p>
+                <h2 class="card-title">{{ _('Day') }} {{ day_number }} {{ _('Itinerary') }}</h2>
                 <ul class="list-group">
                     {% for itinerary_detail in itinerary_details %}
                         <div class="card">
                             <li class="list-group-item" id="row{{ itinerary_detail.business.businessid }}">
-                                <strong>Location:</strong> {{ itinerary_detail.location.address }}
+                                <strong>{{ _('Location') }}:</strong> {{ itinerary_detail.location.address }}
                                 {% if itinerary_detail.business %}
                                     <br>
-                                    <strong>Business:</strong> {{ itinerary_detail.business.businessname }}
+                                    <strong>{{ _('Business') }}:</strong> {{ itinerary_detail.business.businessname }}
                                     <br>
-                                    <strong>Description:</strong> {{ itinerary_detail.business.description }}
+                                    <strong>{{ _('Description') }}:</strong> {{ itinerary_detail.business.description }}
                                     <br>
                                     {% if user == "Putnik" %}
-                                        <a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
+                                        <a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=itinerary_detail.business.businessid) }}">{{ _('View') }}</a>
                                     {% elif user == "VlasnikBiznisa" %}
-                                        <a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
+                                        <a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=itinerary_detail.business.businessid) }}">{{ _('View') }}</a>
                                     {% else %}
-                                        <a class="btn btn-primary" href="{{ url_for('admin_get_business', business_id=itinerary_detail.business.businessid) }}">View</a>
+                                        <a class="btn btn-primary" href="{{ url_for('admin_get_business', business_id=itinerary_detail.business.businessid) }}">{{ _('View') }}</a>
                                     {% endif %}
-                                    <button class="btn btn-success" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">Map</button>
+                                    <button class="btn btn-success" onclick="openMap('{{ itinerary_detail.business.location.address }}', '{{ itinerary_detail.business.businessid }}')">{{ _('Map') }}</button>
                                     {% if route.createdby == user_id %}
                                     <form action="{{ url_for('putnik_delete_itinerary_business', route_id=route.routeid, day_number=day_number, business_id=itinerary_detail.business.businessid) }}" method="post" style="display:inline;">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">{{ _('Delete') }}</button>
                                     </form>
                                     {% endif %}
                                 {% endif %}
@@ -212,7 +213,7 @@
                         <li class="list-group-item">
                             <div class="row mt-3">
                                 <div class="col">
-                                    <a class="btn btn-warning" href="{{ url_for('putnik_add_business', route_id=route.routeid, day_number=day_number) }}">Add for Day {{ day_number }}</a>
+                                    <a class="btn btn-warning" href="{{ url_for('putnik_add_business', route_id=route.routeid, day_number=day_number) }}">{{ _('Add for Day') }} {{ day_number }}</a>
                                 </div>
                             </div>
                         </li>
@@ -222,6 +223,32 @@
             </div>
         </div>
     </div>
+{% if user == "Putnik" %}
+    <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
+{% elif user == "VlasnikBiznisa" %}
+    <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
+{% else %}
+    <script src="{{ url_for('static', filename='scripts/script_admin.js') }}"></script>
+{% endif %}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+
+    function openMap(address, businessId) {
+        console.log('Opening map for address:', address, 'with businessId:', businessId);
+
+        document.querySelectorAll('.map-row').forEach(element => {
+            element.remove();
+        });
+
+        var parentRow = document.getElementById(`row${businessId}`);
+        if (!parentRow) {
+            console.error(`Element with ID row${businessId} not found`);
+            return;
+        }
+
+        var
+
+
 {% if user == "Putnik" %}
     <script src="{{ url_for('static', filename='scripts/script_putnik.js') }}"></script>
 {% elif user == "VlasnikBiznisa" %}

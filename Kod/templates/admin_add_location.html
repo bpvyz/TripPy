@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Location</title>
+    <title>{{ _('Add Location') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     {% if session['dark_mode'] %}
       <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-mode.css')}}">
@@ -27,36 +27,36 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Korisnici
+          {{ _('Users') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
-          <a class="dropdown-item" onclick="admin_add_user()">Dodaj korisnika</a>
+          <a class="dropdown-item" onclick="admin_users()">{{ _('All Users') }}</a>
+          <a class="dropdown-item" onclick="admin_add_user()">{{ _('Add User') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="admin_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
+          <a class="dropdown-item" onclick="admin_show_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="admin_business_requests()">{{ _('Business Requests') }}</a>
         </div>
       </li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Lokacije
+          {{ _('Locations') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
+          <a class="dropdown-item"  onclick="admin_add_location()">{{ _('Add Location') }}</a>
         </div>
       </li>
 
@@ -64,13 +64,13 @@
     <ul class="navbar-nav ms-auto">
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Profil
+      {{ _('Profile') }}
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-      <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-      <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+      <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+      <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+      <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
     </ul>
   </li>
 </ul>
@@ -80,13 +80,13 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">Add Location</h1>
+            <h1 class="card-title">{{ _('Add Location') }}</h1>
             <form method="POST" action="{{ url_for('admin_add_location') }}">
                 <div class="form-group">
-                    <label for="address">Address:</label>
+                    <label for="address">{{ _('Address') }}:</label>
                     <input type="text" class="form-control" id="address" name="address" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Location</button>
+                <button type="submit" class="btn btn-primary">{{ _('Add Location') }}</button>
             </form>
         </div>
     </div>

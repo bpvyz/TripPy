@@ -15,7 +15,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}" alt="Logo" class="logo" id="logo"></a>
+  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}" alt="{{ _('Logo') }}" class="logo" id="logo"></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -29,36 +29,36 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Korisnici
+          {{ _('Users') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
-          <a class="dropdown-item" onclick="admin_add_user()">Dodaj korisnika</a>
+          <a class="dropdown-item" onclick="admin_users()">{{ _('All Users') }}</a>
+          <a class="dropdown-item" onclick="admin_add_user()">{{ _('Add User') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="admin_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
+          <a class="dropdown-item" onclick="admin_show_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="admin_business_requests()">{{ _('Business Requests') }}</a>
         </div>
       </li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Lokacije
+          {{ _('Locations') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
+          <a class="dropdown-item"  onclick="admin_add_location()">{{ _('Add Location') }}</a>
         </div>
       </li>
 
@@ -66,13 +66,13 @@
     <ul class="navbar-nav ms-auto">
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Profil
+      {{ _('Profile') }}
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-      <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-      <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+      <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+      <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+      <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
     </ul>
   </li>
 </ul>
@@ -80,31 +80,31 @@
   </div>
 </nav>
 
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <h1>{{ business.businessname }}</h1>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Business Details</h5>
-                <p class="card-text">{{ business.description }}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Location ID: {{ business.locationid }}</li>
-                <li class="list-group-item">Cena: {{ business.cena }}</li>
-                {% if image_paths %}
-                    {% for image_path in image_paths %}
-                        <li class="list-group-item">
-                            <img src="{{ url_for('static', filename=image_path) }}" alt="Business Image" class="img-fluid mb-2" style="max-width: 300px;">
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <li class="list-group-item">  </li>
-                {% endif %}
-            </ul>
-            <div id="mapContainer" class="map-container"></div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h1>{{ business.businessname }}</h1>
         </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ _('Business Details') }}</h5>
+            <p class="card-text">{{ business.description }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ _('Location ID') }}: {{ business.locationid }}</li>
+            <li class="list-group-item">{{ _('Price') }}: {{ business.price }}</li>
+            {% if image_paths %}
+                {% for image_path in image_paths %}
+                    <li class="list-group-item">
+                        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ _('Business Image') }}" class="img-fluid mb-2" style="max-width: 300px;">
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item">{{ _('No images') }}</li>
+            {% endif %}
+        </ul>
+        <div id="mapContainer" class="map-container"></div>
     </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

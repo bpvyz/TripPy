@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Routes</title>
+    <title>{{ _('All Routes') }}</title> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     {% if session['dark_mode'] %}
       <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-mode.css')}}">
@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-table.css')}}">
     {% else %}
         <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
-    {% endif %}</head>
+    {% endif %}
+</head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,40 +32,40 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }} 
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="vlasnik_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="vlasnik_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="vlasnik_add_business()">Kreiraj oglas</a>
-          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">Moji oglasi</a>
+          <a class="dropdown-item" onclick="vlasnik_add_business()">{{ _('Create Business') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">{{ _('My Businesses') }}</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-expanded="false">
-      Profil
+      {{ _('Profile') }} 
         </a>
         <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
-          <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-          <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+          <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+          <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+          <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
         </ul>
      </ul>
   </div>
 </nav>
 
     <div class="container mt-5">
-        <h1 class="mb-3">All Routes</h1>
+        <h1 class="mb-3">{{ _('All Routes') }}</h1> 
         <div class="table-responsive">
             <table class="table table-striped custom-table">
                 <thead>
@@ -72,16 +73,16 @@
                         <th>Route ID</th>
                         <th style="padding: 0;">
                             <button class="btn btn-link" onclick="sortTable(1)" style="border: none; background: none;">
-                                <span class="visually-hidden">Sort by Route Name</span>
-                                <span style="text-decoration: underline; color: white; font-weight: bold; margin-right:30px;">Route Name</span>
+                                <span class="visually-hidden">{{ _('Sort by Route Name') }}</span>
+                                <span style="text-decoration: underline; color: white; font-weight: bold; margin-right:30px;">{{ _('Route Name') }}</span>
                                 <i id="sortIcon" class="fas fa-sort" style="margin-left: 4px;"></i>
                             </button>
                         </th>
-                        <th style="margin-right:30px;">Description</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Created By</th>
-                        <th style="text-align:left;">Actions</th>
+                        <th style="margin-right:30px;">{{ _('Description') }}</th> 
+                        <th>{{ _('Start Date') }}</th> 
+                        <th>{{ _('End Date') }}</th> 
+                        <th>{{ _('Created By') }}</th> 
+                        <th style="text-align:left;">{{ _('Actions') }}</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -95,7 +96,7 @@
                         <td style="text-align:center;">{{ route.createdby }}</td>
                         <td>
                             <form action="/vlasnik_get_route/{{ route.routeid }}" method="GET" style="display: inline-block;">
-                                <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">View</button>
+                                <button class="btn btn-primary" onclick="showRoute('{{ route.routeid }}')">{{ _('View') }}</button>
                             </form>
                         </td>
                     </tr>

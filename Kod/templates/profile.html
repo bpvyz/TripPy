@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="../static/styles/design.css"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>{{ _('Profile') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
     {% if session['dark_mode'] %}
@@ -26,33 +26,33 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Marsrute
+                    {{ _('Routes') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-                    <a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a>
-                    <a class="dropdown-item" onclick="putnik_show_all_routes()">Sve Marsrute</a>
-                    <a class="dropdown-item" onclick="putnik_show_my_routes()">Moje Marsrute</a>
+                    <a class="dropdown-item" onclick="putnik_add_route()">{{ _('New Route') }}</a>
+                    <a class="dropdown-item" onclick="putnik_show_all_routes()">{{ _('All Routes') }}</a>
+                    <a class="dropdown-item" onclick="putnik_show_my_routes()">{{ _('My Routes') }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Oglasi
+                    {{ _('Businesses') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-                    <a class="dropdown-item" onclick="putnik_show_businesses()">Svi Oglasi</a>
+                    <a class="dropdown-item" onclick="putnik_show_businesses()">{{ _('All Businesses') }}</a>
                 </div>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Profil
+                    {{ _('Profile') }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-                    <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
                 </ul>
             </ul>
         </div>
@@ -72,33 +72,33 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="vlasnik_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="vlasnik_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="vlasnik_add_business()">Kreiraj oglas</a>
-          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">Moji oglasi</a>
+          <a class="dropdown-item" onclick="vlasnik_add_business()">{{ _('Create Business') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_all_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="vlasnik_show_my_businesses()">{{ _('My Businesses') }}</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-toggle="dropdown" aria-expanded="false">
-      Profil
+                 {{ _('Profile') }}
         </a>
         <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">
-          <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-          <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+          <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+          <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+          <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
         </ul>
      </ul>
   </div>
@@ -119,36 +119,36 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Korisnici
+          {{ _('Users') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
-          <a class="dropdown-item" onclick="admin_add_user()">Dodaj korisnika</a>
+          <a class="dropdown-item" onclick="admin_users()">{{ _('All Users') }}</a>
+          <a class="dropdown-item" onclick="admin_add_user()">{{ _('Add User') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="admin_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
+          <a class="dropdown-item" onclick="admin_show_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="admin_business_requests()">{{ _('Business Requests') }}</a>
         </div>
       </li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Lokacije
+          {{ _('Locations') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
+          <a class="dropdown-item"  onclick="admin_add_location()">{{ _('Add Location') }}</a>
         </div>
       </li>
 
@@ -156,13 +156,13 @@
     <ul class="navbar-nav ms-auto">
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Profil
+      {{ _('Profile') }}
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-      <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-      <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+      <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+      <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+      <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
     </ul>
   </li>
 </ul>
@@ -175,61 +175,62 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Profile</h3>
+                        <h3 class="card-title text-center">{{ _('Profile') }}</h3>
                         <form id="profile-form" method="POST" enctype="multipart/form-data">
                             {% if user.profilna %}
                             <div class="mb-3">
-                                <label for="profile_picture" class="form-label">Profile Picture</label>
-                                <img src="{{ user.profilna }}" class="img-fluid" id="ProfilePicture" alt="Profile Picture" style="width: 150px; height: auto; object-fit: cover; display: block; margin: 10px auto;">
+                                <label for="profile_picture" class="form-label">{{ _('Profile Picture') }}</label>
+                                <img src="{{ user.profilna }}" class="img-fluid" id="ProfilePicture" alt="{{ _('Profile Picture') }}" style="width: 150px; height: auto; object-fit: cover; display: block; margin: 10px auto;">
                             </div>
                             {% endif %}
                             <div class="form-group">
-                                <label for="profile_picture">Change Profile Picture</label>
+                                <label for="profile_picture">{{ _('Change Profile Picture') }}</label>
                                 <input type="file" class="form-control" id="profile_picture" name="profile_picture">
                             </div>
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
+                                <label for="username" class="form-label">{{ _('Username') }}</label>
                                 <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
                             </div>
                             <div class="mb-3">
-                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <label for="currentPassword" class="form-label">{{ _('Current Password') }}</label>
                                 <input type="password" class="form-control" id="currentPassword" name="currentPassword" value="{{ user.password }}" readonly>
                             </div>
                             <div class="mb-3">
-                                <label for="newPassword" class="form-label">New Password</label>
+                                <label for="newPassword" class="form-label">{{ _('New Password') }}</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="newPassword" name="newPassword">
-                                    <button class="btn btn-outline-secondary" type="button" id="showNewPasswordBtn">Prikaži</button>
+                                    <button class="btn btn-outline-secondary" type="button" id="showNewPasswordBtn">{{ _('Show') }}</button>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="verifyNewPassword" class="form-label">Verify New Password</label>
+                                <label for="verifyNewPassword" class="form-label">{{ _('Verify New Password') }}</label>
                                 <input type="password" class="form-control" id="verifyNewPassword" name="verifyNewPassword">
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label">{{ _('Email') }}</label>
                                 <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
                             </div>
                             <div class="mb-3">
-                                <label for="phonenumber" class="form-label">Phone Number</label>
+                                <label for="phonenumber" class="form-label">{{ _('Phone Number') }}</label>
                                 <input type="tel" id="phonenumber" name="phonenumber" class="form-control" value="{{ user.phonenumber }}">
                                 <input type="hidden" id="full_phone_number" name="full_phone_number">
                             </div>
                             <div class="mb-3">
-                                <label for="firstname" class="form-label">First Name</label>
+                                <label for="firstname" class="form-label">{{ _('First Name') }}</label>
                                 <input type="text" class="form-control" id="firstname" name="firstname" value="{{ user.firstname }}">
                             </div>
                             <div class="mb-3">
-                                <label for="lastname" class="form-label">Last Name</label>
+                                <label for="lastname" class="form-label">{{ _('Last Name') }}</label>
                                 <input type="text" class="form-control" id="lastname" name="lastname" value="{{ user.lastname }}">
                             </div>
-                            <button type="submit" class="btn btn-primary d-block mx-auto">Update Profile</button>
+                            <button type="submit" class="btn btn-primary d-block mx-auto">{{ _('Update Profile') }}</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
 <script>

@@ -24,40 +24,40 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Marsrute
+                    {{ _('Routes') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-                    <a class="dropdown-item" onclick="putnik_add_route()">Nova maršruta</a>
-                    <a class="dropdown-item" onclick="putnik_show_all_routes()">Sve Marsrute</a>
-                    <a class="dropdown-item" onclick="putnik_show_my_routes()">Moje Marsrute</a>
+                    <a class="dropdown-item" onclick="putnik_add_route()">{{ _('Create New Route') }}</a>
+                    <a class="dropdown-item" onclick="putnik_show_all_routes()">{{ _('All Routes') }}</a>
+                    <a class="dropdown-item" onclick="putnik_show_my_routes()">{{ _('My Routes') }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Oglasi
+                    {{ _('Businesses') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-                    <a class="dropdown-item" onclick="putnik_show_businesses()">Svi Oglasi</a>
+                    <a class="dropdown-item" onclick="putnik_show_businesses()">{{ _('Show All Businesses') }}</a>
                 </div>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Profil
+                    {{ _('Profile') }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-                    <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
                 </ul>
             </ul>
         </div>
     </nav>
 
 <div class="container mt-5">
-    <h1 class="card-title">Dobrodošli, {{user.username}}!</h1>
+    <h1 class="card-title">{{ _('Welcome,') }} {{user.username}}!</h1>
 
     <div class="card mb-4">
         <div class="card-body">
@@ -65,24 +65,24 @@
                 <div class="col-md-6">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h2 class="card-title">Maršrute</h2>
-                                <button class="btn btn-primary" onclick="location.href='putnik_add_route'">Kreiraj Maršrutu</button>
+                            <h2 class="card-title">{{ _('Routes') }}</h2>
+                                <button class="btn btn-primary" onclick="location.href='putnik_add_route'">{{ _('Create Route') }}</button>
 
                         </div>
                     </div>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h2 class="card-title">Pregled maršruta</h2>
-                                <button class="btn btn-primary mb-3" onclick="location.href='putnik_show_all_routes'">Prikazi sve maršrute </button>
-                                <button class="btn btn-primary" onclick="location.href='putnik_show_my_routes'">Prikazi moje maršrute </button>
+                            <h2 class="card-title">{{ _('Route Overview') }}</h2>
+                                <button class="btn btn-primary mb-3" onclick="location.href='putnik_show_all_routes'">{{ _('All Routes') }}</button>
+                                <button class="btn btn-primary" onclick="location.href='putnik_show_my_routes'">{{ _('My Routes') }}</button>
                         </div>
                     </div>
                     <div class="card mb-auto">
                     <div class="card-body">
-                        <h2 class="card-title">Svi oglasi</h2>
+                        <h2 class="card-title">{{ _('All Businesses') }}</h2>
                         <div class="column" style="overflow-y: auto; max-height: 400px;">
                             <div class="col-md-12">
-                                    <button class="btn btn-primary" onclick="location.href='putnik_show_businesses'">Prikazi sve oglase </button>
+                                    <button class="btn btn-primary" onclick="location.href='putnik_show_businesses'">{{ _('Show All Businesses') }}</button>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="alert-container">

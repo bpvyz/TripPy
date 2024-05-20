@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin All Businesses</title>
+    <title>{{ _('Admin All Business Requests') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     {% if session['dark_mode'] %}
       <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-mode.css')}}">
@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="{{url_for('static', filename='styles/dark-table.css')}}">
     {% else %}
         <link rel="stylesheet" href="{{url_for('static', filename='styles/table.css')}}">
-    {% endif %}</head>
+    {% endif %}
+</head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,50 +33,50 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Korisnici
+          {{ _('Users') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_users()">Prikaži sve korisnike</a>
-          <a class="dropdown-item" onclick="admin_add_user()">Dodaj korisnika</a>
+          <a class="dropdown-item" onclick="admin_users()">{{ _('All Users') }}</a>
+          <a class="dropdown-item" onclick="admin_add_user()">{{ _('Add User') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoutes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Marsrute
+          {{ _('Routes') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownRoutes">
-          <a class="dropdown-item" onclick="admin_show_routes()">Sve Marsrute</a>
+          <a class="dropdown-item" onclick="admin_show_routes()">{{ _('All Routes') }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAds" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
+          {{ _('Businesses') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item" onclick="admin_show_businesses()">Svi Oglasi</a>
-          <a class="dropdown-item" onclick="admin_business_requests()">Zahtevi za prihvatanje oglasa</a>
+          <a class="dropdown-item" onclick="admin_show_businesses()">{{ _('All Businesses') }}</a>
+          <a class="dropdown-item" onclick="admin_business_requests()">{{ _('Business Requests') }}</a>
         </div>
       </li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLocations" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Lokacije
+          {{ _('Locations') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAds">
-          <a class="dropdown-item"  onclick="admin_add_location()">Dodaj Lokaciju</a>
+          <a class="dropdown-item"  onclick="admin_add_location()">{{ _('Add Location') }}</a>
         </div>
       </li>
 
     </ul>
     <ul class="navbar-nav ms-auto">
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Profil
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-      <li><a class="dropdown-item" href="#" onclick="profile()">Moj Profil</a></li>
-      <li><a class="dropdown-item" href="#" onclick="settings()">Postavke</a></li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {{ _('Profile') }}
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
+      <li><a class="dropdown-item" href="#" onclick="profile()">{{ _('My Profile') }}</a></li>
+      <li><a class="dropdown-item" href="#" onclick="settings()">{{ _('Settings') }}</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#" onclick="logout()">Odjava</a></li>
+      <li><a class="dropdown-item" href="#" onclick="logout()">{{ _('Logout') }}</a></li>
     </ul>
   </li>
 </ul>
@@ -83,8 +84,11 @@
   </div>
 </nav>
 
+  </div>
+</nav>
+
 <div class="container mt-5">
-    <h1 class="mb-3">Admin All Business Requests</h1>
+    <h1 class="mb-3">{{ _('Admin All Business Requests') }}</h1>
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search by business name" id="searchInput">
     </div>
@@ -92,11 +96,11 @@
         <table class="table table-striped custom-table" id="businessRequestsTable">
             <thead>
                 <tr>
-                    <th scope="col">Business name</th>
-                    <th scope="col">Owner Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Location</th>
-                    <th scope="col" style="text-align:left; padding-left:60px;">Actions</th>
+                    <th scope="col">{{ _('Business Name') }}</th>
+                    <th scope="col">{{ _('Owner Name') }}</th>
+                    <th scope="col">{{ _('Description') }}</th>
+                    <th scope="col">{{ _('Location') }}</th>
+                    <th scope="col" style="text-align:left; padding-left:60px;">{{ _('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -108,8 +112,8 @@
                         <td>{{ business.location.address }}</td>
                         <td>
                             <form action="{{ url_for('admin_approve_business_request', business_request_id = business.businessrequestid) }}" method="post">
-                                <button type="submit" class="btn btn-success">Approve</button>
-                                <a href="{{ url_for('admin_delete_business_request', business_request_id = business.businessrequestid) }}" class="btn btn-danger">Delete</a>
+                                <button type="submit" class="btn btn-success">{{ _('Approve') }}</button>
+                                <a href="{{ url_for('admin_delete_business_request', business_request_id = business.businessrequestid) }}" class="btn btn-danger">{{ _('Delete') }}</a>
                             </form>
                         </td>
                     </tr>
@@ -146,7 +150,5 @@
         logo.src = originalSrc;
     });
 </script>
-
-
 </body>
 </html>
