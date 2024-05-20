@@ -1,0 +1,966 @@
+# Translations template for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-05-20 20:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: routes/helper_routes.py:27
+msgid "Username already exists. Please choose another username."
+msgstr ""
+
+#: templates/admin.html:31 templates/admin.html:124
+#: templates/admin_add_location.html:30 templates/admin_add_user.html:31
+#: templates/admin_business_requests.html:36
+#: templates/admin_get_business.html:32 templates/admin_get_route.html:31
+#: templates/admin_show_businesses.html:37 templates/admin_show_routes.html:36
+#: templates/admin_users.html:37 templates/edit_user.html:34
+#: templates/itinerary.html:123 templates/profile.html:122
+#: templates/settings.html:121
+msgid "Users"
+msgstr ""
+
+#: templates/admin.html:34 templates/admin.html:127
+#: templates/admin_add_location.html:33 templates/admin_add_user.html:34
+#: templates/admin_business_requests.html:39
+#: templates/admin_get_business.html:35 templates/admin_get_route.html:34
+#: templates/admin_show_businesses.html:40 templates/admin_show_routes.html:39
+#: templates/admin_users.html:6 templates/admin_users.html:40
+#: templates/admin_users.html:89 templates/edit_user.html:37
+#: templates/itinerary.html:126 templates/profile.html:125
+#: templates/settings.html:124
+msgid "All Users"
+msgstr ""
+
+#: templates/admin.html:35 templates/admin.html:128
+#: templates/admin_add_location.html:34 templates/admin_add_user.html:6
+#: templates/admin_add_user.html:35 templates/admin_add_user.html:84
+#: templates/admin_business_requests.html:40
+#: templates/admin_get_business.html:36 templates/admin_get_route.html:35
+#: templates/admin_show_businesses.html:41 templates/admin_show_routes.html:40
+#: templates/admin_users.html:41 templates/edit_user.html:38
+#: templates/itinerary.html:127 templates/profile.html:126
+#: templates/settings.html:125
+msgid "Add User"
+msgstr ""
+
+#: templates/admin.html:40 templates/admin.html:114
+#: templates/admin_add_location.html:39 templates/admin_add_user.html:40
+#: templates/admin_business_requests.html:45
+#: templates/admin_get_business.html:41 templates/admin_get_route.html:40
+#: templates/admin_show_businesses.html:46 templates/admin_show_routes.html:45
+#: templates/admin_users.html:46 templates/edit_user.html:43
+#: templates/itinerary.html:29 templates/itinerary.html:75
+#: templates/itinerary.html:132 templates/profile.html:29
+#: templates/profile.html:75 templates/profile.html:131
+#: templates/putnik.html:27 templates/putnik.html:68
+#: templates/putnik_add_business.html:34 templates/putnik_add_route.html:29
+#: templates/putnik_get_business.html:29 templates/putnik_get_route.html:28
+#: templates/putnik_show_all_routes.html:34
+#: templates/putnik_show_businesses.html:35
+#: templates/putnik_show_my_routes.html:35
+#: templates/putnik_update_route.html:26 templates/settings.html:28
+#: templates/settings.html:74 templates/settings.html:130
+#: templates/vlasnik.html:31 templates/vlasnik.html:102
+#: templates/vlasnik_add_business.html:36
+#: templates/vlasnik_edit_business.html:33
+#: templates/vlasnik_get_business.html:36 templates/vlasnik_get_route.html:29
+#: templates/vlasnik_show_all_businesses.html:35
+#: templates/vlasnik_show_my_businesses.html:35
+#: templates/vlasnik_show_routes.html:35
+#: templates/vlasnik_update_business.html:30
+msgid "Routes"
+msgstr ""
+
+#: templates/admin.html:43 templates/admin.html:117
+#: templates/admin_add_location.html:42 templates/admin_add_user.html:43
+#: templates/admin_business_requests.html:48
+#: templates/admin_get_business.html:44 templates/admin_get_route.html:43
+#: templates/admin_show_businesses.html:49 templates/admin_show_routes.html:48
+#: templates/admin_show_routes.html:88 templates/admin_users.html:49
+#: templates/edit_user.html:46 templates/itinerary.html:33
+#: templates/itinerary.html:78 templates/itinerary.html:135
+#: templates/profile.html:33 templates/profile.html:78
+#: templates/profile.html:134 templates/putnik.html:31 templates/putnik.html:76
+#: templates/putnik_add_business.html:38 templates/putnik_add_route.html:33
+#: templates/putnik_get_business.html:33 templates/putnik_get_route.html:32
+#: templates/putnik_show_all_routes.html:6
+#: templates/putnik_show_all_routes.html:38
+#: templates/putnik_show_all_routes.html:67
+#: templates/putnik_show_businesses.html:39
+#: templates/putnik_show_my_routes.html:39
+#: templates/putnik_update_route.html:30 templates/settings.html:32
+#: templates/settings.html:77 templates/settings.html:133
+#: templates/vlasnik.html:34 templates/vlasnik.html:105
+#: templates/vlasnik_add_business.html:39
+#: templates/vlasnik_edit_business.html:36
+#: templates/vlasnik_get_business.html:39 templates/vlasnik_get_route.html:32
+#: templates/vlasnik_show_all_businesses.html:38
+#: templates/vlasnik_show_my_businesses.html:38
+#: templates/vlasnik_show_routes.html:6 templates/vlasnik_show_routes.html:38
+#: templates/vlasnik_show_routes.html:68
+#: templates/vlasnik_update_business.html:33
+msgid "All Routes"
+msgstr ""
+
+#: templates/admin.html:48 templates/admin.html:90
+#: templates/admin_add_location.html:47 templates/admin_add_user.html:48
+#: templates/admin_business_requests.html:53
+#: templates/admin_get_business.html:49 templates/admin_get_route.html:48
+#: templates/admin_show_businesses.html:54 templates/admin_show_routes.html:53
+#: templates/admin_users.html:54 templates/edit_user.html:51
+#: templates/itinerary.html:39 templates/itinerary.html:83
+#: templates/itinerary.html:140 templates/profile.html:39
+#: templates/profile.html:83 templates/profile.html:139
+#: templates/putnik.html:37 templates/putnik_add_business.html:44
+#: templates/putnik_add_route.html:39 templates/putnik_get_business.html:39
+#: templates/putnik_get_route.html:39 templates/putnik_show_all_routes.html:44
+#: templates/putnik_show_businesses.html:45
+#: templates/putnik_show_my_routes.html:45
+#: templates/putnik_update_route.html:36 templates/settings.html:38
+#: templates/settings.html:82 templates/settings.html:138
+#: templates/vlasnik.html:39 templates/vlasnik.html:70
+#: templates/vlasnik_add_business.html:44
+#: templates/vlasnik_edit_business.html:41
+#: templates/vlasnik_get_business.html:44 templates/vlasnik_get_route.html:37
+#: templates/vlasnik_show_all_businesses.html:43
+#: templates/vlasnik_show_my_businesses.html:43
+#: templates/vlasnik_show_routes.html:43
+#: templates/vlasnik_update_business.html:38
+msgid "Businesses"
+msgstr ""
+
+#: templates/admin.html:51 templates/admin.html:95
+#: templates/admin_add_location.html:50 templates/admin_add_user.html:51
+#: templates/admin_business_requests.html:56
+#: templates/admin_get_business.html:52 templates/admin_get_route.html:51
+#: templates/admin_show_businesses.html:57 templates/admin_show_routes.html:56
+#: templates/admin_users.html:57 templates/edit_user.html:54
+#: templates/itinerary.html:42 templates/itinerary.html:87
+#: templates/itinerary.html:143 templates/profile.html:42
+#: templates/profile.html:87 templates/profile.html:142
+#: templates/putnik.html:82 templates/putnik_add_business.html:6
+#: templates/putnik_add_business.html:67
+#: templates/putnik_show_businesses.html:6
+#: templates/putnik_show_businesses.html:68 templates/settings.html:41
+#: templates/settings.html:86 templates/settings.html:141
+#: templates/vlasnik.html:43 templates/vlasnik.html:91
+#: templates/vlasnik_add_business.html:48
+#: templates/vlasnik_edit_business.html:45
+#: templates/vlasnik_get_business.html:48 templates/vlasnik_get_route.html:41
+#: templates/vlasnik_show_all_businesses.html:47
+#: templates/vlasnik_show_my_businesses.html:47
+#: templates/vlasnik_show_routes.html:47
+#: templates/vlasnik_update_business.html:42
+msgid "All Businesses"
+msgstr ""
+
+#: templates/admin.html:52 templates/admin.html:103
+#: templates/admin_add_location.html:51 templates/admin_add_user.html:52
+#: templates/admin_business_requests.html:57
+#: templates/admin_get_business.html:53 templates/admin_get_route.html:52
+#: templates/admin_show_businesses.html:58 templates/admin_users.html:58
+#: templates/profile.html:143
+msgid "Business Requests"
+msgstr ""
+
+#: templates/admin.html:57 templates/admin.html:136
+#: templates/admin_add_location.html:56 templates/admin_add_user.html:57
+#: templates/admin_business_requests.html:62
+#: templates/admin_get_business.html:58 templates/admin_get_route.html:57
+#: templates/admin_show_businesses.html:63 templates/admin_show_routes.html:62
+#: templates/admin_users.html:63 templates/edit_user.html:60
+#: templates/itinerary.html:149 templates/profile.html:148
+#: templates/settings.html:147
+msgid "Locations"
+msgstr ""
+
+#: templates/admin.html:60 templates/admin.html:139
+#: templates/admin_add_location.html:6 templates/admin_add_location.html:59
+#: templates/admin_add_location.html:83 templates/admin_add_location.html:89
+#: templates/admin_add_user.html:60 templates/admin_business_requests.html:65
+#: templates/admin_get_business.html:61 templates/admin_get_route.html:60
+#: templates/admin_show_businesses.html:66 templates/admin_show_routes.html:65
+#: templates/admin_users.html:66 templates/edit_user.html:63
+#: templates/itinerary.html:152 templates/profile.html:151
+#: templates/settings.html:150
+msgid "Add Location"
+msgstr ""
+
+#: templates/admin.html:68 templates/admin_add_location.html:67
+#: templates/admin_add_user.html:68 templates/admin_business_requests.html:73
+#: templates/admin_get_business.html:69 templates/admin_get_route.html:68
+#: templates/admin_show_businesses.html:74 templates/admin_show_routes.html:73
+#: templates/admin_users.html:74 templates/edit_user.html:71
+#: templates/itinerary.html:49 templates/itinerary.html:95
+#: templates/itinerary.html:160 templates/profile.html:7
+#: templates/profile.html:49 templates/profile.html:95
+#: templates/profile.html:159 templates/profile.html:178
+#: templates/putnik.html:47 templates/putnik_add_business.html:54
+#: templates/putnik_add_route.html:49 templates/putnik_get_business.html:49
+#: templates/putnik_get_route.html:50 templates/putnik_show_all_routes.html:54
+#: templates/putnik_show_businesses.html:55
+#: templates/putnik_show_my_routes.html:55
+#: templates/putnik_update_route.html:46 templates/settings.html:48
+#: templates/settings.html:94 templates/settings.html:158
+#: templates/vlasnik.html:51 templates/vlasnik_add_business.html:56
+#: templates/vlasnik_edit_business.html:53
+#: templates/vlasnik_get_business.html:56 templates/vlasnik_get_route.html:49
+#: templates/vlasnik_show_all_businesses.html:55
+#: templates/vlasnik_show_my_businesses.html:55
+#: templates/vlasnik_show_routes.html:55
+#: templates/vlasnik_update_business.html:50
+msgid "Profile"
+msgstr ""
+
+#: templates/admin.html:71 templates/admin_add_location.html:70
+#: templates/admin_add_user.html:71 templates/admin_business_requests.html:76
+#: templates/admin_get_business.html:72 templates/admin_get_route.html:71
+#: templates/admin_show_businesses.html:77 templates/admin_show_routes.html:76
+#: templates/admin_users.html:77 templates/edit_user.html:74
+#: templates/itinerary.html:52 templates/itinerary.html:98
+#: templates/itinerary.html:163 templates/profile.html:52
+#: templates/profile.html:98 templates/profile.html:162
+#: templates/putnik.html:50 templates/putnik_add_business.html:57
+#: templates/putnik_add_route.html:52 templates/putnik_get_business.html:52
+#: templates/putnik_get_route.html:53 templates/putnik_show_all_routes.html:57
+#: templates/putnik_show_businesses.html:58
+#: templates/putnik_show_my_routes.html:58
+#: templates/putnik_update_route.html:49 templates/settings.html:51
+#: templates/settings.html:97 templates/settings.html:161
+#: templates/vlasnik.html:54 templates/vlasnik_add_business.html:59
+#: templates/vlasnik_edit_business.html:56
+#: templates/vlasnik_get_business.html:59 templates/vlasnik_get_route.html:52
+#: templates/vlasnik_show_all_businesses.html:58
+#: templates/vlasnik_show_my_businesses.html:58
+#: templates/vlasnik_show_routes.html:58
+#: templates/vlasnik_update_business.html:53
+msgid "My Profile"
+msgstr ""
+
+#: templates/admin.html:72 templates/admin_add_location.html:71
+#: templates/admin_add_user.html:72 templates/admin_business_requests.html:77
+#: templates/admin_get_business.html:73 templates/admin_get_route.html:72
+#: templates/admin_show_businesses.html:78 templates/admin_show_routes.html:77
+#: templates/admin_users.html:78 templates/edit_user.html:75
+#: templates/itinerary.html:53 templates/itinerary.html:99
+#: templates/itinerary.html:164 templates/profile.html:53
+#: templates/profile.html:99 templates/profile.html:163
+#: templates/putnik.html:51 templates/putnik_add_business.html:58
+#: templates/putnik_add_route.html:53 templates/putnik_get_business.html:53
+#: templates/putnik_get_route.html:54 templates/putnik_show_all_routes.html:58
+#: templates/putnik_show_businesses.html:59
+#: templates/putnik_show_my_routes.html:59
+#: templates/putnik_update_route.html:50 templates/settings.html:6
+#: templates/settings.html:52 templates/settings.html:98
+#: templates/settings.html:162 templates/settings.html:177
+#: templates/vlasnik.html:55 templates/vlasnik_add_business.html:60
+#: templates/vlasnik_edit_business.html:57
+#: templates/vlasnik_get_business.html:60 templates/vlasnik_get_route.html:53
+#: templates/vlasnik_show_all_businesses.html:59
+#: templates/vlasnik_show_my_businesses.html:59
+#: templates/vlasnik_show_routes.html:59
+#: templates/vlasnik_update_business.html:54
+msgid "Settings"
+msgstr ""
+
+#: templates/admin.html:74 templates/admin_add_location.html:73
+#: templates/admin_add_user.html:74 templates/admin_business_requests.html:79
+#: templates/admin_get_business.html:75 templates/admin_get_route.html:74
+#: templates/admin_show_businesses.html:80 templates/admin_show_routes.html:79
+#: templates/admin_users.html:80 templates/edit_user.html:77
+#: templates/itinerary.html:55 templates/itinerary.html:101
+#: templates/itinerary.html:166 templates/profile.html:55
+#: templates/profile.html:101 templates/profile.html:165
+#: templates/putnik.html:53 templates/putnik_add_business.html:60
+#: templates/putnik_add_route.html:55 templates/putnik_get_business.html:55
+#: templates/putnik_get_route.html:56 templates/putnik_show_all_routes.html:60
+#: templates/putnik_show_businesses.html:61
+#: templates/putnik_show_my_routes.html:61
+#: templates/putnik_update_route.html:52 templates/settings.html:54
+#: templates/settings.html:100 templates/settings.html:164
+#: templates/vlasnik.html:57 templates/vlasnik_add_business.html:62
+#: templates/vlasnik_edit_business.html:59
+#: templates/vlasnik_get_business.html:62 templates/vlasnik_get_route.html:55
+#: templates/vlasnik_show_all_businesses.html:61
+#: templates/vlasnik_show_my_businesses.html:61
+#: templates/vlasnik_show_routes.html:61
+#: templates/vlasnik_update_business.html:56
+msgid "Logout"
+msgstr ""
+
+#: templates/admin.html:84
+msgid "Welcome, administrator!"
+msgstr ""
+
+#: templates/admin.html:96 templates/putnik.html:40 templates/putnik.html:85
+#: templates/putnik_add_business.html:47 templates/putnik_add_route.html:42
+#: templates/putnik_get_business.html:42 templates/putnik_get_route.html:42
+#: templates/putnik_show_all_routes.html:47
+#: templates/putnik_show_businesses.html:48
+#: templates/putnik_show_my_routes.html:48
+#: templates/putnik_update_route.html:39 templates/vlasnik.html:92
+msgid "Show All Businesses"
+msgstr ""
+
+#: templates/admin.html:104
+msgid "Show All Business Requests"
+msgstr ""
+
+#: templates/admin_add_location.html:86
+msgid "Address"
+msgstr ""
+
+#: templates/admin_add_user.html:87 templates/admin_users.html:95
+#: templates/edit_user.html:91 templates/login.html:35
+#: templates/profile.html:191 templates/register.html:36
+msgid "Username"
+msgstr ""
+
+#: templates/admin_add_user.html:91 templates/login.html:39
+#: templates/register.html:40
+msgid "Password"
+msgstr ""
+
+#: templates/admin_add_user.html:95 templates/admin_users.html:96
+#: templates/edit_user.html:95 templates/profile.html:219
+#: templates/register.html:46
+msgid "First Name"
+msgstr ""
+
+#: templates/admin_add_user.html:99 templates/admin_users.html:97
+#: templates/edit_user.html:99 templates/profile.html:223
+#: templates/register.html:50
+msgid "Last Name"
+msgstr ""
+
+#: templates/admin_add_user.html:103 templates/admin_users.html:98
+#: templates/edit_user.html:103 templates/forgot_password.html:23
+#: templates/profile.html:210 templates/register.html:54
+msgid "Email"
+msgstr ""
+
+#: templates/admin_add_user.html:107 templates/admin_users.html:99
+#: templates/edit_user.html:107 templates/profile.html:214
+#: templates/register.html:58
+msgid "Phone Number"
+msgstr ""
+
+#: templates/admin_add_user.html:112 templates/admin_users.html:100
+#: templates/edit_user.html:112 templates/register.html:63
+msgid "User Type"
+msgstr ""
+
+#: templates/admin_add_user.html:114
+msgid "Administrator"
+msgstr ""
+
+#: templates/admin_add_user.html:115 templates/register.html:65
+msgid "Traveler"
+msgstr ""
+
+#: templates/admin_add_user.html:116 templates/register.html:66
+msgid "Business Owner"
+msgstr ""
+
+#: templates/admin_add_user.html:119 templates/putnik_add_route.html:102
+#: templates/verification_code.html:24 templates/vlasnik_add_business.html:98
+#: templates/vlasnik_get_business.html:98
+msgid "Submit"
+msgstr ""
+
+#: templates/admin_business_requests.html:6
+#: templates/admin_business_requests.html:91
+msgid "Admin All Business Requests"
+msgstr ""
+
+#: templates/admin_business_requests.html:99
+#: templates/admin_show_businesses.html:100
+#: templates/putnik_add_business.html:79 templates/putnik_get_business.html:6
+#: templates/putnik_get_business.html:64
+#: templates/putnik_show_businesses.html:80
+#: templates/vlasnik_add_business.html:76
+#: templates/vlasnik_edit_business.html:72
+#: templates/vlasnik_get_business.html:76
+#: templates/vlasnik_show_all_businesses.html:80
+#: templates/vlasnik_show_my_businesses.html:80
+#: templates/vlasnik_update_business.html:71
+msgid "Business Name"
+msgstr ""
+
+#: templates/admin_business_requests.html:100
+#: templates/admin_show_businesses.html:104
+#: templates/putnik_add_business.html:83
+#: templates/putnik_show_businesses.html:84
+msgid "Owner Name"
+msgstr ""
+
+#: templates/admin_business_requests.html:101
+#: templates/admin_show_businesses.html:105
+#: templates/admin_show_routes.html:101 templates/itinerary.html:192
+#: templates/putnik_add_business.html:84 templates/putnik_add_route.html:76
+#: templates/putnik_show_all_routes.html:80
+#: templates/putnik_show_businesses.html:85
+#: templates/putnik_show_my_routes.html:81
+#: templates/putnik_update_route.html:68 templates/vlasnik_add_business.html:80
+#: templates/vlasnik_edit_business.html:76
+#: templates/vlasnik_get_business.html:80
+#: templates/vlasnik_show_all_businesses.html:84
+#: templates/vlasnik_show_my_businesses.html:84
+#: templates/vlasnik_show_routes.html:81
+#: templates/vlasnik_update_business.html:75
+msgid "Description"
+msgstr ""
+
+#: templates/admin_business_requests.html:102
+#: templates/admin_show_businesses.html:106 templates/itinerary.html:187
+#: templates/putnik_add_business.html:85
+#: templates/putnik_show_businesses.html:86
+#: templates/vlasnik_add_business.html:84
+#: templates/vlasnik_edit_business.html:80
+#: templates/vlasnik_get_business.html:84
+#: templates/vlasnik_show_all_businesses.html:85
+#: templates/vlasnik_show_my_businesses.html:85
+msgid "Location"
+msgstr ""
+
+#: templates/admin_business_requests.html:103
+#: templates/admin_show_businesses.html:107
+#: templates/admin_show_routes.html:105 templates/admin_users.html:101
+#: templates/putnik_add_business.html:86
+#: templates/putnik_show_all_routes.html:84
+#: templates/putnik_show_businesses.html:87
+#: templates/putnik_show_my_routes.html:85
+#: templates/vlasnik_show_all_businesses.html:87
+#: templates/vlasnik_show_my_businesses.html:87
+#: templates/vlasnik_show_routes.html:85
+msgid "Actions"
+msgstr ""
+
+#: templates/admin_business_requests.html:115
+msgid "Approve"
+msgstr ""
+
+#: templates/admin_business_requests.html:116
+#: templates/admin_show_businesses.html:129
+#: templates/admin_show_routes.html:123 templates/admin_users.html:118
+#: templates/itinerary.html:204 templates/putnik_show_my_routes.html:102
+#: templates/vlasnik_show_my_businesses.html:108
+msgid "Delete"
+msgstr ""
+
+#: templates/admin_get_business.html:18 templates/admin_get_route.html:17
+#: templates/admin_show_businesses.html:23 templates/admin_show_routes.html:22
+msgid "Logo"
+msgstr ""
+
+#: templates/admin_get_business.html:89 templates/putnik_get_business.html:67
+msgid "Business Details"
+msgstr ""
+
+#: templates/admin_get_business.html:93 templates/putnik_get_business.html:71
+#: templates/vlasnik_update_business.html:79
+msgid "Location ID"
+msgstr ""
+
+#: templates/admin_get_business.html:94 templates/putnik_get_business.html:72
+#: templates/vlasnik_add_business.html:89
+#: templates/vlasnik_get_business.html:89
+msgid "Price"
+msgstr ""
+
+#: templates/admin_get_business.html:98 templates/putnik_get_business.html:77
+msgid "Business Image"
+msgstr ""
+
+#: templates/admin_get_business.html:102
+msgid "No images"
+msgstr ""
+
+#: templates/admin_get_route.html:6 templates/admin_get_route.html:85
+#: templates/putnik_get_route.html:6 templates/putnik_get_route.html:66
+#: templates/vlasnik_get_route.html:6 templates/vlasnik_get_route.html:63
+msgid "Route Details"
+msgstr ""
+
+#: templates/admin_get_route.html:91 templates/admin_show_routes.html:102
+#: templates/putnik_add_route.html:80 templates/putnik_get_route.html:72
+#: templates/putnik_show_all_routes.html:81
+#: templates/putnik_show_my_routes.html:82
+#: templates/putnik_update_route.html:72 templates/vlasnik_show_routes.html:82
+msgid "Start Date"
+msgstr ""
+
+#: templates/admin_get_route.html:92 templates/admin_show_routes.html:103
+#: templates/putnik_add_route.html:84 templates/putnik_get_route.html:73
+#: templates/putnik_show_all_routes.html:82
+#: templates/putnik_show_my_routes.html:83
+#: templates/putnik_update_route.html:76 templates/vlasnik_show_routes.html:83
+msgid "End Date"
+msgstr ""
+
+#: templates/admin_get_route.html:93 templates/putnik_get_route.html:74
+msgid "Status"
+msgstr ""
+
+#: templates/admin_get_route.html:95 templates/putnik_get_route.html:76
+#: templates/vlasnik_get_route.html:73
+msgid "Go Back"
+msgstr ""
+
+#: templates/admin_get_route.html:97 templates/admin_users.html:117
+#: templates/putnik_get_route.html:78 templates/vlasnik_edit_business.html:6
+#: templates/vlasnik_edit_business.html:67 templates/vlasnik_get_route.html:75
+#: templates/vlasnik_show_my_businesses.html:107
+msgid "Edit"
+msgstr ""
+
+#: templates/admin_get_route.html:101 templates/putnik_get_route.html:82
+#: templates/vlasnik_get_route.html:79
+msgid "View Day"
+msgstr ""
+
+#: templates/admin_get_route.html:101 templates/itinerary.html:6
+#: templates/itinerary.html:182 templates/putnik_get_route.html:82
+#: templates/vlasnik_get_route.html:79
+msgid "Itinerary"
+msgstr ""
+
+#: templates/admin_show_businesses.html:6
+#: templates/admin_show_businesses.html:88
+msgid "Admin All Businesses"
+msgstr ""
+
+#: templates/admin_show_businesses.html:90
+msgid "Search by business name"
+msgstr ""
+
+#: templates/admin_show_businesses.html:96
+#: templates/putnik_add_business.html:75
+#: templates/putnik_show_businesses.html:76
+#: templates/vlasnik_add_business.html:93
+#: templates/vlasnik_edit_business.html:85
+#: templates/vlasnik_get_business.html:93
+#: templates/vlasnik_show_all_businesses.html:76
+#: templates/vlasnik_show_my_businesses.html:76
+msgid "Images"
+msgstr ""
+
+#: templates/admin_show_businesses.html:99
+#: templates/putnik_add_business.html:78
+#: templates/putnik_show_businesses.html:79
+#: templates/vlasnik_show_all_businesses.html:79
+#: templates/vlasnik_show_my_businesses.html:79
+msgid "Sort by Business Name"
+msgstr ""
+
+#: templates/admin_show_businesses.html:117
+#: templates/putnik_add_business.html:97
+#: templates/putnik_show_businesses.html:98
+#: templates/vlasnik_show_all_businesses.html:97
+msgid "No images available"
+msgstr ""
+
+#: templates/admin_show_businesses.html:125
+msgid "Business Actions"
+msgstr ""
+
+#: templates/admin_show_businesses.html:126 templates/itinerary.html:201
+#: templates/putnik_add_business.html:106
+#: templates/putnik_show_businesses.html:107
+#: templates/vlasnik_show_all_businesses.html:104
+#: templates/vlasnik_show_my_businesses.html:106
+msgid "Map"
+msgstr ""
+
+#: templates/admin_show_businesses.html:127 templates/itinerary.html:195
+#: templates/itinerary.html:197 templates/itinerary.html:199
+#: templates/putnik_add_business.html:104
+#: templates/putnik_show_all_routes.html:98
+#: templates/putnik_show_businesses.html:108
+#: templates/putnik_show_my_routes.html:99
+#: templates/vlasnik_show_all_businesses.html:105
+#: templates/vlasnik_show_routes.html:99
+msgid "View"
+msgstr ""
+
+#: templates/admin_show_routes.html:6
+msgid "Show Routes"
+msgstr ""
+
+#: templates/admin_show_routes.html:57 templates/itinerary.html:144
+#: templates/settings.html:142
+msgid "Business Approval Requests"
+msgstr ""
+
+#: templates/admin_show_routes.html:93 templates/putnik_show_all_routes.html:72
+#: templates/putnik_show_my_routes.html:73
+msgid "Route ID"
+msgstr ""
+
+#: templates/admin_show_routes.html:96 templates/putnik_show_all_routes.html:75
+#: templates/putnik_show_my_routes.html:76
+#: templates/vlasnik_show_routes.html:76
+msgid "Sort by Route Name"
+msgstr ""
+
+#: templates/admin_show_routes.html:97 templates/putnik_add_route.html:72
+#: templates/putnik_show_all_routes.html:76
+#: templates/putnik_show_my_routes.html:77
+#: templates/putnik_update_route.html:64 templates/vlasnik_show_routes.html:77
+msgid "Route Name"
+msgstr ""
+
+#: templates/admin_show_routes.html:104
+#: templates/putnik_show_all_routes.html:83
+#: templates/putnik_show_my_routes.html:84
+#: templates/vlasnik_show_routes.html:84
+msgid "Created By"
+msgstr ""
+
+#: templates/admin_show_routes.html:118
+msgid "Route Actions"
+msgstr ""
+
+#: templates/admin_show_routes.html:120 templates/login.html:42
+#: templates/profile.html:202 templates/register.html:114
+msgid "Show"
+msgstr ""
+
+#: templates/admin_show_routes.html:122
+#: templates/putnik_show_my_routes.html:102
+msgid "Are you sure you want to delete this route?"
+msgstr ""
+
+#: templates/admin_users.html:94
+msgid "User ID"
+msgstr ""
+
+#: templates/admin_users.html:116
+msgid "Are you sure you want to delete this user?"
+msgstr ""
+
+#: templates/edit_user.html:7 templates/edit_user.html:88
+msgid "Edit User"
+msgstr ""
+
+#: templates/edit_user.html:55
+msgid "Business Acceptance Requests"
+msgstr ""
+
+#: templates/edit_user.html:115 templates/vlasnik_edit_business.html:96
+msgid "Save Changes"
+msgstr ""
+
+#: templates/forgot_password.html:6 templates/forgot_password.html:20
+#: templates/login.html:48
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/forgot_password.html:26
+msgid "Reset password"
+msgstr ""
+
+#: templates/itinerary.html:32 templates/profile.html:32
+#: templates/settings.html:31
+msgid "New Route"
+msgstr ""
+
+#: templates/itinerary.html:34 templates/profile.html:34
+#: templates/putnik.html:32 templates/putnik.html:77
+#: templates/putnik_add_business.html:39 templates/putnik_add_route.html:34
+#: templates/putnik_get_business.html:34 templates/putnik_get_route.html:33
+#: templates/putnik_show_all_routes.html:39
+#: templates/putnik_show_businesses.html:40
+#: templates/putnik_show_my_routes.html:6
+#: templates/putnik_show_my_routes.html:40
+#: templates/putnik_show_my_routes.html:68
+#: templates/putnik_update_route.html:31 templates/settings.html:33
+msgid "My Routes"
+msgstr ""
+
+#: templates/itinerary.html:86 templates/profile.html:86
+#: templates/settings.html:85 templates/vlasnik.html:42
+#: templates/vlasnik.html:75 templates/vlasnik.html:76
+#: templates/vlasnik_add_business.html:47
+#: templates/vlasnik_edit_business.html:44
+#: templates/vlasnik_get_business.html:47 templates/vlasnik_get_route.html:40
+#: templates/vlasnik_show_all_businesses.html:46
+#: templates/vlasnik_show_my_businesses.html:46
+#: templates/vlasnik_show_routes.html:46
+#: templates/vlasnik_update_business.html:41
+msgid "Create Business"
+msgstr ""
+
+#: templates/itinerary.html:88 templates/profile.html:88
+#: templates/settings.html:87 templates/vlasnik.html:44
+#: templates/vlasnik.html:83 templates/vlasnik_add_business.html:49
+#: templates/vlasnik_edit_business.html:46
+#: templates/vlasnik_get_business.html:49 templates/vlasnik_get_route.html:42
+#: templates/vlasnik_show_all_businesses.html:48
+#: templates/vlasnik_show_my_businesses.html:48
+#: templates/vlasnik_show_routes.html:48
+#: templates/vlasnik_update_business.html:43
+msgid "My Businesses"
+msgstr ""
+
+#: templates/itinerary.html:178
+msgid "Route"
+msgstr ""
+
+#: templates/itinerary.html:181
+msgid "Duration"
+msgstr ""
+
+#: templates/itinerary.html:181
+msgid "days"
+msgstr ""
+
+#: templates/itinerary.html:182
+msgid "Day"
+msgstr ""
+
+#: templates/itinerary.html:190
+msgid "Business"
+msgstr ""
+
+#: templates/itinerary.html:216
+msgid "Add for Day"
+msgstr ""
+
+#: templates/login.html:6
+msgid "Login Page"
+msgstr ""
+
+#: templates/login.html:20 templates/login.html:45
+msgid "Login"
+msgstr ""
+
+#: templates/login.html:47
+msgid "Don't have an account? Register here."
+msgstr ""
+
+#: templates/profile.html:182 templates/profile.html:183
+msgid "Profile Picture"
+msgstr ""
+
+#: templates/profile.html:187
+msgid "Change Profile Picture"
+msgstr ""
+
+#: templates/profile.html:195
+msgid "Current Password"
+msgstr ""
+
+#: templates/profile.html:199 templates/reset_password.html:38
+msgid "New Password"
+msgstr ""
+
+#: templates/profile.html:206
+msgid "Verify New Password"
+msgstr ""
+
+#: templates/profile.html:226
+msgid "Update Profile"
+msgstr ""
+
+#: templates/putnik.html:30 templates/putnik_add_business.html:37
+#: templates/putnik_add_route.html:32 templates/putnik_add_route.html:64
+#: templates/putnik_get_business.html:32 templates/putnik_get_route.html:31
+#: templates/putnik_show_all_routes.html:37
+#: templates/putnik_show_businesses.html:38
+#: templates/putnik_show_my_routes.html:38
+#: templates/putnik_update_route.html:29
+msgid "Create New Route"
+msgstr ""
+
+#: templates/putnik.html:60
+msgid "Welcome,"
+msgstr ""
+
+#: templates/putnik.html:69
+msgid "Create Route"
+msgstr ""
+
+#: templates/putnik.html:75
+msgid "Route Overview"
+msgstr ""
+
+#: templates/putnik_add_business.html:69
+#: templates/putnik_show_businesses.html:70
+#: templates/vlasnik_show_all_businesses.html:70
+#: templates/vlasnik_show_my_businesses.html:70
+msgid "Search by Business Name"
+msgstr ""
+
+#: templates/putnik_add_business.html:109
+msgid "Add"
+msgstr ""
+
+#: templates/putnik_add_route.html:6
+msgid "Add Route"
+msgstr ""
+
+#: templates/putnik_add_route.html:88 templates/putnik_update_route.html:80
+msgid "Visibility"
+msgstr ""
+
+#: templates/putnik_add_route.html:90 templates/putnik_update_route.html:82
+msgid "Public"
+msgstr ""
+
+#: templates/putnik_add_route.html:91 templates/putnik_update_route.html:83
+msgid "Private"
+msgstr ""
+
+#: templates/putnik_add_route.html:95 templates/putnik_get_route.html:87
+#: templates/putnik_update_route.html:93
+msgid "Participants"
+msgstr ""
+
+#: templates/putnik_get_business.html:68
+msgid "Business Description"
+msgstr ""
+
+#: templates/putnik_get_business.html:81
+msgid "No images available."
+msgstr ""
+
+#: templates/putnik_update_route.html:5 templates/putnik_update_route.html:61
+msgid "Update Route"
+msgstr ""
+
+#: templates/putnik_update_route.html:87
+msgid "Route Duration"
+msgstr ""
+
+#: templates/putnik_update_route.html:105
+#: templates/vlasnik_update_business.html:82
+msgid "Update"
+msgstr ""
+
+#: templates/putnik_update_route.html:107
+msgid "Add Selected"
+msgstr ""
+
+#: templates/putnik_update_route.html:108
+msgid "Remove Selected"
+msgstr ""
+
+#: templates/register.html:6
+msgid "Registration"
+msgstr ""
+
+#: templates/register.html:21 templates/register.html:69
+msgid "Register"
+msgstr ""
+
+#: templates/register.html:72
+msgid "Already have an account? Log in here."
+msgstr ""
+
+#: templates/register.html:114
+msgid "Hide"
+msgstr ""
+
+#: templates/reset_password.html:6 templates/reset_password.html:20
+msgid "Reset Password"
+msgstr ""
+
+#: templates/reset_password.html:42
+msgid "Confirm Password"
+msgstr ""
+
+#: templates/reset_password.html:45
+msgid "Set Password"
+msgstr ""
+
+#: templates/settings.html:181
+msgid "Dark Mode"
+msgstr ""
+
+#: templates/settings.html:183
+msgid "Save"
+msgstr ""
+
+#: templates/verification_code.html:6
+msgid "Verification Code"
+msgstr ""
+
+#: templates/verification_code.html:14
+msgid "Enter Verification Code"
+msgstr ""
+
+#: templates/vlasnik.html:64
+msgid "Welcome, owner!"
+msgstr ""
+
+#: templates/vlasnik.html:84
+msgid "Show My Businesses"
+msgstr ""
+
+#: templates/vlasnik_add_business.html:6 templates/vlasnik_get_business.html:6
+msgid "Add Request"
+msgstr ""
+
+#: templates/vlasnik_add_business.html:71
+#: templates/vlasnik_get_business.html:71
+msgid "Add New Business Request"
+msgstr ""
+
+#: templates/vlasnik_add_business.html:97
+#: templates/vlasnik_get_business.html:97
+msgid "Add Image"
+msgstr ""
+
+#: templates/vlasnik_edit_business.html:89
+msgid "Image"
+msgstr ""
+
+#: templates/vlasnik_get_route.html:69
+msgid "Start Date:"
+msgstr ""
+
+#: templates/vlasnik_get_route.html:70
+msgid "End Date:"
+msgstr ""
+
+#: templates/vlasnik_get_route.html:71
+msgid "Status:"
+msgstr ""
+
+#: templates/vlasnik_show_all_businesses.html:6
+#: templates/vlasnik_show_my_businesses.html:6
+msgid "Owner All Businesses"
+msgstr ""
+
+#: templates/vlasnik_show_all_businesses.html:68
+msgid "Display All Businesses"
+msgstr ""
+
+#: templates/vlasnik_show_all_businesses.html:86
+#: templates/vlasnik_show_my_businesses.html:86
+msgid "Owner"
+msgstr ""
+
+#: templates/vlasnik_show_my_businesses.html:68
+msgid "Display My Businesses"
+msgstr ""
+
+#: templates/vlasnik_update_business.html:6
+#: templates/vlasnik_update_business.html:63
+msgid "Update Business"
+msgstr ""
+
