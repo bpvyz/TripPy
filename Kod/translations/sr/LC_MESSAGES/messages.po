@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-20 20:52+0200\n"
+"POT-Creation-Date: 2024-05-20 21:23+0200\n"
 "PO-Revision-Date: 2024-05-20 00:17+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sr\n"
@@ -302,10 +302,6 @@ msgstr "Postavke"
 #: templates/vlasnik_update_business.html:56
 msgid "Logout"
 msgstr "Odjava"
-
-#: templates/admin.html:84
-msgid "Welcome, administrator!"
-msgstr "Dobrodošli, administratore!"
 
 #: templates/admin.html:96 templates/putnik.html:40 templates/putnik.html:85
 #: templates/putnik_add_business.html:47 templates/putnik_add_route.html:42
@@ -604,7 +600,6 @@ msgstr "Prikaži maršrute"
 
 #: templates/admin_show_routes.html:57 templates/itinerary.html:144
 #: templates/settings.html:142
-#, fuzzy
 msgid "Business Approval Requests"
 msgstr "Zahtevi za prihvatanje oglasa"
 
@@ -789,7 +784,9 @@ msgstr "Ažuriraj profil"
 msgid "Create New Route"
 msgstr "Kreiraj Novu Maršrutu"
 
+#: templates/vlasnik.html:64
 #: templates/putnik.html:60
+#: templates/admin.html:84
 msgid "Welcome,"
 msgstr "Dobrodošli,"
 
@@ -906,10 +903,6 @@ msgstr "Kod za verifikaciju"
 msgid "Enter Verification Code"
 msgstr "Unesite kod za verifikaciju"
 
-#: templates/vlasnik.html:64
-msgid "Welcome, owner!"
-msgstr "Dobrodošli, vlasniče!"
-
 #: templates/vlasnik.html:84
 msgid "Show My Businesses"
 msgstr "Prikaži moje oglase"
@@ -966,4 +959,5 @@ msgstr "Prikazivanje mojih oglasa"
 #: templates/vlasnik_update_business.html:63
 msgid "Update Business"
 msgstr "Ažuriraj Oglas"
+
 

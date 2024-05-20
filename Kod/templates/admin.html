@@ -14,7 +14,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogo.svg') }}" alt="Logo" class="logo" id="logo"></a>
+  <a class="navbar-brand" href="#" style="padding-left: 10px; padding-bottom: 0; padding-top: 0" onclick="dashboard()"><img src="{{ url_for('static', filename='images/TripPyLogoPurple.svg') }}" alt="Logo" class="logo" id="logo"></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -81,67 +81,69 @@
 
 
 <div class="container mt-5">
-  <h1>{{ _('Welcome, administrator!') }}</h1>
+  <h1 class="card-title">{{ _('Welcome,') }} {{user.username}}!</h1>
 
-  <div class="margin-bottom-50"></div>
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="card-title">{{ _('Businesses') }}</h2>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h3 class="card-title">{{ _('All Businesses') }}</h3>
+                  <button class="btn btn-primary" onclick="admin_show_businesses()">{{ _('Show All Businesses') }}</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h3 class="card-title">{{ _('Business Requests') }}</h3>
+                  <button class="btn btn-primary" onclick="admin_business_requests()">{{ _('Show All Business Requests') }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2>{{ _('Businesses') }}</h2>
       <div class="row">
         <div class="col-md-4">
-          <div class="card">
+          <h2 class="card-title">{{ _('Routes') }}</h2>
+          <div class="card mb-3">
             <div class="card-body">
-              <h3 class="card-title">{{ _('All Businesses') }}</h3>
-              <button class="btn btn-primary" onclick="admin_show_businesses()">{{ _('Show All Businesses') }}</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">{{ _('Business Requests') }}</h3>
-              <button class="btn btn-primary" onclick="admin_business_requests()">{{ _('Show All Business Requests') }}</button>
+              <button class="btn btn-primary" onclick="admin_show_routes()">{{ _('All Routes') }} </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4">
-      <h2>{{ _('Routes') }}</h2>
-      <div class="card">
-        <div class="card-body">
-          <button class="btn btn-primary" onclick="admin_show_routes()">{{ _('All Routes') }} </button>
+      <div class="row">
+        <div class="col-md-4">
+          <h2 class="card-title">{{ _('Users') }}</h2>
+          <div class="card mb-3">
+            <div class="card-body">
+              <button class="btn btn-primary" href="#" onclick="admin_users()">{{ _('All Users') }} </button>
+              <button class="btn btn-primary" href="#" onclick="admin_add_user()">{{ _('Add User') }} </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <h2>{{ _('Users') }}</h2>
-      <div class="card">
-        <div class="card-body">
-          <button class="btn btn-primary" href="#" onclick="admin_users()">{{ _('All Users') }} </button>
-          <button class="btn btn-primary" href="#" onclick="admin_add_user()">{{ _('Add User') }} </button>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h2 class="card-title">{{ _('Locations') }}</h2>
+          <div class="card mb-3">
+            <div class="card-body">
+              <a href="/admin_add_location" class="btn btn-primary">{{ _('Add Location') }}</a>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-4">
-      <h2>{{ _('Locations') }}</h2>
-      <div class="card">
-        <div class="card-body">
-          <a href="/admin_add_location" class="btn btn-primary">{{ _('Add Location') }}</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <div class="alert-container">
