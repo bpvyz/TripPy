@@ -125,11 +125,11 @@ def vlasnik_delete_business(business_id):
 @vlasnik_required
 def vlasnik_get_business(business_id):
     business = Business.query.filter_by(businessid=business_id).first()
-    user_id = session['user_id']
     if not business:
         return render_template('message_template.html', message='Business not found')
+
     image_paths = business.image_path.split(',') if business.image_path else []
-    return render_template('vlasnik_get_business.html', business=business, image_paths=image_paths, user_id=user_id)
+    return render_template('vlasnik_get_business.html', business=business, image_paths=image_paths)
 
 @vlasnik_required
 def vlasnik_get_route(route_id):

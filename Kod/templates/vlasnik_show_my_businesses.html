@@ -104,7 +104,7 @@
                     <td>
                         <div class="btn-group" role="group" aria-label="Business Actions">
                             <button class="btn btn-success" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
-                            <a href="{{ url_for('vlasnik_get_business', business_id=business.businessid) }}" class="btn btn-primary">{{ _('Edit') }}</a>
+                            <a href="{{ url_for('vlasnik_edit_business', business_id=business.businessid) }}" class="btn btn-primary">{{ _('Edit') }}</a>
                             <a href="{{ url_for('vlasnik_delete_business', business_id=business.businessid) }}" class="btn btn-danger">{{ _('Delete') }}</a>
                         </div>
                     </td>
