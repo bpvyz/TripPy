@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, session, Blueprint, request, jsonify
 from functools import wraps
 from werkzeug.utils import secure_filename
-from mappings.tables import User, db, Route, Business, Location, BusinessRequest, RouteLocation
+from mappings.tables import User, db, Route, Business, Location, BusinessRequest, RouteLocation, RouteParticipant
 import os
 import time
 
@@ -140,7 +140,9 @@ def vlasnik_get_route(route_id):
     route_duration = (route.enddate - route.startdate).days
 
     if route.public == 'public':
-        return render_template('vlasnik_get_route.html', route=route, route_duration=route_duration)
+        route_participants = User.query.join(RouteParticipant, User.userid == RouteParticipant.userid).filter(RouteParticipant.routeid == route_id).all()
+
+        return render_template('vlasnik_get_route.html', route=route, route_duration=route_duration, route_participants=route_participants, user_id=session['user_id'])
     else:
         abort(403, description="You do not have permission to view this route")
 
