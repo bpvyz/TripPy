@@ -1,6 +1,6 @@
 import time
-from flask import render_template, Blueprint, redirect, url_for, request, session, Blueprint, redirect, flash
-from mappings.tables import User, db, Route, Business, Location
+from flask import render_template, Blueprint, redirect, url_for, request, session, flash
+from mappings.tables import User, db
 from util import generate_verification_code, send_reset_email
 from flask_babel import Babel, _
 import secrets
@@ -9,9 +9,11 @@ import os
 
 helper_routes = Blueprint('helper_routes', __name__)
 
-#region Helper routes
+
+# region Helper routes
 def loading():
     return render_template('loading.html')
+
 
 def register():
     if request.method == 'POST':
@@ -66,16 +68,18 @@ def verify():
 
             return render_template('redirect_login.html')
         else:
-            error = "Verification code incorrect. Please try again."
+            error = _("Verification code incorrect. Please try again.")
             return render_template('verification_code.html', error=error)
 
     expected_verification_code = session.get('expected_verification_code')
     registration_data = session.get('registration_data', {})
 
     if expected_verification_code:
-        return render_template('verification_code.html', expected_verification_code=expected_verification_code, registration_data=registration_data)
+        return render_template('verification_code.html', expected_verification_code=expected_verification_code,
+                               registration_data=registration_data)
     else:
         return redirect(url_for('register'))
+
 
 def login():
     if request.method == 'POST':
@@ -92,7 +96,7 @@ def login():
             else:
                 return redirect(url_for('admin_dashboard'))
         else:
-            flash('Neispravno korisničko ime ili lozinka!', 'error')  # Flash error message
+            flash(_('Invalid username or password!'), 'error')  # Flash error message
             return render_template('login.html')
 
     return render_template('login.html')
@@ -102,12 +106,14 @@ def logout():
     session.pop('user_id', None)
     return redirect(url_for('login'))
 
+
 def settings():
     if 'user_id' in session:
         user = session['user_type']
         return render_template('settings.html', dark_mode=session.get('dark_mode', False), user=user)
     else:
         return redirect(url_for('login'))
+
 
 def toggle_theme():
     if request.method == 'POST':
@@ -117,7 +123,7 @@ def toggle_theme():
         # ubacuje se u sesiju u promenljivu 'dark_mode'
         session['dark_mode'] = dark_mode
 
-        #redirect nazad na dashboard odgovarajuceg korisnika
+        # redirect nazad na dashboard odgovarajuceg korisnika
         if 'user_id' in session:
             user_id = session['user_id']
             user = User.query.get(user_id)
@@ -131,6 +137,7 @@ def toggle_theme():
             return redirect(url_for('login'))
     else:
         return redirect(url_for('login'))
+
 
 def profile():
     if 'user_id' in session:
@@ -148,17 +155,17 @@ def profile():
 
             upload_dir = os.path.join(os.getcwd(), 'static', 'uploads')
             if 'profile_picture' in request.files:
-                
+
                 file = request.files['profile_picture']
                 if file.filename != '':
                     filename = file.filename
                     file_path = os.path.join(upload_dir, filename)
                     rel_path = os.path.join('/static/uploads', filename).replace('\\', '/')
                     file.save(file_path)
-                    user.profilna = rel_path 
+                    user.profilna = rel_path
 
             db.session.commit()
-            flash('Profile updated successfully!', 'success')
+            flash(_('Profile updated successfully!'), 'success')
 
             if user.usertype == "Putnik":
                 return redirect(url_for('putnik_dashboard'))
@@ -171,6 +178,7 @@ def profile():
     else:
         return redirect(url_for('login'))
 
+
 def forgot_password():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -179,20 +187,23 @@ def forgot_password():
             token = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(16))
             reset_tokens[email] = token
             send_reset_email(email, token)
-            flash('Reset link sent to your email.', 'success')
+            flash(_('Reset link sent to your email.'), 'success')
             return redirect(url_for('login'))
         else:
-            flash('Email not found.', 'error')
+            flash(_('Email not found.'), 'error')
     return render_template('forgot_password.html')
 
+
 reset_tokens = {}
+
+
 def reset_password(token):
     if request.method == 'POST':
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
 
         if password != confirm_password:
-            flash('Passwords do not match.', 'error')
+            flash(_('Passwords do not match.'), 'error')
             return render_template('reset_password.html', token=token)
 
         if token in reset_tokens.values():
@@ -200,13 +211,13 @@ def reset_password(token):
             user = User.query.filter_by(email=email).first()
             user.password = password
             db.session.commit()
-            flash('Password reset successfully.', 'success')
+            flash(_('Password reset successfully.'), 'success')
             return redirect(url_for('login'))
         else:
-            flash('Invalid or expired token.', 'error')
+            flash(_('Invalid or expired token.'), 'error')
             return redirect(url_for('forgot_password'))
     if token in reset_tokens.values():
         return render_template('reset_password.html', token=token)
     else:
-        flash('Invalid or expired token.', 'error')
+        flash(_('Invalid or expired token.'), 'error')
         return redirect(url_for('forgot_password'))
