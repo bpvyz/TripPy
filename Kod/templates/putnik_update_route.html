@@ -155,7 +155,7 @@
         for (var i = 0; i < routeDuration; i++) {
             var button = document.createElement("button");
             button.type = "button";
-            button.classList.add("btn", "btn-secondary");
+            button.classList.add("btn", "btn-secondary", "me-2");
             button.textContent = "Day " + (i + 1);
             button.addEventListener('click', function() {
                 var routeId = "{{ route.routeid }}";

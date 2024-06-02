@@ -123,8 +123,8 @@
                         <td>{{ business.location.address }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="{{ _('Business Actions') }}">
-                                <button class="btn btn-success" style="border-radius: 8px;" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
-                                <a class="btn btn-primary" style="border-radius: 8px" href="{{ url_for('admin_get_business', business_id=business.businessid) }}">{{ _('View') }}</a>
+                                <button class="btn btn-success me-2" style="border-radius: 8px;" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
+                                <a class="btn btn-primary me-2" style="border-radius: 8px" href="{{ url_for('admin_get_business', business_id=business.businessid) }}">{{ _('View') }}</a>
                                 <form action="/admin_delete_business/{{ business.businessid }}" method="post">
                                     <button type="submit" class="btn btn-danger">{{ _('Delete') }}</button>
                                 </form>

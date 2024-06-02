@@ -104,7 +104,7 @@
         <td>{{ business.location.address }}</td>
         <td>
             <div class="d-flex justify-content-start">
-                <button class="btn btn-success" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
+                <button class="btn btn-success me-2" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
                 <a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=business.businessid) }}">{{ _('View') }}</a>
             </div>
         </td>

@@ -112,7 +112,7 @@
                         <td>{{ business.location.address }}</td>
                         <td>
                             <form action="{{ url_for('admin_approve_business_request', business_request_id = business.businessrequestid) }}" method="post">
-                                <button type="submit" class="btn btn-success">{{ _('Approve') }}</button>
+                                <button type="submit" class="btn btn-success me-2">{{ _('Approve') }}</button>
                                 <a href="{{ url_for('admin_delete_business_request', business_request_id = business.businessrequestid) }}" class="btn btn-danger">{{ _('Delete') }}</a>
                             </form>
                         </td>
