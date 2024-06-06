@@ -98,9 +98,9 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="alert alert-{{ category }}" role="alert">
+                <div class="alert alert-{{ category }}" role="alert" id="flash-message">
                     <span>{{ message }}</span>
-                    <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <span class="close-btn" onclick="closeFlashMessage();">&times;</span>
                 </div>
             {% endfor %}
         {% endif %}

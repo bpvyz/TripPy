@@ -67,9 +67,9 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}" role="alert">
+                    <div class="alert alert-{{ category }}" role="alert" id="flash-message">
                         <span>{{ message }}</span>
-                        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <span class="close-btn" onclick="closeFlashMessage();">&times;</span>
                     </div>
                 {% endfor %}
             {% endif %}
@@ -123,18 +123,6 @@
         </div>
     </div>
 </div>
-<div class="alert-container">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}" role="alert">
-                    <span>{{ message }}</span>
-                    <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
 
     <script src="{{ url_for('static', filename='scripts/script_vlasnik.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -163,7 +151,6 @@
         logo.src = originalSrc;
     });
 </script>
-
 
 </body>
 </html>

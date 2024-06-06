@@ -23,9 +23,9 @@
                             {% if messages %}
                                 {% for category, message in messages %}
                                     <div class="alert-container">
-                                        <div class="alert alert-{{ category }}" role="alert">
+                                        <div class="alert alert-{{ category }}" role="alert" id="flash-message">
                                             <span>{{ message }}</span>
-                                            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                            <span class="close-btn" onclick="closeFlashMessage();">&times;</span>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -113,6 +113,20 @@
         passwordInput.setAttribute('type', type);
         showPasswordBtn.textContent = type === 'password' ? '{{ _('Show') }}' : '{{ _('Hide') }}';
    });
+</script>
+<script>
+    function closeFlashMessage() {
+        setTimeout(function() {
+            var flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                flashMessage.style.display = 'none';
+            }
+        }, 5000);
+    }
+
+    window.onload = function() {
+        closeFlashMessage();
+    };
 </script>
 </body>
 </html>
