@@ -108,7 +108,7 @@ def putnik_update_route(route_id):
             db.session.add(route_participant)
         
         db.session.commit()
-        return redirect(url_for('putnik_dashboard'))
+        return redirect(url_for('putnik_get_route' , route_id=route.routeid))
     
     # Fetch all users for the participants dropdown
     users = User.query.all()

@@ -65,23 +65,27 @@
             <h1>{{ business.businessname }}</h1>
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ _('Business Details') }}</h5>
-            <p class="card-text">{{ business.description }}</p>
+                <h5 class="card-title">{{ _('Business Details') }}</h5>
+                <p class="card-text">{{ business.description }}</p>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ _('Location') }}: {{ business.location.address }}</li>
+                <li class="list-group-item">{{ _('Price') }}: {{ business.cena }} {{ business.currency }}</li>
+                {% if image_paths %}
+                    {% for image_path in image_paths %}
+                        <li class="list-group-item">
+                            <img src="{{ url_for('static', filename=image_path) }}" alt="{{ _('Business Image') }}" class="img-fluid mb-2" style="max-width: 300px;">
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item">{{ _('No images') }}</li>
+                {% endif %}
+            </ul>
+            <div id="mapContainer" class="map-container"></div>
+            <div class="mb-3">
+                <a onclick="history.back()" class="btn btn-primary mt-3">{{ _('Go Back') }}</a>
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ _('Location') }}: {{ business.location.address }}</li>
-            <li class="list-group-item">{{ _('Price') }}: {{ business.cena }} {{ business.currency }}</li>
-            {% if image_paths %}
-                {% for image_path in image_paths %}
-                    <li class="list-group-item">
-                        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ _('Business Image') }}" class="img-fluid mb-2" style="max-width: 300px;">
-                    </li>
-                {% endfor %}
-            {% else %}
-                <li class="list-group-item">{{ _('No images') }}</li>
-            {% endif %}
-        </ul>
-        <div id="mapContainer" class="map-container"></div>
     </div>
 </div>
 

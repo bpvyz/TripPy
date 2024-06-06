@@ -106,7 +106,10 @@
                     </div>
                     <input type="file" class="form-control" id="images" name="images[]" multiple>
                 </div>
-                <button type="submit" class="btn btn-primary">{{ _('Save Changes') }}</button>
+                <div class="mb-3 d-flex justify-content-between align-items-center mt-3">
+                    <a onclick="history.back()" class="btn btn-primary mt-3">{{ _('Go Back') }}</a>
+                    <button type="submit" class="btn btn-success">{{ _('Save Changes') }}</button>
+                </div>
             </form>
         </div>
     </div>

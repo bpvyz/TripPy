@@ -66,23 +66,30 @@
         <div class="card-body">
             <h5 class="card-title">{{ _('Business Details') }}</h5>
             <p class="card-text">{{ _('Business Description') }}</p>
+
+            <ul class="list-group list-group-flush" >
+                <li class="list-group-item">{{ _('Location') }}: {{ business.location.address }}</li>
+                <li class="list-group-item">{{ _('Price') }}: {{ business.cena }} {{ business.currency }}</li>
+                <li class="list-group-item">
+                    {% if image_paths %}
+                    {% for image_path in image_paths %}
+                        <li class="list-group-item">
+                            <img src="{{ url_for('static', filename=image_path) }}" alt="{{ _('Business Image') }}" class="img-fluid mb-2" style="max-width: 300px;">
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    {{ _('No images available.') }}
+                {% endif %}
+                </li>
+
+                <div id="mapContainer" class="map-container"></div>
+
+                <div class="mb-3">
+                    <a onclick="history.back()" class="btn btn-primary mt-3">{{ _('Go Back') }}</a>
+                </div>
+
+            </ul>
         </div>
-        <ul class="list-group list-group-flush" >
-            <li class="list-group-item">{{ _('Location') }}: {{ business.location.address }}</li>
-            <li class="list-group-item">{{ _('Price') }}: {{ business.cena }} {{ business.currency }}</li>
-            <li class="list-group-item">
-                {% if image_paths %}
-                {% for image_path in image_paths %}
-                    <li class="list-group-item">
-                        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ _('Business Image') }}" class="img-fluid mb-2" style="max-width: 300px;">
-                    </li>
-                {% endfor %}
-            {% else %}
-                {{ _('No images available.') }}
-            {% endif %}
-            </li>
-        </ul>
-        <div id="mapContainer" class="map-container"></div>
     </div>
 </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

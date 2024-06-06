@@ -99,15 +99,15 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                        <label for="images" class="form-label">Images </label>
-                        <div id="image-previews" class="mt-2"></div>
-                        
-                        <input type="file" class="custom-file-input" id="images" name="images" accept="image/*" multiple onchange="previewImages(event)">
-                    </div>
+                    <label for="images" class="form-label">Images </label>
+                    <div id="image-previews" class="mt-2"></div>
 
-                
-
-                <button type="submit" class="btn btn-primary" onclick="dashboard()">{{ _('Submit') }}</button>
+                    <input type="file" class="custom-file-input" id="images" name="images" accept="image/*" multiple onchange="previewImages(event)">
+                </div>
+                <div class="mb-3 d-flex justify-content-between align-items-center mt-3">
+                    <a onclick="history.back()" class="btn btn-primary mt-3">{{ _('Go Back') }}</a>
+                    <button type="submit" class="btn btn-success" onclick="dashboard()">{{ _('Submit') }}</button>
+                </div>
             </form>
         </div>
     </div>
