@@ -90,11 +90,14 @@
                     <input type="number" class="form-control" id="cena" name="cena" required>
                 </div>
                 <div class="mb-3">
-                    <label for="images" class="form-label">{{ _('Images') }}</label>
-                    <div id="image-previews"></div>
-                    <input type="file" class="form-control" id="images" name="images[]" multiple>
-                </div>
-                <button type="button" id="add-image-input" class="btn btn-secondary">{{ _('Add Image') }}</button>
+                        <label for="images" class="form-label">Images </label>
+                        <div id="image-previews" class="mt-2"></div>
+                        
+                        <input type="file" class="custom-file-input" id="images" name="images" accept="image/*" multiple onchange="previewImages(event)">
+                    </div>
+
+                
+
                 <button type="submit" class="btn btn-primary" onclick="dashboard()">{{ _('Submit') }}</button>
             </form>
         </div>
@@ -156,61 +159,56 @@
     });
 </script>
 <script>
-    $(document).ready(function () {
-        let selectedImages = [];
+     let selectedFiles = [];
 
-        $('#images').change(function () {
-            const files = $(this)[0].files;
-            const previewContainer = $('#image-previews');
-            for (let i = 0; i < files.length; i++) {
-                if (previewContainer.children('.image-preview').length >= 5) {
-                    alert('Maximum number of images reached');
-                    break;
-                }
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const preview = $('<div>').addClass('image-preview');
-                    const img = $('<img>').attr('src', e.target.result);
-                    const removeBtn = $('<button>').addClass('remove-image').text('X');
-                    preview.append(img, removeBtn);
-                    previewContainer.append(preview);
-                };
-                reader.readAsDataURL(files[i]);
-            }
-            $(this).val('');
-        });
-
-        $(document).on('click', '.remove-image', function () {
-            $(this).closest('.image-preview').remove();
-        });
-
-        $('form').submit(function (event) {
-            event.preventDefault(); // Prevent default form submission
-            const formData = new FormData(this); // Create form data object
-
-            // Append each selected image to the form data
-            for (let i = 0; i < selectedImages.length; i++) {
-                formData.append('images[]', selectedImages[i]);
-            }
-
-            // Submit the form with the updated form data
-            $.ajax({
-                url: $(this).attr('action'),
-                type: $(this).attr('method'),
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    // Handle success response
-                    console.log('Form submitted successfully');
-                },
-                error: function (xhr, status, error) {
-                    // Handle error response
-                    console.error('Error:', error);
-                }
-            });
-        });
+    document.querySelector('.custom-file-label').addEventListener('click', function() {
+        document.getElementById('images').click();
     });
+
+    function previewImages(event) {
+        const files = Array.from(event.target.files);
+        const imagePreviews = document.getElementById('image-previews');
+
+        // Append new files to the selectedFiles array
+        selectedFiles = selectedFiles.concat(files);
+
+        // Clear the current previews and re-render all selected files
+        imagePreviews.innerHTML = '';
+
+        selectedFiles.forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.createElement('img');
+                preview.src = reader.result;
+                preview.classList.add('image-preview');
+                preview.style.maxWidth = '200px'; 
+                preview.style.maxHeight = '200px'; 
+                imagePreviews.appendChild(preview);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Update the files in the input element
+        const dataTransfer = new DataTransfer();
+        selectedFiles.forEach(file => {
+            dataTransfer.items.add(file);
+        });
+        document.getElementById('images').files = dataTransfer.files;
+    }
+    function addImageInput() {
+        if (imageCount < maxImages) {
+            imageCount++;
+            const newInput = document.createElement('input');
+            newInput.type = 'file';
+            newInput.className = 'form-control mt-2';
+            newInput.id = `image${imageCount}`;
+            newInput.name = 'images';
+            newInput.accept = 'image/*';
+            newInput.onchange = previewImage;
+            document.getElementById('image-inputs').appendChild(newInput);
+        }
+    }
+    document.getElementById('add-image-input').addEventListener('click', addImageInput);
 </script>
 
 

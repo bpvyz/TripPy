@@ -54,25 +54,20 @@ def vlasnik_add_business_request():
 
         locationid = location.locationid
 
-        images = request.files.getlist('images[]')  # Adjusted to match the name in the form
-
+        images = request.files.getlist('images')
+        image_paths = []
         upload_dir = os.path.join(os.getcwd(), 'static', 'uploads')
         if not os.path.exists(upload_dir):
             os.makedirs(upload_dir)
-
-        image_paths = []  # Initialize a list to store the paths of uploaded images
-
         for image in images:
             if image and '.' in image.filename:
-                filename = secure_filename(image.filename)
+                filename = image.filename
                 image_path = os.path.join(upload_dir, filename)
                 image.save(image_path)
                 rel_path = os.path.join('uploads', filename).replace('\\', '/')
                 image_paths.append(rel_path)
-
-        # Create a comma-separated string of image paths
+                
         image_paths_string = ','.join(image_paths)
-
         if user_id:
             user = User.query.get(user_id)
             if user:
@@ -87,7 +82,6 @@ def vlasnik_add_business_request():
                 db.session.add(new_business_request)
                 db.session.commit()
                 return redirect(url_for('vlasnik_dashboard'))
-
     return render_template('vlasnik_add_business.html')
 
 @vlasnik_required
