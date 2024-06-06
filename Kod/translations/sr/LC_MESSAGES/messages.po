@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 03:37+0200\n"
+"POT-Creation-Date: 2024-06-06 22:13+0200\n"
 "PO-Revision-Date: 2024-05-20 00:17+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sr\n"
@@ -54,6 +54,10 @@ msgstr "Uspešno resetovana lozinka."
 #: routes/helper_routes.py:217 routes/helper_routes.py:222
 msgid "Invalid or expired token."
 msgstr "Neispravan token ili je token istekao."
+
+#: routes/vlasnik_routes.py:88
+msgid "Business request successfully created!"
+msgstr "Zahtev za oglas uspešno kreiran!"
 
 #: templates/admin.html:31 templates/admin.html:124
 #: templates/admin_add_location.html:30 templates/admin_add_user.html:31
@@ -107,10 +111,10 @@ msgstr "Dodaj korisnika"
 #: templates/putnik_show_my_routes.html:35
 #: templates/putnik_update_route.html:26 templates/settings.html:28
 #: templates/settings.html:74 templates/settings.html:130
-#: templates/vlasnik.html:31 templates/vlasnik.html:102
+#: templates/vlasnik.html:31 templates/vlasnik.html:115
 #: templates/vlasnik_add_business.html:36
 #: templates/vlasnik_edit_business.html:33
-#: templates/vlasnik_get_business.html:30 templates/vlasnik_get_route.html:29
+#: templates/vlasnik_get_business.html:31 templates/vlasnik_get_route.html:29
 #: templates/vlasnik_show_all_businesses.html:35
 #: templates/vlasnik_show_my_businesses.html:35
 #: templates/vlasnik_show_routes.html:35
@@ -137,10 +141,10 @@ msgstr "Maršrute"
 #: templates/putnik_show_my_routes.html:39
 #: templates/putnik_update_route.html:30 templates/settings.html:32
 #: templates/settings.html:77 templates/settings.html:133
-#: templates/vlasnik.html:34 templates/vlasnik.html:105
+#: templates/vlasnik.html:34 templates/vlasnik.html:118
 #: templates/vlasnik_add_business.html:39
 #: templates/vlasnik_edit_business.html:36
-#: templates/vlasnik_get_business.html:33 templates/vlasnik_get_route.html:32
+#: templates/vlasnik_get_business.html:34 templates/vlasnik_get_route.html:32
 #: templates/vlasnik_show_all_businesses.html:38
 #: templates/vlasnik_show_my_businesses.html:38
 #: templates/vlasnik_show_routes.html:6 templates/vlasnik_show_routes.html:38
@@ -165,10 +169,10 @@ msgstr "Sve maršrute"
 #: templates/putnik_show_my_routes.html:45
 #: templates/putnik_update_route.html:36 templates/settings.html:38
 #: templates/settings.html:82 templates/settings.html:138
-#: templates/vlasnik.html:39 templates/vlasnik.html:70
+#: templates/vlasnik.html:39 templates/vlasnik.html:83
 #: templates/vlasnik_add_business.html:44
 #: templates/vlasnik_edit_business.html:41
-#: templates/vlasnik_get_business.html:38 templates/vlasnik_get_route.html:37
+#: templates/vlasnik_get_business.html:39 templates/vlasnik_get_route.html:37
 #: templates/vlasnik_show_all_businesses.html:43
 #: templates/vlasnik_show_my_businesses.html:43
 #: templates/vlasnik_show_routes.html:43
@@ -190,10 +194,10 @@ msgstr "Oglasi"
 #: templates/putnik_show_businesses.html:6
 #: templates/putnik_show_businesses.html:68 templates/settings.html:41
 #: templates/settings.html:86 templates/settings.html:141
-#: templates/vlasnik.html:43 templates/vlasnik.html:91
+#: templates/vlasnik.html:43 templates/vlasnik.html:104
 #: templates/vlasnik_add_business.html:48
 #: templates/vlasnik_edit_business.html:45
-#: templates/vlasnik_get_business.html:42 templates/vlasnik_get_route.html:41
+#: templates/vlasnik_get_business.html:43 templates/vlasnik_get_route.html:41
 #: templates/vlasnik_show_all_businesses.html:47
 #: templates/vlasnik_show_my_businesses.html:47
 #: templates/vlasnik_show_routes.html:47
@@ -251,7 +255,7 @@ msgstr "Dodaj lokaciju"
 #: templates/settings.html:94 templates/settings.html:158
 #: templates/vlasnik.html:51 templates/vlasnik_add_business.html:56
 #: templates/vlasnik_edit_business.html:53
-#: templates/vlasnik_get_business.html:50 templates/vlasnik_get_route.html:49
+#: templates/vlasnik_get_business.html:51 templates/vlasnik_get_route.html:49
 #: templates/vlasnik_show_all_businesses.html:55
 #: templates/vlasnik_show_my_businesses.html:55
 #: templates/vlasnik_show_routes.html:55
@@ -276,7 +280,7 @@ msgstr "Profil"
 #: templates/settings.html:97 templates/settings.html:161
 #: templates/vlasnik.html:54 templates/vlasnik_add_business.html:59
 #: templates/vlasnik_edit_business.html:56
-#: templates/vlasnik_get_business.html:53 templates/vlasnik_get_route.html:52
+#: templates/vlasnik_get_business.html:54 templates/vlasnik_get_route.html:52
 #: templates/vlasnik_show_all_businesses.html:58
 #: templates/vlasnik_show_my_businesses.html:58
 #: templates/vlasnik_show_routes.html:58
@@ -302,7 +306,7 @@ msgstr "Moj profil"
 #: templates/settings.html:162 templates/settings.html:177
 #: templates/vlasnik.html:55 templates/vlasnik_add_business.html:60
 #: templates/vlasnik_edit_business.html:57
-#: templates/vlasnik_get_business.html:54 templates/vlasnik_get_route.html:53
+#: templates/vlasnik_get_business.html:55 templates/vlasnik_get_route.html:53
 #: templates/vlasnik_show_all_businesses.html:59
 #: templates/vlasnik_show_my_businesses.html:59
 #: templates/vlasnik_show_routes.html:59
@@ -327,7 +331,7 @@ msgstr "Postavke"
 #: templates/settings.html:100 templates/settings.html:164
 #: templates/vlasnik.html:57 templates/vlasnik_add_business.html:62
 #: templates/vlasnik_edit_business.html:59
-#: templates/vlasnik_get_business.html:56 templates/vlasnik_get_route.html:55
+#: templates/vlasnik_get_business.html:57 templates/vlasnik_get_route.html:55
 #: templates/vlasnik_show_all_businesses.html:61
 #: templates/vlasnik_show_my_businesses.html:61
 #: templates/vlasnik_show_routes.html:61
@@ -345,7 +349,7 @@ msgstr "Dobrodošli,"
 #: templates/putnik_show_all_routes.html:47
 #: templates/putnik_show_businesses.html:48
 #: templates/putnik_show_my_routes.html:48
-#: templates/putnik_update_route.html:39 templates/vlasnik.html:92
+#: templates/putnik_update_route.html:39 templates/vlasnik.html:105
 msgid "Show All Businesses"
 msgstr "Prikaži sve oglase"
 
@@ -410,7 +414,7 @@ msgid "Business Owner"
 msgstr "Vlasnik biznisa"
 
 #: templates/admin_add_user.html:119 templates/putnik_add_route.html:102
-#: templates/verification_code.html:24 templates/vlasnik_add_business.html:98
+#: templates/verification_code.html:24 templates/vlasnik_add_business.html:110
 msgid "Submit"
 msgstr "Pošalji"
 
@@ -420,6 +424,25 @@ msgid "Admin All Business Requests"
 msgstr "Admin Svi Oglasi"
 
 #: templates/admin_business_requests.html:99
+#: templates/admin_show_businesses.html:96
+#: templates/putnik_add_business.html:75
+#: templates/putnik_show_businesses.html:76
+#: templates/vlasnik_edit_business.html:98
+#: templates/vlasnik_show_all_businesses.html:76
+#: templates/vlasnik_show_my_businesses.html:76
+msgid "Images"
+msgstr "Slike"
+
+#: templates/admin_business_requests.html:103
+#: templates/admin_show_businesses.html:99
+#: templates/putnik_add_business.html:78
+#: templates/putnik_show_businesses.html:79
+#: templates/vlasnik_show_all_businesses.html:79
+#: templates/vlasnik_show_my_businesses.html:79
+msgid "Sort by Business Name"
+msgstr "Sortiraj po nazivu oglasa"
+
+#: templates/admin_business_requests.html:104
 #: templates/admin_show_businesses.html:100
 #: templates/putnik_add_business.html:79 templates/putnik_get_business.html:6
 #: templates/putnik_get_business.html:64
@@ -432,14 +455,14 @@ msgstr "Admin Svi Oglasi"
 msgid "Business Name"
 msgstr "Ime oglasa"
 
-#: templates/admin_business_requests.html:100
+#: templates/admin_business_requests.html:108
 #: templates/admin_show_businesses.html:104
 #: templates/putnik_add_business.html:83
 #: templates/putnik_show_businesses.html:84
 msgid "Owner Name"
 msgstr "Ime vlasnika"
 
-#: templates/admin_business_requests.html:101
+#: templates/admin_business_requests.html:109
 #: templates/admin_show_businesses.html:105
 #: templates/admin_show_routes.html:101 templates/itinerary.html:192
 #: templates/putnik_add_business.html:84 templates/putnik_add_route.html:76
@@ -455,18 +478,28 @@ msgstr "Ime vlasnika"
 msgid "Description"
 msgstr "Opis"
 
-#: templates/admin_business_requests.html:102
+#: templates/admin_business_requests.html:110
+#: templates/admin_get_business.html:93
 #: templates/admin_show_businesses.html:106 templates/itinerary.html:187
-#: templates/putnik_add_business.html:85
+#: templates/putnik_add_business.html:85 templates/putnik_get_business.html:71
 #: templates/putnik_show_businesses.html:86
 #: templates/vlasnik_add_business.html:84
 #: templates/vlasnik_edit_business.html:80
+#: templates/vlasnik_get_business.html:72
 #: templates/vlasnik_show_all_businesses.html:85
 #: templates/vlasnik_show_my_businesses.html:85
 msgid "Location"
 msgstr "Lokacija"
 
-#: templates/admin_business_requests.html:103
+#: templates/admin_business_requests.html:111
+#: templates/admin_get_business.html:94 templates/putnik_get_business.html:72
+#: templates/vlasnik_add_business.html:89
+#: templates/vlasnik_edit_business.html:85
+#: templates/vlasnik_get_business.html:73
+msgid "Price"
+msgstr "Cena"
+
+#: templates/admin_business_requests.html:112
 #: templates/admin_show_businesses.html:107
 #: templates/admin_show_routes.html:105 templates/admin_users.html:101
 #: templates/putnik_add_business.html:86
@@ -479,11 +512,19 @@ msgstr "Lokacija"
 msgid "Actions"
 msgstr "Akcije"
 
-#: templates/admin_business_requests.html:115
+#: templates/admin_business_requests.html:122
+#: templates/admin_show_businesses.html:117
+#: templates/putnik_add_business.html:97
+#: templates/putnik_show_businesses.html:98
+#: templates/vlasnik_show_all_businesses.html:97
+msgid "No images available"
+msgstr "Slike nisu dostupne"
+
+#: templates/admin_business_requests.html:132
 msgid "Approve"
 msgstr "Odobri"
 
-#: templates/admin_business_requests.html:116
+#: templates/admin_business_requests.html:133
 #: templates/admin_show_businesses.html:129
 #: templates/admin_show_routes.html:123 templates/admin_users.html:118
 #: templates/itinerary.html:204 templates/putnik_show_my_routes.html:102
@@ -497,28 +538,16 @@ msgid "Logo"
 msgstr "Logo"
 
 #: templates/admin_get_business.html:89 templates/putnik_get_business.html:67
-#: templates/vlasnik_get_business.html:67
+#: templates/vlasnik_get_business.html:68
 msgid "Business Details"
 msgstr "Detalji biznisa"
 
-#: templates/admin_get_business.html:93 templates/putnik_get_business.html:71
-#: templates/vlasnik_get_business.html:71
-#: templates/vlasnik_update_business.html:79
-msgid "Location ID"
-msgstr "ID lokacije"
-
-#: templates/admin_get_business.html:94 templates/putnik_get_business.html:72
-#: templates/vlasnik_add_business.html:89
-#: templates/vlasnik_get_business.html:72
-msgid "Price"
-msgstr "Cena"
-
 #: templates/admin_get_business.html:98 templates/putnik_get_business.html:77
-#: templates/vlasnik_get_business.html:76
+#: templates/vlasnik_get_business.html:77
 msgid "Business Image"
 msgstr "Slika biznisa"
 
-#: templates/admin_get_business.html:102 templates/vlasnik_get_business.html:80
+#: templates/admin_get_business.html:102 templates/vlasnik_get_business.html:81
 msgid "No images"
 msgstr "Nema slika"
 
@@ -572,7 +601,7 @@ msgid "Itinerary"
 msgstr "Itinerer"
 
 #: templates/admin_get_route.html:106 templates/putnik_add_route.html:95
-#: templates/putnik_get_route.html:87 templates/putnik_update_route.html:93
+#: templates/putnik_get_route.html:87 templates/putnik_update_route.html:95
 #: templates/vlasnik_get_route.html:85
 msgid "Participants"
 msgstr "Učesnici"
@@ -586,50 +615,25 @@ msgstr "Admin Svi Oglasi"
 msgid "Search by business name"
 msgstr "Pretraži po nazivu oglasa"
 
-#: templates/admin_show_businesses.html:96
-#: templates/putnik_add_business.html:75
-#: templates/putnik_show_businesses.html:76
-#: templates/vlasnik_add_business.html:93
-#: templates/vlasnik_edit_business.html:85
-#: templates/vlasnik_show_all_businesses.html:76
-#: templates/vlasnik_show_my_businesses.html:76
-msgid "Images"
-msgstr "Slike"
-
-#: templates/admin_show_businesses.html:99
-#: templates/putnik_add_business.html:78
-#: templates/putnik_show_businesses.html:79
-#: templates/vlasnik_show_all_businesses.html:79
-#: templates/vlasnik_show_my_businesses.html:79
-msgid "Sort by Business Name"
-msgstr "Sortiraj po nazivu oglasa"
-
-#: templates/admin_show_businesses.html:117
-#: templates/putnik_add_business.html:97
-#: templates/putnik_show_businesses.html:98
-#: templates/vlasnik_show_all_businesses.html:97
-msgid "No images available"
-msgstr "Slike nisu dostupne"
-
 #: templates/admin_show_businesses.html:125
 msgid "Business Actions"
 msgstr "Interakcije sa oglasima"
 
 #: templates/admin_show_businesses.html:126 templates/itinerary.html:201
-#: templates/putnik_add_business.html:106
-#: templates/putnik_show_businesses.html:107
-#: templates/vlasnik_show_all_businesses.html:104
+#: templates/putnik_add_business.html:105
+#: templates/putnik_show_businesses.html:106
+#: templates/vlasnik_show_all_businesses.html:105
 #: templates/vlasnik_show_my_businesses.html:106
 msgid "Map"
 msgstr "Mape"
 
 #: templates/admin_show_businesses.html:127 templates/itinerary.html:195
 #: templates/itinerary.html:197 templates/itinerary.html:199
-#: templates/putnik_add_business.html:104
+#: templates/putnik_add_business.html:106
 #: templates/putnik_show_all_routes.html:98
-#: templates/putnik_show_businesses.html:108
+#: templates/putnik_show_businesses.html:107
 #: templates/putnik_show_my_routes.html:99
-#: templates/vlasnik_show_all_businesses.html:105
+#: templates/vlasnik_show_all_businesses.html:106
 #: templates/vlasnik_show_routes.html:99
 msgid "View"
 msgstr "Prikaži"
@@ -698,7 +702,7 @@ msgstr "Izmeni Korisnika"
 msgid "Business Acceptance Requests"
 msgstr "Zahtevi za prihvatanje oglasa"
 
-#: templates/edit_user.html:115 templates/vlasnik_edit_business.html:96
+#: templates/edit_user.html:115 templates/vlasnik_edit_business.html:109
 msgid "Save Changes"
 msgstr "Sačuvaj promene"
 
@@ -731,10 +735,10 @@ msgstr "Moje maršrute"
 
 #: templates/itinerary.html:86 templates/profile.html:86
 #: templates/settings.html:85 templates/vlasnik.html:42
-#: templates/vlasnik.html:75 templates/vlasnik.html:76
+#: templates/vlasnik.html:88 templates/vlasnik.html:89
 #: templates/vlasnik_add_business.html:47
 #: templates/vlasnik_edit_business.html:44
-#: templates/vlasnik_get_business.html:41 templates/vlasnik_get_route.html:40
+#: templates/vlasnik_get_business.html:42 templates/vlasnik_get_route.html:40
 #: templates/vlasnik_show_all_businesses.html:46
 #: templates/vlasnik_show_my_businesses.html:46
 #: templates/vlasnik_show_routes.html:46
@@ -744,9 +748,9 @@ msgstr "Kreiraj oglas"
 
 #: templates/itinerary.html:88 templates/profile.html:88
 #: templates/settings.html:87 templates/vlasnik.html:44
-#: templates/vlasnik.html:83 templates/vlasnik_add_business.html:49
+#: templates/vlasnik.html:96 templates/vlasnik_add_business.html:49
 #: templates/vlasnik_edit_business.html:46
-#: templates/vlasnik_get_business.html:43 templates/vlasnik_get_route.html:42
+#: templates/vlasnik_get_business.html:44 templates/vlasnik_get_route.html:42
 #: templates/vlasnik_show_all_businesses.html:48
 #: templates/vlasnik_show_my_businesses.html:48
 #: templates/vlasnik_show_routes.html:48
@@ -839,7 +843,7 @@ msgstr "Pregled maršruta"
 msgid "Search by Business Name"
 msgstr "Pretraži po nazivu oglasa"
 
-#: templates/putnik_add_business.html:109
+#: templates/putnik_add_business.html:108
 msgid "Add"
 msgstr "Dodaj"
 
@@ -875,18 +879,10 @@ msgstr "Ažuriraj maršrutu"
 msgid "Route Duration"
 msgstr "Trajanje maršrute"
 
-#: templates/putnik_update_route.html:105
+#: templates/putnik_update_route.html:104
 #: templates/vlasnik_update_business.html:82
 msgid "Update"
 msgstr "Ažuriraj"
-
-#: templates/putnik_update_route.html:107
-msgid "Add Selected"
-msgstr "Dodaj izabrano"
-
-#: templates/putnik_update_route.html:108
-msgid "Remove Selected"
-msgstr "Izbriši izabrano"
 
 #: templates/register.html:6
 msgid "Registration"
@@ -932,7 +928,7 @@ msgstr "Kod za verifikaciju"
 msgid "Enter Verification Code"
 msgstr "Unesite kod za verifikaciju"
 
-#: templates/vlasnik.html:84
+#: templates/vlasnik.html:97
 msgid "Show My Businesses"
 msgstr "Prikaži moje oglase"
 
@@ -944,11 +940,7 @@ msgstr "Kreiraj zahtev"
 msgid "Add New Business Request"
 msgstr "Kreiraj Novi Zahtev"
 
-#: templates/vlasnik_add_business.html:97
-msgid "Add Image"
-msgstr "Dodaj Sliku"
-
-#: templates/vlasnik_edit_business.html:89
+#: templates/vlasnik_edit_business.html:102
 msgid "Image"
 msgstr "Slika"
 
@@ -983,7 +975,6 @@ msgid "Display My Businesses"
 msgstr "Prikazivanje mojih oglasa"
 
 #: templates/vlasnik_show_my_businesses.html:108
-#, fuzzy
 msgid "Are you sure you want to delete this business?"
 msgstr "Da li ste sigurni da želite da obrišete ovog korisnika?"
 
@@ -991,4 +982,17 @@ msgstr "Da li ste sigurni da želite da obrišete ovog korisnika?"
 #: templates/vlasnik_update_business.html:63
 msgid "Update Business"
 msgstr "Ažuriraj Oglas"
+
+#: templates/vlasnik_update_business.html:79
+msgid "Location ID"
+msgstr "ID lokacije"
+
+#~ msgid "Add Selected"
+#~ msgstr "Dodaj izabrano"
+
+#~ msgid "Remove Selected"
+#~ msgstr "Izbriši izabrano"
+
+#~ msgid "Add Image"
+#~ msgstr "Dodaj Sliku"
 

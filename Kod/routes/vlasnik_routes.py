@@ -3,6 +3,7 @@ from functools import wraps
 from werkzeug.utils import secure_filename
 from mappings.tables import User, db, Route, Business, Location, BusinessRequest, RouteLocation, RouteParticipant
 from util import allowed_file
+from flask_babel import Babel, _
 import os
 import time
 
@@ -84,7 +85,7 @@ def vlasnik_add_business_request():
                 )
                 db.session.add(new_business_request)
                 db.session.commit()
-                flash('Business request successfully created!', 'success')
+                flash(_('Business request successfully created!'), 'success')
                 return redirect(url_for('vlasnik_dashboard'))
 
     return render_template('vlasnik_add_business.html')
