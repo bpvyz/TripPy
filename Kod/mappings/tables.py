@@ -34,6 +34,7 @@ class Business(db.Model):
     ownerid = db.Column(db.Integer, db.ForeignKey('users.userid'))
     image_path = db.Column(db.String(255))
     cena = db.Column(db.Float, nullable=False)
+    currency = db.Column(db.String(10), nullable=False, default='RSD')
 
     location = relationship("Location")
     route_locations = relationship("RouteLocation", cascade="all, delete-orphan")
@@ -47,6 +48,7 @@ class BusinessRequest(db.Model):
     ownerid = db.Column(db.Integer, db.ForeignKey('users.userid'))
     image_path = db.Column(db.String(255))
     cena = db.Column(db.Float, nullable=False)
+    currency = db.Column(db.String(10), nullable=False, default='RSD')
 
     location = db.relationship("Location")
 

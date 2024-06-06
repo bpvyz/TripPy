@@ -90,8 +90,8 @@
             <p class="card-text">{{ business.description }}</p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ _('Location ID') }}: {{ business.locationid }}</li>
-            <li class="list-group-item">{{ _('Price') }}: {{ business.price }}</li>
+            <li class="list-group-item">{{ _('Location') }}: {{ business.location.address }}</li>
+            <li class="list-group-item">{{ _('Price') }}: {{ business.cena }} {{ business.currency }}</li>
             {% if image_paths %}
                 {% for image_path in image_paths %}
                     <li class="list-group-item">

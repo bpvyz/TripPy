@@ -82,6 +82,19 @@
                     <input type="hidden" id="locationid" name="locationid" value="{{ business.location.locationid }}">
                 </div>
                 <div class="mb-3">
+                    <label for="cena" class="form-label">{{ _('Price') }}</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="cena" name="cena" value="{{ business.cena }}" required>
+                        <select class="form-select" id="currency" name="currency" required>
+                            <option value="RSD" {% if business.currency == 'RSD' %}selected{% endif %}>RSD</option>
+                            <option value="USD" {% if business.currency == 'USD' %}selected{% endif %}>USD</option>
+                            <option value="EUR" {% if business.currency == 'EUR' %}selected{% endif %}>EUR</option>
+                            <option value="GBP" {% if business.currency == 'GBP' %}selected{% endif %}>GBP</option>
+                            <option value="JPY" {% if business.currency == 'JPY' %}selected{% endif %}>JPY</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
                     <label for="images" class="form-label">{{ _('Images') }}</label>
                     <div id="image-previews">
                         {% for image_path in image_paths %}

@@ -83,7 +83,7 @@
                         <th class="nowrap">{{ _('Owner Name') }}</th>
                         <th>{{ _('Description') }}</th>
                         <th>{{ _('Location') }}</th>
-                        <th colspan="4">{{ _('Actions') }}</th>
+                        <th>{{ _('Actions') }}</th>
                     </tr>
                 </thead>
 
@@ -101,12 +101,11 @@
                         <td style="text-align:center;">{{ business.owner.username }}</td>
                         <td style="padding-left:40px;">{{ business.description }}</td>
                         <td>{{ business.location.address }}</td>
-                        <td><a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=business.businessid) }}">{{ _('View') }}</a></td>
-
-                        <td> <button class="btn btn-success" style="display:inline;" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button></td>
                         <td>
-                            <form action="{{ url_for('putnik_add_business_to_itinerary', day_number=day, route_id=route_id, business_id=business.businessid) }}" method="post">
-                                <button type="submit" class="btn btn-warning" style="display:inline;" >{{ _('Add') }}</button>
+                            <button class="btn btn-success" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
+                            <a class="btn btn-primary" href="{{ url_for('putnik_get_business', business_id=business.businessid) }}">{{ _('View') }}</a>
+                            <form action="{{ url_for('putnik_add_business_to_itinerary', day_number=day, route_id=route_id, business_id=business.businessid) }}" method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-warning">{{ _('Add') }}</button>
                             </form>
                         </td>
                     </tr>

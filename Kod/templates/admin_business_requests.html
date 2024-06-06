@@ -108,6 +108,7 @@
                     <th scope="col">{{ _('Owner Name') }}</th>
                     <th scope="col">{{ _('Description') }}</th>
                     <th scope="col">{{ _('Location') }}</th>
+                    <th scope="col">{{ _('Price') }}</th>
                     <th scope="col" style="text-align:left; padding-left:60px;">{{ _('Actions') }}</th>
                 </tr>
             </thead>
@@ -125,6 +126,7 @@
                         <td>{{ business.owner.username }}</td>
                         <td>{{ business.description }}</td>
                         <td>{{ business.location.address }}</td>
+                        <td>{{ business.cena }} {{ business.currency }}</td>
                         <td>
                             <form action="{{ url_for('admin_approve_business_request', business_request_id = business.businessrequestid) }}" method="post">
                                 <button type="submit" class="btn btn-success me-2">{{ _('Approve') }}</button>

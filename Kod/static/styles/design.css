@@ -97,8 +97,6 @@ body {
 
 .btn-warning {
     background-color: #ffc107;
-    border: none;
-    border-radius: 8px;
 }
 .btn-warning:hover {
     background-color: #3316a0;

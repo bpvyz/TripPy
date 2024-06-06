@@ -101,8 +101,10 @@
                     <td>{{ business.description }}</td>
                     <td>{{ business.location.address }}</td>
                     <td>{{ business.owner.username }}</td>
-                    <td><button class="btn btn-success me-2" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
-                        <a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=business.businessid) }}">{{ _('View') }}</a></td>
+                    <td>
+                        <button class="btn btn-success me-2" onclick="openMap('{{ business.location.address }}', '{{ business.businessid }}')">{{ _('Map') }}</button>
+                        <a class="btn btn-primary" href="{{ url_for('vlasnik_get_business', business_id=business.businessid) }}">{{ _('View') }}</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

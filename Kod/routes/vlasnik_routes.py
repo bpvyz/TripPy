@@ -1,7 +1,8 @@
-from flask import render_template, redirect, url_for, session, Blueprint, request, jsonify
+from flask import render_template, redirect, url_for, session, Blueprint, request, jsonify, flash
 from functools import wraps
 from werkzeug.utils import secure_filename
 from mappings.tables import User, db, Route, Business, Location, BusinessRequest, RouteLocation, RouteParticipant
+from util import allowed_file
 import os
 import time
 
@@ -44,6 +45,7 @@ def vlasnik_add_business_request():
         description = request.form['description']
         location_name = request.form['location']
         cena = request.form['cena']
+        currency = request.form['currency']
         user_id = session.get('user_id')
 
         location = Location.query.filter_by(address=location_name).first()
@@ -60,13 +62,13 @@ def vlasnik_add_business_request():
         if not os.path.exists(upload_dir):
             os.makedirs(upload_dir)
         for image in images:
-            if image and '.' in image.filename:
-                filename = image.filename
+            if image and allowed_file(image.filename):
+                filename = secure_filename(image.filename)
                 image_path = os.path.join(upload_dir, filename)
                 image.save(image_path)
                 rel_path = os.path.join('uploads', filename).replace('\\', '/')
                 image_paths.append(rel_path)
-                
+
         image_paths_string = ','.join(image_paths)
         if user_id:
             user = User.query.get(user_id)
@@ -77,11 +79,14 @@ def vlasnik_add_business_request():
                     locationid=locationid,
                     ownerid=user.userid,
                     cena=cena,
+                    currency=currency,
                     image_path=image_paths_string
                 )
                 db.session.add(new_business_request)
                 db.session.commit()
+                flash('Business request successfully created!', 'success')
                 return redirect(url_for('vlasnik_dashboard'))
+
     return render_template('vlasnik_add_business.html')
 
 @vlasnik_required
@@ -160,6 +165,8 @@ def vlasnik_edit_business(business_id):
     if request.method == 'POST':
         business.businessname = request.form['businessname']
         business.description = request.form['description']
+        business.cena = request.form['cena']
+        business.currency = request.form['currency']  # Handle the currency
 
         location_id = request.form['locationid']
 
@@ -207,4 +214,5 @@ def vlasnik_edit_business(business_id):
 
     image_paths = business.image_path.split(',') if business.image_path else []
     return render_template('vlasnik_edit_business.html', business=business, image_paths=image_paths)
+
 #endregion Vlasnik routes

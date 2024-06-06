@@ -150,7 +150,8 @@ def admin_approve_business_request(business_request_id):
             locationid=business_request.locationid,
             ownerid=business_request.ownerid,
             cena=business_request.cena,
-            image_path=business_request.image_path
+            image_path=business_request.image_path,
+            currency=business_request.currency
         )
         db.session.add(new_business)
         db.session.delete(business_request)
