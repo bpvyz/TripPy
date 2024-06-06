@@ -82,44 +82,42 @@ def putnik_add_route():
     return render_template('putnik_add_route.html', users=users)
     
 
+
+
 @putnik_required
 def putnik_update_route(route_id):
-    route = Route.query.get(route_id)
-    if not route or route.createdby != session['user_id']:
-        return "Route not found or you do not have permission to edit this route", 404
-
+    route = Route.query.get_or_404(route_id)
+    
     if request.method == 'POST':
-        routename = request.form.get('routename')
-        description = request.form.get('description')
-        startdate = request.form.get('startdate')
-        enddate = request.form.get('enddate')
-        public = request.form.get('public', 'private')
-        participant_ids = request.form.getlist('participants')
+        route.routename = request.form.get('routename')
+        route.description = request.form.get('description')
+        route.startdate = request.form.get('startdate')
+        route.enddate = request.form.get('enddate')
+        route.public = request.form.get('public', 'private')
 
-        route.routename = routename
-        route.description = description
-        route.startdate = startdate
-        route.enddate = enddate
-        route.public = public
+        # Remove existing participants
+        RouteParticipant.query.filter_by(routeid=route_id).delete()
 
-        existing_participants = [participant.userid for participant in route.route_participants]
-
-        for participant_id in existing_participants:
-            if str(participant_id) not in participant_ids:
-                RouteParticipant.query.filter_by(routeid=route.routeid, userid=participant_id).delete()
-
-        for participant_id in participant_ids:
-            if int(participant_id) not in existing_participants:
-                new_participant = RouteParticipant(routeid=route.routeid, userid=participant_id)
-                db.session.add(new_participant)
-
+        # Add new participants
+        participants = request.form.getlist('participants')
+        for participant_id in participants:
+            route_participant = RouteParticipant(
+                routeid=route.routeid,
+                userid=participant_id
+            )
+            db.session.add(route_participant)
+        
         db.session.commit()
         return redirect(url_for('putnik_dashboard'))
+    
+    # Fetch all users for the participants dropdown
+    users = User.query.all()
+    # Fetch the current participants
+    current_participants = [p.userid for p in route.route_participants]
+    
+    return render_template('putnik_update_route.html', route=route, users=users, current_participants=current_participants)
 
-    users = User.query.all()  # Get all users to display in the form
-    existing_participants = [participant.userid for participant in route.route_participants]
 
-    return render_template('putnik_update_route.html', route=route, users=users, existing_participants=existing_participants)
 
 @putnik_required
 def putnik_get_business(business_id):
