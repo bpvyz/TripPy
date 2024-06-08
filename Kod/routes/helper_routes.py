@@ -1,7 +1,7 @@
 import time
 from flask import render_template, Blueprint, redirect, url_for, request, session, flash
 from mappings.tables import User, db
-from util import generate_verification_code, send_reset_email
+from util import generate_verification_code, send_reset_email, send_verification_email
 from flask_babel import Babel, _
 import secrets
 import string
@@ -41,11 +41,13 @@ def register():
 
         verification_code = generate_verification_code()
         session['expected_verification_code'] = verification_code
+        send_verification_email(email, verification_code)
 
         return redirect(url_for('verify'))
 
     else:
         return render_template('register.html')
+
 
 
 def verify():
