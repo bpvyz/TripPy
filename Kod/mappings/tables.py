@@ -19,6 +19,7 @@ class User(db.Model):
     businesses = relationship("Business", cascade="all, delete-orphan", backref="owner")
     businessrequests = relationship("BusinessRequest", cascade="all, delete-orphan", backref="owner")
     created_routes = relationship("Route", cascade="all, delete-orphan", backref="creator")
+    route_participants = relationship("RouteParticipant", cascade="all, delete-orphan", backref="user")
 
 class Location(db.Model):
     __tablename__ = 'locations'
