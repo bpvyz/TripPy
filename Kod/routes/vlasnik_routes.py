@@ -42,11 +42,11 @@ def autocomplete_locations():
 @vlasnik_required
 def vlasnik_add_business_request():
     if request.method == 'POST':
-        businessname = request.form['businessname']
-        description = request.form['description']
-        location_name = request.form['location']
-        cena = request.form['cena']
-        currency = request.form['currency']
+        businessname = request.form.get('businessname')
+        description = request.form.get('description')
+        location_name = request.form.get('location')
+        cena = request.form.get('cena')
+        currency = request.form.get('currency')
         user_id = session.get('user_id')
 
         location = Location.query.filter_by(address=location_name).first()

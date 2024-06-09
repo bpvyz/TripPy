@@ -66,11 +66,9 @@
 </nav>
 
 <div class="container mt-5">
-    <div class="card">
-        <div class="card-header">
-            <h1>{{ _('Add New Business Request') }}</h1>
-        </div>
+    <div class="card"> 
         <div class="card-body">
+            <h1>{{ _('Add New Business Request') }}</h1>
             {% for message in get_flashed_messages(category_filter=['error', 'success']) %}
                 <div class="alert alert-{{ 'success' if 'success' in message else 'danger' }}" role="alert">
                     {{ message }}
@@ -111,8 +109,8 @@
                 </div>
                 <div class="mb-3 d-flex justify-content-between align-items-center mt-3">
                     <a onclick="history.back()" class="btn btn-primary mt-3">{{ _('Go Back') }}</a>
-                    <button type="submit" class="btn btn-success" onclick="dashboard()">{{ _('Submit') }}</button>
-                </div>
+                    <button type="submit" class="btn btn-primary">{{ _('Submit') }}</button>
+                </div>  
             </form>
         </div>
     </div>
