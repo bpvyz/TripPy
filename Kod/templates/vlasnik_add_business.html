@@ -71,6 +71,11 @@
             <h1>{{ _('Add New Business Request') }}</h1>
         </div>
         <div class="card-body">
+            {% for message in get_flashed_messages(category_filter=['error', 'success']) %}
+                <div class="alert alert-{{ 'success' if 'success' in message else 'danger' }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <form action="/vlasnik_add_business" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="businessname" class="form-label">{{ _('Business Name') }}</label>
