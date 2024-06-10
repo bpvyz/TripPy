@@ -2,6 +2,7 @@ from flask import render_template, redirect, url_for, session, Blueprint, reques
 from mappings.tables import User, db, Route, Business, Location, BusinessRequest, RouteLocation, RouteParticipant
 from datetime import datetime, timedelta
 from functools import wraps
+import os
 
 admin_routes = Blueprint('admin_routes', __name__)
 
@@ -78,12 +79,24 @@ def admin_get_business(business_id):
     image_paths = business.image_path.split(',') if business.image_path else []
     return render_template('admin_get_business.html', business=business, image_paths=image_paths)
 
+
 @admin_required
 def admin_delete_business(business_id):
     business = Business.query.get(business_id)
-    db.session.delete(business)
-    db.session.commit()
-    return redirect(url_for('admin_show_businesses'))
+    if business:
+        image_paths = business.image_path.split(',')
+        for path in image_paths:
+            full_path = os.path.join(os.getcwd(), 'static', path)
+            if os.path.exists(full_path):
+                os.remove(full_path)
+
+        db.session.delete(business)
+        db.session.commit()
+
+        return redirect(url_for('admin_show_businesses'))
+    else:
+        return "Business not found", 404
+
 
 @admin_required
 def admin_show_routes():
@@ -160,15 +173,24 @@ def admin_approve_business_request(business_request_id):
     else:
         return "Business request not found", 404
 
+
 @admin_required
 def admin_delete_business_request(business_request_id):
     business_request = BusinessRequest.query.get(business_request_id)
     if business_request:
+        image_paths = business_request.image_path.split(',')
+        for path in image_paths:
+            full_path = os.path.join(os.getcwd(), 'static', path)
+            if os.path.exists(full_path):
+                os.remove(full_path)
+
         db.session.delete(business_request)
         db.session.commit()
+
         return redirect(url_for('admin_business_requests'))
     else:
         return "Business request not found", 404
+
 
 @admin_required
 def admin_get_route(route_id):

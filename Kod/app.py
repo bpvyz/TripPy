@@ -64,6 +64,7 @@ app.add_url_rule('/itinerary/<int:route_id>/<int:day_number>', 'putnik_show_itin
 app.add_url_rule('/putnik_add_business/<int:route_id>/<int:day_number>', 'putnik_add_business', putnik_add_business, methods=['GET', 'POST'])
 app.add_url_rule('/putnik_add_business_to_itinerary/<int:route_id>/<int:day_number>/<int:business_id>', 'putnik_add_business_to_itinerary', putnik_add_business_to_itinerary, methods=['POST'])
 app.add_url_rule('/putnik_delete_itinerary_business/<int:route_id>/<int:day_number>/<int:business_id>', 'putnik_delete_itinerary_business', putnik_delete_itinerary_business, methods=['POST'])
+app.add_url_rule('/delete_image', 'delete_image', delete_image, methods=['POST'] )
 
 if __name__ == '__main__':
     app.run(debug=True)

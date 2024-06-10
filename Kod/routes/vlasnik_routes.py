@@ -4,10 +4,12 @@ from werkzeug.utils import secure_filename
 from mappings.tables import User, db, Route, Business, Location, BusinessRequest, RouteLocation, RouteParticipant
 from util import allowed_file
 from flask_babel import Babel, _
-import os
+import os, logging
 import time
 
 vlasnik_routes = Blueprint('vlasnik_routes', __name__)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def vlasnik_required(func):
     @wraps(func)
@@ -24,6 +26,23 @@ def vlasnik_required(func):
     return wrapper
 
 #region Vlasnik routes
+
+@vlasnik_required
+def delete_image():
+    image_path = request.form.get('image_path')
+    if image_path:
+        full_image_path = os.path.join(app.static_folder, image_path)
+        try:
+            os.remove(full_image_path)
+            logger.info(f"Deleted image: {full_image_path}")
+            return jsonify(success=True, message="Image deleted successfully.")
+        except PermissionError as e:
+            logger.error(f"Permission error when deleting image: {full_image_path}. Error: {e}")
+            return jsonify(success=False, message="Permission denied.")
+        except Exception as e:
+            logger.error(f"Error when deleting image: {full_image_path}. Error: {e}")
+            return jsonify(success=False, message="An error occurred.")
+    return jsonify(success=False, message="Image path not provided.")
 
 @vlasnik_required
 def autocomplete_locations():
@@ -167,10 +186,9 @@ def vlasnik_edit_business(business_id):
         business.businessname = request.form['businessname']
         business.description = request.form['description']
         business.cena = request.form['cena']
-        business.currency = request.form['currency']  # Handle the currency
+        business.currency = request.form['currency']
 
         location_id = request.form['locationid']
-
         if location_id == '-1':
             location_address = request.form['location']
             new_location = Location(address=location_address)
@@ -194,8 +212,13 @@ def vlasnik_edit_business(business_id):
             business.image_path = ','.join(updated_images)
             for img in removed_images:
                 image_path = os.path.join(os.getcwd(), 'static', img.strip('/'))
-                if os.path.exists(image_path):
-                    os.remove(image_path)
+                try:
+                    if os.path.exists(image_path):
+                        os.remove(image_path)
+                except PermissionError as e:
+                    logger.error(f"Permission error when deleting image: {image_path}. Error: {e}")
+                except Exception as e:
+                    logger.error(f"Error when deleting image: {image_path}. Error: {e}")
 
         images = request.files.getlist('images[]')
         if images:
@@ -204,7 +227,7 @@ def vlasnik_edit_business(business_id):
                 os.makedirs(upload_dir)
             for image in images:
                 if image and '.' in image.filename:
-                    filename = image.filename
+                    filename = secure_filename(image.filename)
                     image_path = os.path.join(upload_dir, filename)
                     image.save(image_path)
                     rel_path = os.path.join('uploads', filename).replace('\\', '/')
@@ -215,5 +238,6 @@ def vlasnik_edit_business(business_id):
 
     image_paths = business.image_path.split(',') if business.image_path else []
     return render_template('vlasnik_edit_business.html', business=business, image_paths=image_paths)
+
 
 #endregion Vlasnik routes

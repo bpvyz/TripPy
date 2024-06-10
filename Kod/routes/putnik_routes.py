@@ -35,8 +35,18 @@ def putnik_show_all_routes():
 @putnik_required
 def putnik_show_my_routes():
     user_id = session['user_id']
-    routes = Route.query.filter_by(createdby=user_id).all()
-    return render_template('putnik_show_my_routes.html', routes=routes, user_id=user_id)
+
+    # rute koje je kreirao user
+    created_routes = Route.query.filter_by(createdby=user_id).all()
+
+    # rute gde je user participant
+    participant_routes = Route.query.join(RouteParticipant, Route.routeid == RouteParticipant.routeid).filter(RouteParticipant.userid == user_id).all()
+
+    # kombinacija obe liste
+    all_routes = list(set(created_routes + participant_routes))
+
+    return render_template('putnik_show_my_routes.html', routes=all_routes, user_id=user_id)
+
 
 @putnik_routes.route('/putnik_show_businesses', methods=['GET'])
 @putnik_required
@@ -66,7 +76,6 @@ def putnik_add_route():
         db.session.add(new_route)
         db.session.flush()  
 
-     
         for participant_id in participants:
             route_participant = RouteParticipant(
                 routeid=new_route.routeid,
@@ -77,17 +86,14 @@ def putnik_add_route():
         db.session.commit()
         return redirect(url_for('putnik_dashboard'))
 
-   
-    users = User.query.all()
+    users = User.query.filter_by(usertype='Putnik').all()
     return render_template('putnik_add_route.html', users=users)
-    
-
 
 
 @putnik_required
 def putnik_update_route(route_id):
     route = Route.query.get_or_404(route_id)
-    
+
     if request.method == 'POST':
         route.routename = request.form.get('routename')
         route.description = request.form.get('description')
@@ -95,10 +101,8 @@ def putnik_update_route(route_id):
         route.enddate = request.form.get('enddate')
         route.public = request.form.get('public', 'private')
 
-        # Remove existing participants
         RouteParticipant.query.filter_by(routeid=route_id).delete()
 
-        # Add new participants
         participants = request.form.getlist('participants')
         for participant_id in participants:
             route_participant = RouteParticipant(
@@ -106,18 +110,16 @@ def putnik_update_route(route_id):
                 userid=participant_id
             )
             db.session.add(route_participant)
-        
+
         db.session.commit()
-        return redirect(url_for('putnik_get_route' , route_id=route.routeid))
-    
-    # Fetch all users for the participants dropdown
-    users = User.query.all()
-    # Fetch the current participants
+        return redirect(url_for('putnik_get_route', route_id=route.routeid))
+
+    users = User.query.filter_by(usertype='Putnik').all()
+
     current_participants = [p.userid for p in route.route_participants]
-    
-    return render_template('putnik_update_route.html', route=route, users=users, current_participants=current_participants)
 
-
+    return render_template('putnik_update_route.html', route=route, users=users,
+                           current_participants=current_participants)
 
 @putnik_required
 def putnik_get_business(business_id):
@@ -136,14 +138,16 @@ def putnik_get_route(route_id):
     if route is None:
         return "Route not found", 404
 
+    user_id = session['user_id']
     route_duration = (route.enddate - route.startdate).days
 
-    if route.public == 'public' or route.createdby == session['user_id']:
+    # provera da li je public ili da li je user participant
+    if route.public == 'public' or route.createdby == user_id or RouteParticipant.query.filter_by(routeid=route_id, userid=user_id).first():
         route_participants = User.query.join(RouteParticipant, User.userid == RouteParticipant.userid).filter(RouteParticipant.routeid == route_id).all()
-
-        return render_template('putnik_get_route.html', route=route, route_duration=route_duration, route_participants=route_participants, user_id=session['user_id'])
+        return render_template('putnik_get_route.html', route=route, route_duration=route_duration, route_participants=route_participants, user_id=user_id)
     else:
         return "Unauthorized", 403
+
 
 
 
@@ -189,11 +193,25 @@ def putnik_add_business_to_itinerary(route_id, day_number, business_id):
             return "Business not found", 404
 
         location_id = business.locationid
-        route_location = RouteLocation(routeid=route_id, day=day_number, business_id=business_id,
-                                                   locationid=location_id)
+
+        existing_route_location = RouteLocation.query.filter_by(
+            routeid=route_id, locationid=location_id, business_id=business_id, day=day_number
+        ).first()
+
+        if existing_route_location:
+            return redirect(url_for('putnik_show_itinerary', route_id=route_id, day_number=day_number))
+
+        route_location = RouteLocation(
+            routeid=route_id, locationid=location_id, business_id=business_id, day=day_number
+        )
         db.session.add(route_location)
         db.session.commit()
+
         return redirect(url_for('putnik_show_itinerary', route_id=route_id, day_number=day_number))
+
+    return redirect(url_for('login'))
+
+
 
 @putnik_required
 def putnik_delete_itinerary_business(route_id, day_number, business_id):

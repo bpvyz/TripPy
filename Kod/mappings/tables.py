@@ -75,7 +75,7 @@ class RouteLocation(db.Model):
     routeid = db.Column(db.Integer, db.ForeignKey('routes.routeid'), primary_key=True)
     locationid = db.Column(db.Integer, db.ForeignKey('locations.locationid'), primary_key=True)
     business_id = db.Column(db.Integer, db.ForeignKey('businesses.businessid'), primary_key=True)
-    day = db.Column(db.Integer)
+    day = db.Column(db.Integer, primary_key=True)
 
     location = relationship("Location")
     business = relationship("Business", overlaps="route_locations")
